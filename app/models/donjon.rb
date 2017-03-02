@@ -1,0 +1,2 @@
+class Donjon < ApplicationRecord
+end

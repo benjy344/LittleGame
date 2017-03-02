@@ -1,0 +1,17 @@
+<%= simple_form_for(@avatar) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :name, label:'Nom', class: 'form-control' %>
+    <%= f.input :level, label:'Niveau' %>
+    <%= f.input :element, label:'Element' %>
+    <%= f.input :hp, label:'Point de vie' %>
+    <%= f.association :job, label:'Classe', class: 'form-control' %>
+    <%= f.input :exp, label:'Experience' %>
+    <%= f.association :objets, label:'objets', as: :check_boxes, item_wrapper_tag: :label, item_wrapper_class: 'checkbox-inline' %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @avatar.name %>
+</p>
+
+<p>
+  <strong>Element:</strong>
+  <%= @avatar.element %>
+</p>
+
+<p>
+  <strong>Hp:</strong>
+  <%= @avatar.hp %>
+</p>
+<p>
+  <strong>objets : </strong>
+  <%= render partial: 'objets/objets_list' , locals: {objets: @avatar.objets}%>
+</p>
+
+<button>
+	
+</button>
+
+
+
+<%= link_to 'Edit', edit_avatar_path(@avatar) %> |
+<%= link_to 'Back', avatars_path %>

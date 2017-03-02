@@ -1,0 +1,17 @@
+<% if objets.any? %>
+<ul>
+	<% result = objets.ids.inject({}) do |hash, key|
+	  hash.include?(key) ? hash[key] += 1 : hash[key] = 1;
+	  hash
+	end %>
+
+ 	<% result.each do |r| %>
+<%# r[0] == id , r[1] == number %>
+
+	<li><%= objets.find(r[0]).name %> (x <%= r[1]%>)</li>
+	<% end %>
+</ul>
+<%# raw move.map { |m| link_to(m.name, m) }.join(', ')%>
+<% else %>
+<p>Pas d'objet... </p>
+<% end %>
