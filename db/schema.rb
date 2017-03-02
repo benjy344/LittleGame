@@ -10,17 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170228191121) do
+ActiveRecord::Schema.define(version: 20170302150539) do
 
   create_table "avatars", force: :cascade do |t|
     t.string   "name"
     t.string   "element"
-    t.integer  "hp"
-    t.integer  "level"
-    t.integer  "exp"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "hp",         default: 20
+    t.integer  "level",      default: 5
+    t.integer  "exp",        default: 0
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
     t.integer  "job_id"
+    t.integer  "MaxHealth",  default: 20
     t.index ["job_id"], name: "index_avatars_on_job_id"
   end
 
@@ -51,10 +52,11 @@ ActiveRecord::Schema.define(version: 20170228191121) do
   create_table "objets", force: :cascade do |t|
     t.string  "name"
     t.integer "rarity"
-    t.string  "family"
+    t.integer "health"
     t.integer "force"
     t.integer "agility"
     t.integer "magic"
+    t.string  "category"
   end
 
 end

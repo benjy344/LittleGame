@@ -21,6 +21,10 @@ class ObjetsController < ApplicationController
   def edit
   end
 
+  def craftEpee
+    @objet = Objet.new(objet_params)
+  end
+
   # POST /objets
   # POST /objets.json
   def create

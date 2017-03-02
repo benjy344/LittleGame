@@ -3,9 +3,9 @@ class CreateAvatars < ActiveRecord::Migration[5.0]
     create_table :avatars do |t|
       t.string :name
       t.string :element
-      t.integer :hp
-      t.integer :level
-      t.integer :exp
+      t.integer :hp , default: 20
+      t.integer :level, default: 5
+      t.integer :exp, default: 0
 
       t.timestamps
     end

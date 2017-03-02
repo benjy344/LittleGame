@@ -1,13 +1,13 @@
 <%= simple_form_for(@objet) do |f| %>
   <%= f.error_notification %>
-
   <div class="form-inputs">
     <%= f.input :name, label:'Nom', class: 'form-control' %>
     <%= f.input :rarity, label:'rarity', class: 'form-control' %>
-    <%= f.input :family, label:'family', class: 'form-control' %>
+    <%= f.input :health, label:'Health', class: 'form-control' %>
     <%= f.input :force, label:'force', class: 'form-control' %>
     <%= f.input :agility, label:'agility', class: 'form-control' %>
     <%= f.input :magic, label:'magic', class: 'form-control' %>
+    <%= f.input :category, collection: ['Manche', 'Estoc', 'Pierre Magique', 'Santé'], prompt: "Select your category" %>
   </div>
 
   <div class="form-actions">
