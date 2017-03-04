@@ -60,7 +60,7 @@ class AvatarsController < ApplicationController
     @avatar.objets << @obj
 
     respond_to do |format|
-        format.html { redirect_to @avatar, notice: 'Avatar was successfully updated.' }
+        format.html { redirect_to donjons_path, notice: 'Avatar was successfully updated.' }
         format.json { render :show, status: :ok, location: @avatar }
     end
 

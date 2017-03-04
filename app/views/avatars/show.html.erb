@@ -23,10 +23,11 @@
   <%= render partial: 'objets/objets_list' , locals: {objets: @avatar.objets}%>
 </p>
 
-<button>
-	
-</button>
+<% if @avatar.objets.where(name: "Baton") && (@avatar.objets.where(name: "Fer").count)>= 2  %>
 
+<%= link_to 'Créer une Épée de Fer', {controller: "objets", action: "craftEpeeFer", avatar_id: @avatar.id }, method: 'get' %>
+
+<% end %>
 
 
 <%= link_to 'Edit', edit_avatar_path(@avatar) %> |

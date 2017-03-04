@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   	end
   end
   get 'addObjetById'=> 'avatars#addObjetById'
+  get 'craftEpeeFer'=> 'objets#craftEpeeFer'
   #post 'donjons/addObject'
 
   #get 'donjons/addObject/:avatar_id/:avatar_id' => 'donjons#addObject/avatar_id/objet_id'

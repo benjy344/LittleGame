@@ -21,8 +21,25 @@ class ObjetsController < ApplicationController
   def edit
   end
 
-  def craftEpee
-    @objet = Objet.new(objet_params)
+  def craftEpeeFer
+    @avatar = Avatar.find(params[:avatar_id])
+
+    @obj1 = @avatar.objets.where(name: "Baton").first.id
+    @obj2 = @avatar.objets.where(name: "Fer").first.id
+
+    @bag1 = @avatar.bags.where(objet_id: @obj1).first
+    @bag2 = @avatar.bags.where(objet_id: @obj2).first(2)
+    puts 'udeeinfiencrfnvhbrbgvrbvbgrb'
+    @avatar.bags.delete(@bag1, @bag2)
+    puts 'udeeinfiencrfnvhbrbgvrbvbgrb'
+
+    #@avatar.objets.delete(@obj1, @obj2)
+    @epee = Objet.where(name: "Épée de Fer")
+
+    @avatar.objets << @epee
+
+
+    redirect_to Avatar.find(params[:avatar_id])
   end
 
   # POST /objets
