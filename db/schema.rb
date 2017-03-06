@@ -10,19 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170302150539) do
+ActiveRecord::Schema.define(version: 20170305214001) do
 
   create_table "avatars", force: :cascade do |t|
     t.string   "name"
     t.string   "element"
-    t.integer  "hp",         default: 20
-    t.integer  "level",      default: 5
-    t.integer  "exp",        default: 0
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.integer  "hp",          default: 20
+    t.integer  "level",       default: 5
+    t.integer  "exp",         default: 0
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
     t.integer  "job_id"
-    t.integer  "MaxHealth",  default: 20
+    t.integer  "MaxHealth",   default: 20
+    t.integer  "force",       default: 5
+    t.integer  "agility",     default: 5
+    t.integer  "inteligence", default: 5
     t.index ["job_id"], name: "index_avatars_on_job_id"
+  end
+
+  create_table "bag_monsters", force: :cascade do |t|
+    t.integer "monster_id"
+    t.integer "objet_id"
+    t.index ["monster_id"], name: "index_bag_monsters_on_monster_id"
+    t.index ["objet_id"], name: "index_bag_monsters_on_objet_id"
   end
 
   create_table "bags", force: :cascade do |t|
@@ -47,6 +57,18 @@ ActiveRecord::Schema.define(version: 20170302150539) do
     t.integer  "intelligence"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+  end
+
+  create_table "monsters", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "hp"
+    t.integer  "force"
+    t.integer  "agility"
+    t.integer  "exp"
+    t.string   "element"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "inteligence"
   end
 
   create_table "objets", force: :cascade do |t|

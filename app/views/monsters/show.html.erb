@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @monster.name %>
+</p>
+
+<p>
+  <strong>Hp:</strong>
+  <%= @monster.hp %>
+</p>
+
+<p>
+  <strong>Force:</strong>
+  <%= @monster.force %>
+</p>
+
+<p>
+  <strong>Agility:</strong>
+  <%= @monster.agility %>
+</p>
+
+<p>
+  <strong>Exp:</strong>
+  <%= @monster.exp %>
+</p>
+
+<p>
+  <strong>Element:</strong>
+  <%= @monster.element %>
+</p>
+<div id="renderObjets">
+  <p>
+  <strong>objets : </strong>
+  <%= render partial: 'objets/objets_list' , locals: {objets: @monster.objets}%>
+</p>
+</div>
+
+<%= link_to 'Edit', edit_monster_path(@monster) %> |
+<%= link_to 'Back', monsters_path %>

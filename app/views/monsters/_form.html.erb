@@ -1,0 +1,17 @@
+<%= simple_form_for(@monster) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :name %>
+    <%= f.input :hp %>
+    <%= f.input :force %>
+    <%= f.input :agility %>
+    <%= f.input :inteligence %>
+    <%= f.input :exp %>
+    <%= f.input :element %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

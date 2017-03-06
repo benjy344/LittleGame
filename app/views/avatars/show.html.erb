@@ -18,14 +18,25 @@
   <strong>Hp:</strong>
   <%= @avatar.hp %>
 </p>
-<p>
+<div id="renderObjets">
+  <p>
   <strong>objets : </strong>
   <%= render partial: 'objets/objets_list' , locals: {objets: @avatar.objets}%>
 </p>
+</div>
+
 
 <% if @avatar.objets.where(name: "Baton") && (@avatar.objets.where(name: "Fer").count)>= 2  %>
 
-<%= link_to 'Créer une Épée de Fer', {controller: "objets", action: "craftEpeeFer", avatar_id: @avatar.id }, method: 'get' %>
+<%# button_to 'Créer une Épée de Fer', {controller: "objets", action: "craftEpeeFer", avatar_id: @avatar.id }, method: 'get', remote: true %>
+
+<%= link_to 'Créer une Épée de Fer', {controller: "objets", action: "craftEpeeFer", avatar_id: @avatar.id }, {method: 'get'} %>
+
+<%# link_to 'Créer une Épée de Fer', {controller: "objets", action: "craftEpeeFer", avatar_id: @avatar.id }, {:method => :get, remote: true} %>
+
+<%# form_tag( { :controller => :objets, :action => :craftEpeeFer, avatar_id: @avatar.id }, { :method => :post } ) do %>
+    <%# submit_tag 'Créer une Épée de Fer' %>
+<%# end %>
 
 <% end %>
 

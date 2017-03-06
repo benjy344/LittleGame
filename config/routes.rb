@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :monsters
   resources :avatars do
   		resources :objets
   	end
@@ -12,6 +13,7 @@ Rails.application.routes.draw do
   	end
   end
   get 'addObjetById'=> 'avatars#addObjetById'
+  get 'addObjetByIdToMonster'=> 'monsters#addObjetById'
   get 'craftEpeeFer'=> 'objets#craftEpeeFer'
   #post 'donjons/addObject'
 
