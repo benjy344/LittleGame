@@ -11,6 +11,11 @@ class DonjonsController < ApplicationController
   # GET /avatars/1
   # GET /avatars/1.json
   def show
+  	@avatars = Avatar.includes(:job, :objets).all
+    @objets = Objet.all
+    @bags = Bag.includes(:avatar, :objet).all
+    @monsters = Monster.includes(:objets).all
+    @donjons = Donjon.all
   end
 
   # GET /avatars/new
@@ -61,7 +66,7 @@ class DonjonsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def donjon_params
-      params.require(:donjon).permit[:name, :nbMonster, :level]
+      params.require(:donjon).permit(:name, :nbMonster, :level)
     end
 
 end
