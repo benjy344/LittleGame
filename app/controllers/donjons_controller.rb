@@ -1,5 +1,5 @@
 class DonjonsController < ApplicationController
-
+	before_action :authenticate_user!
 	def index
 	    @avatars = Avatar.includes(:job, :objets).all
 	    @objets = Objet.all

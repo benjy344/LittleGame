@@ -1,5 +1,6 @@
 class AvatarsController < ApplicationController
   before_action :set_avatar, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /avatars
   # GET /avatars.json

@@ -1,5 +1,6 @@
 class ObjetsController < ApplicationController
 	before_action :set_objet, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /objets
   # GET /objets.json

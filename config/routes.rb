@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
+  devise_for :users
+  
   resources :monsters
   resources :avatars do
   		resources :objets
   	end
-  root 'avatars#index'
+  root 'index#index'
   resources :jobs
   resources :objets
   resources :bags
