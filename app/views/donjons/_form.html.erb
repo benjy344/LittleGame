@@ -1,13 +1,20 @@
 <%= simple_form_for(@donjon) do |f| %>
-  <%= f.error_notification %>
+  	<%= f.error_notification %>
 
-  <div class="form-inputs">
-    <%= f.input :name, label:'Nom', class: 'form-control' %>
-    <%= f.input :level, label:'Nombre de cases', class: 'form-control' %>
-    <%= f.input :nbMonster, label:'Nombre de monstre', class: 'form-control' %>
-  </div>
+  	<div class="form-inputs">
+	    <%= f.input :name, label:'Nom', class: 'form-control' %>
+	    <%# f.input :level, label:'Nombre de Chambre', class: 'form-control' %>
+	    <%# f.input :nbMonster, label:'Nombre de monstre', class: 'form-control' %>
+	</div>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
+	<div><%= link_to 'Ajouter une Chambre', new_room_path, remote: true%></div>
+
+  	<div class="form-actions">
+    	<%= f.button :submit %>
+  	</div>
+
+  	<div id="room-form" style="display:none;"></div>
+
+
+
 <% end %>

@@ -5,8 +5,6 @@ class CreateJobs < ActiveRecord::Migration[5.0]
       t.integer :agility
       t.integer :strong
       t.integer :intelligence
-
-      t.timestamps
     end
   end
 end

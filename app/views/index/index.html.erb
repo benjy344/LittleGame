@@ -2,13 +2,16 @@
 
 
 <% if user_signed_in? %>
-<p>
-	<%= link_to 'Déconnection' , destroy_user_session_path, :method => :delete %>
-</p>
 
-<p>
+<% if current_user.avatar.nil? %>
+	<p>
 	<%= link_to 'créer mon avatar', new_avatar_path %>
 </p>
+<% else %>
+<p>
+	<%= link_to 'mon avatar', current_user.avatar %>
+</p>
+<% end %>
 
 <%# current_user %>
 

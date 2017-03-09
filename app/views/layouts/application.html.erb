@@ -16,6 +16,9 @@
     
     <% if user_signed_in?%>
     <p>connecté en tant que : <%= current_user.username%></p>
+    <p>
+      <%= link_to 'Déconnection' , destroy_user_session_path, :method => :delete %>
+    </p>
     <% end %>
   </body>
 </html>

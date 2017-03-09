@@ -4,10 +4,8 @@ class CreateAvatars < ActiveRecord::Migration[5.0]
       t.string :name
       t.string :element
       t.integer :hp , default: 20
-      t.integer :level, default: 5
+      t.integer :level, default: 1
       t.integer :exp, default: 0
-
-      t.timestamps
     end
   end
 end

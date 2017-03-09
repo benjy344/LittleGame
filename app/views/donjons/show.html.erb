@@ -2,7 +2,36 @@
 
 <h1>Donjons</h1>
 
-<h2>avatar</h2>
+
+
+<div id="avatar" data-hp="<%= @avatar.hp %>" data-maxHp="<%= @avatar.MaxHealth %>" data-element="<%= @avatar.element %>" data-job="<%= @avatar.job.name %>" data-exp="<%= @avatar.exp %>" data-level="<%= @avatar.level %>" data-force="<%= @avatar.force %>" data-inteligence="<%= @avatar.inteligence %>" data-agility="<%= @avatar.agility %>">
+  <div class="frame1"></div>
+  <div class="frame2"></div>
+  <div class="frame3"></div>
+  <div class="frame4"></div>
+  <div class="frame5"></div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <h2>avatar</h2>
 <table>
   <thead>
     <tr>
@@ -11,29 +40,27 @@
   </thead>
 
   <tbody>
-    <% @avatars.each do |a| %>
       <tr>
-        <td><%= a.name %></td>
-        <td><%# defined?a.objets.first.name %></td>
+        <td><%= @avatar.name %></td>
+        <td><%# defined?@avatar.objets.first.name %></td>
 
         <% @objets.each do |o| %>
           <% @title = 'Ajouter '+o.name%>
-          <td><%= link_to @title, {controller: "avatars", action: "addObjetById", avatar_id: a.id, objet_id: o.id }, {method: 'get'} %></td>
+          <td><%= link_to @title, {controller: "avatars", action: "addObjetById", avatar_id: @avatar.id, objet_id: o.id }, {method: 'get'} %></td>
           
         <% end %>
         
       </tr>
-    <% end %>
   </tbody>
 </table>
 
-<% @monsters.each do |a| %>
+<% @monsters.each do |m| %>
       <tr>
-        <td><%= a.name %></td>
+        <td><%= m.name %></td>
 
         <% @objets.each do |o| %>
           <% @title = 'Ajouter '+o.name%>
-          <td><%= link_to @title, {controller: "monsters", action: "addObjetById", monster_id: a.id, objet_id: o.id }, {method: 'get'} %></td>
+          <td><%= link_to @title, {controller: "monsters", action: "addObjetById", monster_id: @avatar.id, objet_id: o.id }, {method: 'get'} %></td>
           
         <% end %>
         
@@ -43,6 +70,6 @@
 
 
 <br>
-
+ -->
 
 

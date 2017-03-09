@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :jobs
   resources :objets
   resources :bags
+  resources :rooms
   resources :donjons do
   	resources :avatars do
   		resources :objets

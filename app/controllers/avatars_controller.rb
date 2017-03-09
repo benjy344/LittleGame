@@ -27,7 +27,7 @@ class AvatarsController < ApplicationController
   def create
     @avatar = Avatar.new(avatar_params)
     @user = current_user
-    
+    @user.avatar = @avatar
     respond_to do |format|
       if @avatar.save
         format.html { redirect_to @avatar, notice: 'Avatar was successfully created.' }
@@ -54,15 +54,13 @@ class AvatarsController < ApplicationController
   end
 
   def addObjetById
-    @avatar = Avatar.find(params[:avatar_id])
+    @avatar = current_user.avatar
     @obj = Objet.find(params[:objet_id])
-    puts @avatar
-    puts @obj
 
     @avatar.objets << @obj
 
     respond_to do |format|
-        format.html { redirect_to donjons_path, notice: 'Avatar was successfully updated.' }
+        format.html { redirect_to Donjon.find(1), notice: 'Avatar was successfully updated.' }
         format.json { render :show, status: :ok, location: @avatar }
     end
 

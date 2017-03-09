@@ -7,8 +7,6 @@ class CreateMonsters < ActiveRecord::Migration[5.0]
       t.integer :agility
       t.integer :exp
       t.string :element
-
-      t.timestamps
     end
   end
 end

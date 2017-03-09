@@ -1,0 +1,17 @@
+$(document).ready(function(){
+
+	// $('#avatar').on('click', function(){
+		
+	// })
+
+	// $('.js-more-monster').on('click', function(){
+	// 	$content = $('.js-monster-select').clone();
+	// 	console.log($content[0]);
+	// 	$('.js-monsters-to-add').append($content[0]);
+	// })	
+
+
+	$('#room-form').html("<%= j (render 'form') %>");
+	$('#room-form').slideDown(350);
+
+})

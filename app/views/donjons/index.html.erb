@@ -6,7 +6,8 @@
 
   <div>
     <% @donjons.each do |a| %>
-        <p><%= a.name %></p>
+        <p><%= link_to a.name, a %></p>
+        <p><%= link_to 'Edit', edit_donjon_path(a) %></p>
     <% end %>
   </div>
 

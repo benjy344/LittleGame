@@ -10,22 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170309083936) do
+ActiveRecord::Schema.define(version: 20170309212527) do
 
   create_table "avatars", force: :cascade do |t|
-    t.string   "name"
-    t.string   "element"
-    t.integer  "hp",          default: 20
-    t.integer  "level",       default: 5
-    t.integer  "exp",         default: 0
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
-    t.integer  "job_id"
-    t.integer  "MaxHealth",   default: 20
-    t.integer  "force",       default: 5
-    t.integer  "agility",     default: 5
-    t.integer  "inteligence", default: 5
-    t.integer  "user_id"
+    t.string  "name"
+    t.string  "element"
+    t.integer "hp",          default: 20
+    t.integer "level",       default: 1
+    t.integer "exp",         default: 0
+    t.integer "job_id"
+    t.integer "MaxHealth",   default: 20
+    t.integer "force",       default: 5
+    t.integer "agility",     default: 5
+    t.integer "inteligence", default: 5
+    t.integer "user_id"
     t.index ["job_id"], name: "index_avatars_on_job_id"
     t.index ["user_id"], name: "index_avatars_on_user_id"
   end
@@ -45,32 +43,32 @@ ActiveRecord::Schema.define(version: 20170309083936) do
   end
 
   create_table "donjons", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "level"
-    t.integer  "nbMonster"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string  "name"
+    t.integer "level"
   end
 
   create_table "jobs", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "agility"
-    t.integer  "strong"
-    t.integer  "intelligence"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.string  "name"
+    t.integer "agility"
+    t.integer "strong"
+    t.integer "intelligence"
+  end
+
+  create_table "mirs", force: :cascade do |t|
+    t.integer "room_id"
+    t.integer "monster_id"
+    t.index ["monster_id"], name: "index_mirs_on_monster_id"
+    t.index ["room_id"], name: "index_mirs_on_room_id"
   end
 
   create_table "monsters", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "hp"
-    t.integer  "force"
-    t.integer  "agility"
-    t.integer  "exp"
-    t.string   "element"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.integer  "inteligence"
+    t.string  "name"
+    t.integer "hp"
+    t.integer "force"
+    t.integer "agility"
+    t.integer "exp"
+    t.string  "element"
+    t.integer "inteligence"
   end
 
   create_table "objets", force: :cascade do |t|
@@ -81,6 +79,24 @@ ActiveRecord::Schema.define(version: 20170309083936) do
     t.integer "agility"
     t.integer "magic"
     t.string  "category"
+  end
+
+  create_table "oirs", force: :cascade do |t|
+    t.integer "objet_id"
+    t.integer "room_id"
+    t.index ["objet_id"], name: "index_oirs_on_objet_id"
+    t.index ["room_id"], name: "index_oirs_on_room_id"
+  end
+
+  create_table "rids", force: :cascade do |t|
+    t.integer "room_id"
+    t.integer "donjon_id"
+    t.index ["donjon_id"], name: "index_rids_on_donjon_id"
+    t.index ["room_id"], name: "index_rids_on_room_id"
+  end
+
+  create_table "rooms", force: :cascade do |t|
+    t.string "name"
   end
 
   create_table "users", force: :cascade do |t|

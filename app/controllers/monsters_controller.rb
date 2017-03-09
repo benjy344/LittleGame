@@ -26,7 +26,9 @@ class MonstersController < ApplicationController
   # POST /monsters.json
   def create
     @monster = Monster.new(monster_params)
-
+    puts"================"
+    puts @monster.errors.inspect
+    puts"================"
     respond_to do |format|
       if @monster.save
         format.html { redirect_to @monster, notice: 'Monster was successfully created.' }
@@ -83,6 +85,6 @@ class MonstersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def monster_params
-      params.require(:monster).permit(:name, :hp, :force, :agility, :exp, :element, objet_ids: [])
+      params.require(:monster).permit(:name, :hp, :force, :agility, :exp, :element, :inteligence, :force, objet_ids: [])
     end
 end
