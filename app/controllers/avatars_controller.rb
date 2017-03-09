@@ -26,7 +26,8 @@ class AvatarsController < ApplicationController
   # POST /avatars.json
   def create
     @avatar = Avatar.new(avatar_params)
-
+    @user = current_user
+    
     respond_to do |format|
       if @avatar.save
         format.html { redirect_to @avatar, notice: 'Avatar was successfully created.' }

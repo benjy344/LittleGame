@@ -18,4 +18,6 @@ class User < ApplicationRecord
   		where(conditions.to_hash).first
   	end
   end
+
+  has_one :avatar
 end

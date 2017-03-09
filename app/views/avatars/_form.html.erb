@@ -2,7 +2,7 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :name, label:'Nom', class: 'form-control' %>
+    <%= f.input :name, label:'Nom', class: 'form-control', placeholder: current_user.username %>
     <%= f.input :element, collection: ['Feu', 'Eau', 'Terre'], prompt: "Choisir un élémement" %>
     <%= f.association :job, label:'Classe', class: 'form-control' %>
 

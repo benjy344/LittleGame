@@ -13,6 +13,9 @@
       <p class="alert"><%= alert %></p>
     <%= yield %>
 
-    <%= debug user_signed_in? %>
+    
+    <% if user_signed_in?%>
+    <p>connecté en tant que : <%= current_user.username%></p>
+    <% end %>
   </body>
 </html>
