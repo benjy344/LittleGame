@@ -2,7 +2,7 @@ class RoomsController < ApplicationController
 	before_action :set_room, only: [:show, :edit, :update, :destroy]
 	before_action :all_rooms, only: [:index, :create]
 	before_action :authenticate_user!
-  	respond_to :html, :js
+  load_and_authorize_resource
 
   	
 
@@ -41,7 +41,6 @@ class RoomsController < ApplicationController
     respond_to do |format|
         format.html { redirect_to donjon_room_path(@donjon.id, @room.id), notice: 'Room was successfully updated.' }
         format.json { render :show, status: :ok, location: @room }
-        format.js { render :show, status: :ok, location: @room }
     end
   end
 

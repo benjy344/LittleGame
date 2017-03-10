@@ -1,5 +1,6 @@
 class BagsController < ApplicationController
-
+  before_action :authenticate_user!
+  load_and_authorize_resource
   # GET /bags
   # GET /bags.json
   def index

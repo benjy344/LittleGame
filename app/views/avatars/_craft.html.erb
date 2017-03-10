@@ -1,0 +1,6 @@
+<% if @avatar.objets.where(name: "Baton") && (@avatar.objets.where(name: "Fer").count)>= 2  %>
+
+<%= link_to 'Créer une Épée de Fer', {controller: "objets", action: "craftEpeeFer", avatar_id: @avatar.id } ,remote: true, class: 'btn btn--white' %>
+<p>Baton(x1), Fer(x2)</p>
+
+<% end %>

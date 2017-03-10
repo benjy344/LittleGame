@@ -1,6 +1,7 @@
 class ObjetsController < ApplicationController
 	before_action :set_objet, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
+  load_and_authorize_resource
 
   # GET /objets
   # GET /objets.json
@@ -36,7 +37,13 @@ class ObjetsController < ApplicationController
 
     @avatar.objets << @epee
 
-    redirect_to Avatar.find(params[:avatar_id])
+    #redirect_to Avatar.find(params[:avatar_id])
+
+    respond_to do |format|
+        format.html { Avatar.find(params[:avatar_id]) }
+        format.json { render :show, status: :ok, location: @avatar }
+        format.js
+    end
   end
 
   # POST /objets

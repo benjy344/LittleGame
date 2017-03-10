@@ -1,6 +1,7 @@
 class DonjonsController < ApplicationController
-  before_action :set_donjon, only: [:show, :edit, :update, :destroy]
+  #before_action :set_donjon, only: [:show, :edit, :update, :destroy]
 	before_action :authenticate_user!
+  load_and_authorize_resource
 
 	def index
 	    @avatars = Avatar.includes(:job, :objets).all
@@ -8,6 +9,7 @@ class DonjonsController < ApplicationController
 	    @bags = Bag.includes(:avatar, :objet).all
 	    @monsters = Monster.includes(:objets).all
 	    @donjons = Donjon.all
+      @user = current_user
 	end
 
   # GET /avatars/1

@@ -7,7 +7,9 @@
   <div>
     <% @donjons.each do |a| %>
         <p><%= link_to a.name, a %></p>
+        <% if current_user.role === "admin" %>
         <p><%= link_to 'Edit', edit_donjon_path(a) %></p>
+        <% end %>
     <% end %>
   </div>
 

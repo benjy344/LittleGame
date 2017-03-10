@@ -1,10 +1,12 @@
 class AvatarsController < ApplicationController
-  before_action :set_avatar, only: [:show, :edit, :update, :destroy]
+  #before_action :set_avatar, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
+  load_and_authorize_resource
 
   # GET /avatars
   # GET /avatars.json
   def index
+    #authorize! :read, Avatar 
     @avatars = Avatar.includes(:job, :objets).all
   end
 
@@ -56,12 +58,14 @@ class AvatarsController < ApplicationController
   def addObjetById
     @avatar = current_user.avatar
     @obj = Objet.find(params[:objet_id])
+    @donjon = Donjon.find(params[:donjon_id])
 
     @avatar.objets << @obj
 
     respond_to do |format|
-        format.html { redirect_to Donjon.find(1), notice: 'Avatar was successfully updated.' }
+        format.html { redirect_to @donjon, notice: 'Avatar was successfully updated.' }
         format.json { render :show, status: :ok, location: @avatar }
+        format.js
     end
 
   end
@@ -69,6 +73,7 @@ class AvatarsController < ApplicationController
   # DELETE /avatars/1
   # DELETE /avatars/1.json
   def destroy
+    authorize! :destroy, Avatar 
     @avatar.destroy
     respond_to do |format|
       format.html { redirect_to avatars_url, notice: 'Avatar was successfully destroyed.' }
