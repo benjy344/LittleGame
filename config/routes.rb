@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   end
   get 'addObjetById'=> 'avatars#addObjetById'
   get 'addObjetByIdToRoom'=> 'rooms#addObjetByIdToRoom'
+  get 'addMonsterByIdToRoom'=> 'rooms#addMonsterByIdToRoom'
   get 'addObjetByIdToMonster'=> 'monsters#addObjetById'
   get 'craftEpeeFer'=> 'objets#craftEpeeFer'
   #post 'donjons/addObject'

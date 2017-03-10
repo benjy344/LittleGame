@@ -41,6 +41,21 @@ class RoomsController < ApplicationController
     respond_to do |format|
         format.html { redirect_to donjon_room_path(@donjon.id, @room.id), notice: 'Room was successfully updated.' }
         format.json { render :show, status: :ok, location: @room }
+        format.js { render :show, status: :ok, location: @room }
+    end
+  end
+
+  def addMonsterByIdToRoom
+    @room = Room.find(params[:room_id])
+    @donjon = @room.donjons.first
+    @monster = Monster.find(params[:monster_id])
+
+    @room.monsters << @monster
+
+    respond_to do |format|
+        format.html { redirect_to donjon_room_path(@donjon.id, @room.id), notice: 'Room was successfully updated.' }
+        format.json { render :show, status: :ok, location: @room }
+        format.js { render :show, status: :ok, location: @room }
     end
   end
   # POST /rooms

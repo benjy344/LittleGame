@@ -1,7 +1,29 @@
 <h1><%= @room.name%></h1>
 
-<% @objets.each do |o| %>
-<% @title = 'Ajouter '+o.name%>
-<p><%= link_to @title, {controller: "rooms", action: "addObjetByIdToRoom", room_id: @room.id, objet_id: o.id }, {method: 'get'} %></p>
 
+<div id="objets-room">
+<%= render partial: 'objets/objets_list' , locals: {objets: @room.objets}%>
+</div>
+
+<% @objets.each do |o| %>
+    <% if @room.objets.count < 5 %>
+        <% @title = 'Ajouter '+o.name%>
+        <p><%= link_to @title, {controller: "rooms", action: "addObjetByIdToRoom", room_id: @room.id, objet_id: o.id }, {method: 'get'} %></p>
+    <% end %>
+
+<% end %>
+
+<% if @room.monsters.any? %>
+<div id="monster-room">
+    <%= @room.monsters.first.name %>
+</div>
+    <% else %>
+
+    <% @monsters.each do |o| %>
+        <% if @room.monsters.count < 1 %>
+            <% @title = 'Ajouter '+o.name%>
+            <p><%= link_to @title, {controller: "rooms", action: "addMonsterByIdToRoom", room_id: @room.id, monster_id: o.id }, {method: 'get'} %></p>
+        <% end %>
+
+    <% end %>
 <% end %>
