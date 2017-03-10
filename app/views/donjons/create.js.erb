@@ -1,4 +1,4 @@
-//$(document).ready(function(){
+$(document).ready(function(){
 
 	// $('#avatar').on('click', function(){
 		
@@ -10,8 +10,8 @@
 	// 	$('.js-monsters-to-add').append($content[0]);
 	// })	
 
+	console.log('cocuocu')
+	$('#room-form').html("<%= j (render 'form') %>");
+	$('#room-form').slideDown(350);
 
-// 	$('#room-form').html("");
-// 	$('#room-form').slideDown(350);
-
-// })
+})

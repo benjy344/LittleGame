@@ -36,7 +36,7 @@ class DonjonsController < ApplicationController
 
     respond_to do |format|
       if @donjon.save
-        format.html { redirect_to @donjon, notice: 'Donjon was successfully created.' }
+        format.html { redirect_to donjon_rooms_path(@donjon), notice: 'Donjon was successfully created.' }
         format.json { render :show, status: :created, location: @donjon }
       else
         format.html { render :new }

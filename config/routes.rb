@@ -11,11 +11,10 @@ Rails.application.routes.draw do
   resources :bags
   resources :rooms
   resources :donjons do
-  	resources :avatars do
-  		resources :objets
-  	end
+  	resources :rooms 
   end
   get 'addObjetById'=> 'avatars#addObjetById'
+  get 'addObjetByIdToRoom'=> 'rooms#addObjetByIdToRoom'
   get 'addObjetByIdToMonster'=> 'monsters#addObjetById'
   get 'craftEpeeFer'=> 'objets#craftEpeeFer'
   #post 'donjons/addObject'

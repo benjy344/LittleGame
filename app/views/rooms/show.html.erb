@@ -1,0 +1,7 @@
+<h1><%= @room.name%></h1>
+
+<% @objets.each do |o| %>
+<% @title = 'Ajouter '+o.name%>
+<p><%= link_to @title, {controller: "rooms", action: "addObjetByIdToRoom", room_id: @room.id, objet_id: o.id }, {method: 'get'} %></p>
+
+<% end %>

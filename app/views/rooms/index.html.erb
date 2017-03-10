@@ -1,0 +1,11 @@
+<h1>Rooms</h1>
+  <div>
+    <% @rooms.each do |a| %>
+        <p><%= link_to a.name, a %></p>
+        <p><%= link_to 'éditer', edit_donjon_room_path(@donjon.id, a.id) %></p>
+    <% end %>
+
+    <%= link_to 'Nouvelle Room', new_donjon_room_path %>
+
+  </div>
+
