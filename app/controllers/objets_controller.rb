@@ -33,20 +33,14 @@ class ObjetsController < ApplicationController
 
     @bag1 = @avatar.bags.where(objet_id: @obj1).first
     @bag2 = @avatar.bags.where(objet_id: @obj2).first(2)
-    puts "=============="
-    puts @avatar.bags.count
-    puts "=============="
+
     @avatar.bags.delete(@bag1, @bag2)
-    puts "=============="
-    puts @avatar.bags.count
-    puts "=============="
+
     
     @epee = Objet.where(name: "Épée de Fer")
 
     @avatar.objets << @epee
-    puts "=============="
-    puts @avatar.bags.count
-    puts "=============="
+
     #redirect_to Avatar.find(params[:avatar_id])
 
     respond_to do |format|
@@ -104,6 +98,6 @@ class ObjetsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def objet_params
-      params.require(:objet).permit(:name, :rarity, :family, :force, :agility, :magic)
+      params.require(:objet).permit(:name, :rarity, :family, :force, :agility, :magic, :description, :health, :category)
     end
 end

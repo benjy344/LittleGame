@@ -3,8 +3,8 @@ Rails.application.routes.draw do
   
   resources :monsters
   resources :avatars do
-  		resources :objets
-  	end
+		resources :objets
+	end
   root 'index#index'
   resources :jobs
   resources :objets
@@ -13,11 +13,13 @@ Rails.application.routes.draw do
   resources :donjons do
   	resources :rooms 
   end
-  get 'addObjetById'=> 'avatars#addObjetById'
-  get 'addObjetByIdToRoom'=> 'rooms#addObjetByIdToRoom'
-  get 'addMonsterByIdToRoom'=> 'rooms#addMonsterByIdToRoom'
-  get 'addObjetByIdToMonster'=> 'monsters#addObjetById'
-  get 'craftEpeeFer'=> 'objets#craftEpeeFer'
+  get 'addObjetById'            => 'avatars#addObjetById'
+  get 'removeObjetById'         => 'avatars#removeObjetById'
+  get 'equipeObjet'             => 'avatars#equipeObjet'
+  get 'addObjetByIdToRoom'      => 'rooms#addObjetByIdToRoom'
+  get 'addMonsterByIdToRoom'    => 'rooms#addMonsterByIdToRoom'
+  get 'addObjetByIdToMonster'   => 'monsters#addObjetById'
+  get 'craftEpeeFer'            => 'objets#craftEpeeFer'
   #post 'donjons/addObject'
 
   #get 'donjons/addObject/:avatar_id/:avatar_id' => 'donjons#addObject/avatar_id/objet_id'

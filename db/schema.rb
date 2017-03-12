@@ -10,20 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170310180734) do
+ActiveRecord::Schema.define(version: 20170312172633) do
 
   create_table "avatars", force: :cascade do |t|
     t.string  "name"
     t.string  "element"
-    t.integer "hp",          default: 20
-    t.integer "level",       default: 1
-    t.integer "exp",         default: 0
+    t.integer "hp",              default: 20
+    t.integer "level",           default: 1
+    t.integer "exp",             default: 0
     t.integer "job_id"
-    t.integer "MaxHealth",   default: 20
-    t.integer "force",       default: 5
-    t.integer "agility",     default: 5
-    t.integer "inteligence", default: 5
+    t.integer "MaxHealth",       default: 20
+    t.integer "force",           default: 5
+    t.integer "agility",         default: 5
+    t.integer "inteligence",     default: 5
     t.integer "user_id"
+    t.integer "id_objet_equipe"
     t.index ["job_id"], name: "index_avatars_on_job_id"
     t.index ["user_id"], name: "index_avatars_on_user_id"
   end
@@ -79,6 +80,7 @@ ActiveRecord::Schema.define(version: 20170310180734) do
     t.integer "agility"
     t.integer "magic"
     t.string  "category"
+    t.string  "description"
   end
 
   create_table "oirs", force: :cascade do |t|

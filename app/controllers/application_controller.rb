@@ -3,6 +3,10 @@ class ApplicationController < ActionController::Base
 
   before_action :configure_devise_parameters, if: :devise_controller?
 
+
+  rescue_from CanCan::AccessDenied do |exception|
+  	redirect_to root_path, notify: 'Accés interdit'
+  end
   #before_filter :configure_permitted_parameters,if: :devise_controller?
 	protected
 
@@ -17,4 +21,6 @@ class ApplicationController < ActionController::Base
 		devise_parameter_sanitizer.permit :account_update, keys: added_attrs
 
 	end
+
+
 end

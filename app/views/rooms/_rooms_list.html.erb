@@ -5,7 +5,75 @@
 	<article class="js-article">
 		<section  class="room js-room js-room-<%=count.to_s%> ">
 			<%=r.name%>
-			<div class="btn bck">Revenir à l'étage précédent</div>
+
+			<%= @alea = rand(5)%>
+			<% if r.monsters.any?%>
+				<% if @alea == 3 %>
+					<p class="indication-room js-indication-room ">Un <%=r.monsters.first.name%> dors au fond de la pièce, que voulez vous faire ?</p>
+					<div class="btn js-attack-surprise">Attaquer par surprise</div>
+					<div class="btn nxt">Tenter d'avancer</div>
+					<div class="js-monster" data-monster= '{
+					"hp" : <%= r.monsters.first.hp%>,
+					"exp" : <%= r.monsters.first.exp%>,
+					"force" : <%= r.monsters.first.force%>,
+					"agility" : <%= r.monsters.first.agility%>
+					}'></div>
+					<div class="js-fight-buttons hidden">
+						<div class="btn js-attack-button">Attaquer</div>
+						<div class="btn js-trigger-menu">regarder l'inventaire</div>
+						<div class="btn js-defend">regarder l'inventaire</div>
+					</div>
+				<% else %>
+					<p class="indication-room js-indication-room js-attack">Un <%=r.monsters.first.name%> vous attaque !</p>
+					<div class="js-monster" data-monster= '{
+					"hp" : <%= r.monsters.first.hp%>,
+					"exp" : <%= r.monsters.first.exp%>,
+					"force" : <%= r.monsters.first.force%>,
+					"agility" : <%= r.monsters.first.agility%>
+					}'></div>
+
+				<% end %>
+				<!-- soit le monstre attaque => echo "un monstre vous attaque !"-->
+				<!-- soit le monstre n'attaque pas et on peut explorer=> echo "un monstre dors au fond de la piece, que voulez vous faire ? " attaquer(bonus surprise) ou essayer de passer (2 chance sur 10-agilité du perso) -->
+			<% else %>
+				<!-- pas de monstres, "la piece semble sans danger que voulez vous faire ? " explorer : avancer -->
+				<p class="indication-room js-indication-room">La piece semble sans danger que voulez vous faire ?</p>
+				<div class="js-actions">
+					<div class="btn explorer js-explorer">Explorer</div>
+					<div class="btn nxt">Avancer</div>
+				</div>
+				
+				<% if r.objets.any? %>
+				<div class="js-result-find-objects hidden">
+					<p class="indication-room js-indication-room ">Des objets ont été trouvé !</p>
+					<% r.objets.each do |o| %>
+						<% @title = 'Ajouter '+o.name%>
+          				<div class="finding-object js-finding-object"><%= link_to @title, {controller: "avatars", action: "addObjetById", objet_id: o.id}, class: "js-add-object btn", remote: true %></div>
+
+					<% end %>
+					<div class="btn nxt">Avancer</div>
+				</div>
+				
+				<!-- si "explorer", montrer les objets "des objets ont été trouvé", sinon "il n'y a rien d'interessant ici " -->
+				<% else %>
+				<div class="js-result-find-objects hidden">
+					<p class="indication-room js-indication-room">Il n'y a rien d'interessant ici...</p>
+					<div class="btn nxt">Avancer</div>
+				</div>
+				<% end %>
+			<% end %>
+
+
+
+
+
+
+
+
+
+
+			<div class="btn bck exit">Revenir à l'étage précédent</div>
+			<div class="btn nxt " style="position: absolute;right: 0; width: 100px;">suivant</div>
 		</section>
 	</article>
 	

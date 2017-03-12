@@ -29,6 +29,9 @@ class AvatarsController < ApplicationController
   def create
     @avatar = Avatar.new(avatar_params)
     @user = current_user
+    puts "=============="
+    puts @user
+    puts "=============="
     @user.avatar = @avatar
     respond_to do |format|
       if @avatar.save
@@ -55,15 +58,46 @@ class AvatarsController < ApplicationController
     end
   end
 
-  def addObjetById
+  def equipeObjet
     @avatar = current_user.avatar
+
+    @avatar.update(id_objet_equipe: params[:objet_id])
+
+    respond_to do |format|
+        format.html { redirect_to :back, notice: 'Avatar was successfully updated.' }
+        format.json { render :show, status: :ok, location: @avatar }
+        format.js
+    end
+
+  end
+
+
+  def addObjetById
+    puts "=============="
+    @avatar = current_user.avatar
+    puts "=============="
+    puts @avatar
+    puts "=============="
     @obj = Objet.find(params[:objet_id])
-    @donjon = Donjon.find(params[:donjon_id])
+    #@donjon = Donjon.find(params[:donjon_id])
 
     @avatar.objets << @obj
 
     respond_to do |format|
-        format.html { redirect_to @donjon, notice: 'Avatar was successfully updated.' }
+        format.html { redirect_to :back, notice: 'Avatar was successfully updated.' }
+        format.json { render :show, status: :ok, location: @avatar }
+        format.js
+    end
+
+  end
+
+  def removeObjetById
+    @avatar = current_user.avatar
+    @bag = @avatar.bags.where(objet_id: params[:objet_id]).first
+    @avatar.bags.delete(@bag)
+    #@donjon = Donjon.find(params[:donjon_id])
+    respond_to do |format|
+        format.html { redirect_to :back, notice: 'Avatar was successfully updated.' }
         format.json { render :show, status: :ok, location: @avatar }
         format.js
     end
@@ -89,6 +123,6 @@ class AvatarsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def avatar_params
-      params.require(:avatar).permit(:name, :element, :hp, :level, :job_id, :exp, objet_ids: [])
+      params.require(:avatar).permit(:name, :element, :hp, :level, :job_id, :exp, :id_objet_equipe, objet_ids: [])
     end
 end

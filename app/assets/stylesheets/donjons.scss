@@ -305,6 +305,19 @@
         vertical-align: top;
         height: 100%;
     }
+
+    .description {
+        padding: 15px;
+        border: 1px solid white;
+        visibility: hidden;
+        transition: all 0.4s;
+        overflow: hidden;
+
+        &.expend {
+        visibility: visible;
+        transition: all 0.4s;
+        }
+    }
 }
 
 .btn {
@@ -513,7 +526,15 @@
         position: absolute;
         transition: width 750ms;
         border: 1px solid #242322;
-
+        .exit {
+            position: absolute;
+            left: 15px;
+            bottom: 15px;
+        }
+        .hidden {
+            visibility: hidden;
+            height: 0;
+        }
         &.intro-room {
             background: #242322;
             color: white;

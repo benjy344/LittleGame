@@ -20,7 +20,7 @@ end %>
   <div class="js-objects inventaire">
     <h2>Inventaire</h2>
       <div class="js-content-objects">
-        <%= render partial: 'objets/objets_list' , locals: {objets: @avatar.objets}%>
+        <%= render partial: 'objets/objets_list' , locals: {objets: @avatar.objets, scope: current_user.avatar}%>
       </div>
   </div><!--
   --><div class="js-craft-buttons craft-buttons">
@@ -30,14 +30,8 @@ end %>
     </div>
   </div>
 </div>
-
-
-<div id="avatar" data-hp="<%= @avatar.hp %>" data-maxHp="<%= @avatar.MaxHealth %>" data-element="<%= @avatar.element %>" data-job="<%= @avatar.job.name %>" data-exp="<%= @avatar.exp %>" data-level="<%= @avatar.level %>" data-force="<%= @avatar.force %>" data-inteligence="<%= @avatar.inteligence %>" data-agility="<%= @avatar.agility %>">
-  <div class="frame1"></div>
-  <div class="frame2"></div>
-  <div class="frame3"></div>
-  <div class="frame4"></div>
-  <div class="frame5"></div>
+<div class="render-avatar">
+<%= render partial: 'avatars/avatar' , locals: {avatar: @avatar}%>
 </div>
 
 <div class="js-rooms-container rooms-container">
@@ -48,6 +42,7 @@ end %>
       <p>Nombre d'objet : <%= @count_objet %></p>
       <p>Nombre de monstre : <%= @count_monster %></p>
       <div class="btn nxt btn--white">Entrer</div>
+      <%= link_to 'Sortir', donjons_path, class: "btn exit btn--white" %>
     </div>
       </article>
   <%= render partial: 'rooms/rooms_list' , locals: {rooms: @donjon.rooms}%>

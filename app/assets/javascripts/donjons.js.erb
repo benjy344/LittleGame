@@ -3,15 +3,54 @@ $(document).ready(function(){
 		$('#bag').toggleClass('open');
 		$('.hamburger').toggleClass('is-active');
 	})
+	extendDescription()
+	
 })
 
+function extendDescription() {
+	$('.js-object-to-extend').on('click', function(){
+		$(this).next().toggleClass('expend');
+	})
+}
+function verfifButton(count) {
+
+	
+	var $room = $('.js-room-'+count);
+	var $resultFindObjects;
+	var $explorer;
+
+	$room.find('.js-result-find-objects').length != 0 ?  $resultFindObjects = $room.find('.js-result-find-objects') : $resultFindObjects = "";
+	$room.find('.js-explorer').length != 0 ?  $explorer = $room.find('.js-explorer') : $explorer = "";
+	if ($explorer != "") {
+		$explorer.on('click', function(){
+			$('.js-actions').hide();
+			$resultFindObjects.removeClass('hidden');
+		})
+	}
+
+	$('.js-add-object').on('click', function(){
+		$(this).remove();
+	})
+
+	if ($room.find('.js-attack').length) {
+		console.log('attack')
+		var avatar = JSON.parse($('#avatar').attr('data-avatar'));
+		var monster = JSON.parse($room.find('.js-monster').attr('data-monster'));
+		getFight(avatar, monster);
+	}
+	if ($room.find('.js-attack-surprise').length) {
+		$room.find('.js-attack-surprise').on('click', function(){
+			console.log('surprise')
+			var avatar = JSON.parse($('#avatar').attr('data-avatar'));
+			var monster = JSON.parse($room.find('.js-monster').attr('data-monster'));
+			getFight(avatar, monster, true);
+		})
+	}
+}
 function articleSlide() {
   var art = $('.js-article'),
       mag = $('.js-rooms-container'),
-      aCount = art.length;
-
-      console.log(art, mag, aCount)
-  
+      aCount = art.length;  
   var mLength = aCount * 100,
       aLength = 100 / aCount;
   
@@ -19,27 +58,95 @@ function articleSlide() {
   art.css('width', aLength + '%');
   
   var pos = 0,
+  	  count = 0,
       max = mLength - 100;
   
   $('.nxt').on('click', function(){
-  	console.log('next')
-    var cantProgress = $('.open').length;
-    if(pos > "-" + max && !cantProgress){
+    if(pos > "-" + max){
       pos += -100;
+      count += 1;
       mag.css('margin-left', pos + '%');
+      verfifButton(count);
     }
   });
   
   $('.bck').on('click', function(){
-  	console.log('back')
-    var cantProgress = $('.open').length;
-    if(pos < 0 && !cantProgress){
+    if(pos < 0 ){
       pos += 100;
+      count += -1;
       mag.css('margin-left', pos + '%');
     }
   });
  
 }
 
+function getFight(avatar, monster, surprise=false) {
+	console.log('getFight');
+	var $avatar = JSON.parse(avatar.attr('data-avatar')),
+		$monster = JSON.parse(monster.attr('data-monster')),
+		win = "fight",
+		count = 0;
+	if (win === "fight") {
+		count++;
+		win = fight($avatar, $monster, surprise);
+		surprise = false;	
+	}
+	if (win === true) {
+		console.log('you win in '+count+'hint')
+	} else if (win === false){
+		console.log('you wloosein in '+count+'hint')
+	} else {
+		var alea = Math.random() * (10 - 1) + 1;
+		alea === 4 ? getFight($avatar, $monster, true) : getFight($avatar, $monster);	
+	}
+
+
+}
+function fight(avatar, monster, surprise) {
+	console.log('fight')
+	if (surprise){
+		monster.hp = monster.hp - (avatar.force*1.2);
+	}else {
+		monster.hp = monster.hp - avatar.force;
+	}
+	avatar.hp = avatar.hp - monster.force;
+
+	if (monster.hp <= 0) {
+		win = true;
+	} else if (avatar.hp <= 0) {
+		win = false;
+	} else {
+		win = "fight";
+	} 
+	console.log('avatar ', avatar.hp)
+	console.log('monster ', monster.hp)
+	return win;
+}
 
 $(document).ready(articleSlide);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -8,11 +8,12 @@ class Ability
         can :manage, :all
       else
         #can [:read,:update] :all
-        can [:create, :show], Avatar
-        can [:create, :show, :index] , Objet
+        can [:create, :show, :addObjetById, :removeObjetById, :equipeObjet], Avatar
+        can [:create, :show, :index, :craftEpeeFer] , Objet
         can [:show, :index], Donjon        
         can [:show, :index], Room
         can :index, Monster
+
       end
 
 

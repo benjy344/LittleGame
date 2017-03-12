@@ -54,6 +54,19 @@ class MonstersController < ApplicationController
 
   end
 
+  def removeObjetById
+    @monster = Room.find(params[:room_id]).monsters.where(id: params[:monster_id]).first
+    @bag = @monster.bag_monsters.where(objet_id: params[:objet_id]).first
+    @monster.bag_monsters.delete(@bag)
+    #@donjon = Donjon.find(params[:donjon_id])
+    respond_to do |format|
+        format.html { redirect_to :back, notice: 'Avatar was successfully updated.' }
+        format.json { render :show, status: :ok, location: @avatar }
+        format.js
+    end
+
+  end
+
   # PATCH/PUT /monsters/1
   # PATCH/PUT /monsters/1.json
   def update

@@ -7,11 +7,34 @@
 
  	<% result.each do |r| %>
 <%# r[0] == id , r[1] == number %>
+<% @objet = objets.find(r[0])%>
 
-	<li><%= objets.find(r[0]).name %> (x <%= r[1]%>)</li>
+	<li><span class="js-object-to-extend"><%= @objet.name %> (x <%= r[1]%>)</span>
+
+	
+		<% if !scope.MaxHealth.nil? %>
+			<div class="description js-description">
+			<% if !@objet.name.nil? && @objet.name != ""%><h3><%= @objet.name %></h3> <%end%>
+			<% if !@objet.description.nil? && @objet.description != "" %><p><%= @objet.description %></p> <%end%>
+			<% if !@objet.rarity.nil? && @objet.rarity > 0%><span>Rareté : <%= @objet.rarity %></span> <%end%>
+			<% if !@objet.force.nil? && @objet.force > 0%><span>Force : +<%= @objet.force %></span> <%end%>
+			<% if !@objet.agility.nil? && @objet.agility > 0%><span>Agilité : +<%= @objet.agility %></span> <%end%>
+			<% if !@objet.health.nil? && @objet.health > 0%><span>Santé : +<%= @objet.health %></span> <%end%>
+			<%= link_to 'Supprimer', {controller: "avatars", action: "removeObjetById", objet_id: @objet.id }, class: "js-remove-object btn btn--white", remote: true %>
+			<% if !@objet.force.nil? && @objet.force > 0 && current_user.avatar.id_objet_equipe != @objet.id %>
+				<%= link_to 'Équiper', {controller: "avatars", action: "equipeObjet", objet_id: @objet.id }, class: "js-remove-object btn btn--white", remote: true %>
+			<% end %>
+			<% if current_user.avatar.id_objet_equipe == @objet.id %>
+				<p>Vous étes équipé</p>
+			<% end %>
+			</div>
+		<% end %>
+	
+
+	</li>
 	<% end %>
 </ul>
-<%# raw move.map { |m| link_to(m.name, m) }.join(', ')%>
+
 <% else %>
 <p>Pas d'objet... </p>
 <% end %>

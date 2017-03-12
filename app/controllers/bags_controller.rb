@@ -4,7 +4,6 @@ class BagsController < ApplicationController
   # GET /bags
   # GET /bags.json
   def index
-  	puts 'bag_params'
     @bags = Bag.includes(:avatar, :objet).all
   end
 
@@ -25,7 +24,6 @@ class BagsController < ApplicationController
   # POST /bags
   # POST /bags.json
   def create
-  	puts 'bag_params'
   	puts bag_params
   	
     #@bag = Bag.new(bag_params)
