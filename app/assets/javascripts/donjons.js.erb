@@ -44,6 +44,7 @@ function verfifButton(count) {
 			var avatar = JSON.parse($('#avatar').attr('data-avatar'));
 			var monster = JSON.parse($room.find('.js-monster').attr('data-monster'));
 			getFight(avatar, monster, true);
+
 		})
 	}
 }
@@ -82,13 +83,11 @@ function articleSlide() {
 
 function getFight(avatar, monster, surprise=false) {
 	console.log('getFight');
-	var $avatar = JSON.parse(avatar.attr('data-avatar')),
-		$monster = JSON.parse(monster.attr('data-monster')),
-		win = "fight",
+	var	win = "fight",
 		count = 0;
 	if (win === "fight") {
 		count++;
-		win = fight($avatar, $monster, surprise);
+		win = fight(avatar, monster, surprise);
 		surprise = false;	
 	}
 	if (win === true) {
@@ -97,7 +96,7 @@ function getFight(avatar, monster, surprise=false) {
 		console.log('you wloosein in '+count+'hint')
 	} else {
 		var alea = Math.random() * (10 - 1) + 1;
-		alea === 4 ? getFight($avatar, $monster, true) : getFight($avatar, $monster);	
+		alea === 4 ? getFight(avatar, monster, true) : getFight(avatar, monster);	
 	}
 
 
