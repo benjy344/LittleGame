@@ -1,0 +1,94 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+ $principal-font : 'Poiret One', cursive;
+ $black : #242322;
+ html, body {	
+ 	font-family: 'Poiret One', cursive;
+ 	font-size: 18px;
+ 	margin: 0;
+ 	height: 100%;
+ }
+ p, a, button, ul, li, h2, h3, h4 {
+ 	font-family: $principal-font;
+ 	font-size: 18px;
+ }
+ .user-info {
+ 	position: absolute;
+ 	bottom: 0;
+ 	right: 0;
+ 	border: 1px solid #242322;
+
+ 	p {
+ 		margin: 10px;
+ 	}
+
+ 	a {
+ 		color: #242322;
+ 	}
+ }
+
+ .messages {
+ 	position: fixed;
+ 	background: black;
+ 	left: 0;
+ 	top: 10px;
+ 	color: white;
+
+ 	p {
+ 		margin: 20px;
+ 	}
+ }
+
+ .log {
+ 	display: inline-block;
+ 	width: 50%;
+ 	height: 100%;
+ 	box-sizing: border-box;
+ 	vertical-align: top;
+ 	padding-top: 20vh;
+
+ 	h2 {
+ 		text-align: center;
+ 	}
+
+ 	form {
+ 		padding: 20px 50px;
+ 		margin: 0 auto;
+ 		max-width: 40%;
+ 	}
+
+ }
+
+
+ label {
+ 	margin-bottom: 10px;
+ }
+ .input {
+ 	margin-bottom: 10px;
+ }
+ input:not([type='checkbox']) {
+ 	border: 1px solid $black;
+ 	padding: 10px; 
+ 	box-sizing: border-box;
+ 	width: 100%;
+ 	background: white;
+ 	outline: none;
+ }
+ input[type='submit']:hover {
+ 	background: $black;
+ 	cursor: pointer;
+ }
+

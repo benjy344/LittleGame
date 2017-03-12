@@ -1,3 +1,16 @@
-// Place all the styles related to the index controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.index {
+	h1 {
+	    font-family: 'Cabin Sketch', cursive;
+	    text-align: center;
+	    margin: 100px 0; 
+	    font-size: 50px;
+	    color: #242322;
+	}
+	p {
+		text-align: center;
+	}
+	.btn {
+		margin: 0 auto;
+	}
+
+}

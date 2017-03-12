@@ -6,19 +6,28 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="https://fonts.googleapis.com/css?family=Cabin+Sketch" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poiret+One" rel="stylesheet"> 
   </head>
 
-  <body>
-  		<p class="notice"><%= notice %></p>
+  <body class="<%= controller.controller_name %>">
+    <div class="messages">
+      <p class="notice"><%= notice %></p>
       <p class="alert"><%= alert %></p>
+    </div>
+  		
     <%= yield %>
 
     
     <% if user_signed_in?%>
-    <p>connecté en tant que : <%= current_user.username%></p>
-    <p>
-      <%= link_to 'Déconnection' , destroy_user_session_path, :method => :delete %>
-    </p>
+    <div class="user-info">
+      <p>Connecté en tant que : <%= current_user.username%></p>
+      <p>
+        <%= link_to 'Déconnection' , destroy_user_session_path, :method => :delete %>
+      </p>
+    </div>
+    
+    
     <% end %>
   </body>
 </html>

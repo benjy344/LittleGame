@@ -1,17 +1,45 @@
-//$(document).ready(function(){
+$(document).ready(function(){
+	$('.js-open-button').on('click', function(){
+		$('#bag').toggleClass('open');
+		$('.hamburger').toggleClass('is-active');
+	})
+})
 
-	// $('#avatar').on('click', function(){
-		
-	// })
+function articleSlide() {
+  var art = $('.js-article'),
+      mag = $('.js-rooms-container'),
+      aCount = art.length;
 
-	// $('.js-more-monster').on('click', function(){
-	// 	$content = $('.js-monster-select').clone();
-	// 	console.log($content[0]);
-	// 	$('.js-monsters-to-add').append($content[0]);
-	// })	
+      console.log(art, mag, aCount)
+  
+  var mLength = aCount * 100,
+      aLength = 100 / aCount;
+  
+  mag.css('width', mLength + '%');
+  art.css('width', aLength + '%');
+  
+  var pos = 0,
+      max = mLength - 100;
+  
+  $('.nxt').on('click', function(){
+  	console.log('next')
+    var cantProgress = $('.open').length;
+    if(pos > "-" + max && !cantProgress){
+      pos += -100;
+      mag.css('margin-left', pos + '%');
+    }
+  });
+  
+  $('.bck').on('click', function(){
+  	console.log('back')
+    var cantProgress = $('.open').length;
+    if(pos < 0 && !cantProgress){
+      pos += 100;
+      mag.css('margin-left', pos + '%');
+    }
+  });
+ 
+}
 
 
-// 	$('#room-form').html("");
-// 	$('#room-form').slideDown(350);
-
-// })
+$(document).ready(articleSlide);

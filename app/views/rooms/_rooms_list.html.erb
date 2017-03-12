@@ -1,0 +1,16 @@
+<% if rooms.any? %>
+	<% count = 0 %>
+ 	<% rooms.each do |r| %>
+	<% count = count+1%>
+	<article class="js-article">
+		<section  class="room js-room js-room-<%=count.to_s%> ">
+			<%=r.name%>
+			<div class="btn bck">Revenir à l'étage précédent</div>
+		</section>
+	</article>
+	
+	<% end %>
+
+<% else %>
+<p>Pas d'étage'... </p>
+<% end %>

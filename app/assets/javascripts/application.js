@@ -12,12 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
+
 //= require_tree .
 
 
-$(document).ready(function(){
-	$('.js-open-button').on('click', function(){
-		$('#bag').toggleClass('open');
-	})
-})
+

@@ -244,7 +244,9 @@
 //     }
 //  }
 // }
-
+.donjons {
+    overflow: hidden;
+}
 #bag {
     background: #242322;
     color: white;
@@ -254,6 +256,12 @@
     top: -100%;
     right: 0;
     transition: all 0.6s;
+    z-index: 200;
+
+    h2 {
+       text-transform: uppercase;
+       text-align: center;
+    }
 
     &.open {
         top: 0;
@@ -264,19 +272,20 @@
         }
     }
 
+
     .open-button {
         height: 60px;
         width: 60px;
         background: #242322;
         position: absolute;
-        bottom: -30px;
-        transform: rotate(45deg);
+        bottom: -24px;
+        transform: rotate(45deg) translateY(50%) translateX(-50%);
         left: 50%;
         transition: all 0.5s; 
         cursor: pointer;
+        transform-origin: 28px 47px;
 
         &:hover {
-            transform: scale(1.2) rotate(45deg);
             transition: all 0.5s; 
         }
     }
@@ -285,21 +294,28 @@
         display: inline-block;
         width: 50%;
         box-sizing: border-box;
+        vertical-align: top;
+        height: 100%;
+        border-right: 1px solid white;
     }
     .craft-buttons {
         display: inline-block;
         width: 50%;
         box-sizing: border-box;
+        vertical-align: top;
+        height: 100%;
     }
 }
 
 .btn {
-    
+
     color: #242322;
     padding: 8px 20px;
     border: 1px solid #242322;
     text-decoration: none;
-    width: auto; 
+    width: auto;
+    outline: none; 
+    cursor: pointer;
 
     &:hover {
         color: white;
@@ -321,12 +337,239 @@
 }
 
 
+/******************
+*
+*      Menu
+*
+******************/
+.hamburger { 
+    display: inline-block;
+    cursor: pointer;
+    transition-property: opacity, -webkit-filter;
+    -webkit-transition-property: opacity, -webkit-filter;
+    transition-property: opacity, filter;
+    transition-property: opacity, filter, -webkit-filter;
+    -webkit-transition-duration: 0.15s;
+    transition-duration: 0.15s;
+    -webkit-transition-timing-function: linear;
+    transition-timing-function: linear;
+    font: inherit;
+    color: inherit;
+    text-transform: none;
+    background-color: transparent;
+    border: 0;
+    margin: 0;
+    overflow: visible; 
+    height: 80px;
+    width: 80px;
+    position: absolute;
+    right: -25px;
+    top:-2px;
+    z-index: 3000;
+    transform: rotate(-45deg);
+    outline: none;
+
+    &:hover {
+        opacity: 0.7; 
+    }
+
+    &.is-active {
+        right: -4px;
+        top: -23px;
+    }
+}
 
 
+.hamburger-box {
+    width: 40px;
+    height: 24px;
+    display: inline-block;
+    position: relative; 
+
+    .hamburger-inner {
+        display: block;
+        top: 50%;
+        margin-top: -2px; 
+        width: 30px;
+        height: 3px;
+        background-color: white;
+        //border-radius: 4px;
+        position: absolute;
+        -webkit-transition-property: -webkit-transform;
+        transition-property: -webkit-transform;
+        transition-property: transform;
+        transition-property: transform, -webkit-transform;
+        -webkit-transition-duration: 0.15s;
+        transition-duration: 0.15s;
+        -webkit-transition-timing-function: ease;
+        transition-timing-function: ease; 
+
+        &::before, {
+            content: "";
+            display: block; 
+            top: -7px;
+            width: 30px;
+            height: 3px;
+            background-color: white;
+            //border-radius: 4px;
+            position: absolute;
+            -webkit-transition-property: -webkit-transform;
+            transition-property: -webkit-transform;
+            transition-property: transform;
+            transition-property: transform, -webkit-transform;
+            -webkit-transition-duration: 0.15s;
+            transition-duration: 0.15s;
+            -webkit-transition-timing-function: ease;
+            transition-timing-function: ease; 
+        }
+        &::after{
+            content: "";
+            display: block;
+            bottom: -7px;
+            width: 30px;
+            height: 3px;
+            background-color: white;
+            //border-radius: 4px;
+            position: absolute;
+            -webkit-transition-property: -webkit-transform;
+            transition-property: -webkit-transform;
+            transition-property: transform;
+            transition-property: transform, -webkit-transform;
+            -webkit-transition-duration: 0.15s;
+            transition-duration: 0.15s;
+            -webkit-transition-timing-function: ease;
+            transition-timing-function: ease; 
+        }
+    }
+}
+
+/*
+* Spin
+*/
+
+.hamburger--spin.is-active .hamburger-inner, .hamburger--spin.is-active .hamburger-inner::before, .hamburger--spin.is-active .hamburger-inner::after {
+    background-color: #242322;
+}
+
+.hamburger--spin .hamburger-inner {
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+    transition-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19); 
+}
+.hamburger--spin .hamburger-inner::before {
+    -webkit-transition: top 0.1s 0.34s ease-in, opacity 0.1s ease-in;
+    transition: top 0.1s 0.34s ease-in, opacity 0.1s ease-in; 
+}
+.hamburger--spin .hamburger-inner::after {
+    -webkit-transition: bottom 0.1s 0.34s ease-in, -webkit-transform 0.3s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+    transition: bottom 0.1s 0.34s ease-in, -webkit-transform 0.3s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+    transition: bottom 0.1s 0.34s ease-in, transform 0.3s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+    transition: bottom 0.1s 0.34s ease-in, transform 0.3s cubic-bezier(0.55, 0.055, 0.675, 0.19), -webkit-transform 0.3s cubic-bezier(0.55, 0.055, 0.675, 0.19); 
+}
+
+.hamburger--spin.is-active .hamburger-inner {
+    -webkit-transform: rotate(225deg);
+    transform: rotate(225deg);
+    -webkit-transition-delay: 0.14s;
+    transition-delay: 0.14s;
+    -webkit-transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1); 
+}
+
+.hamburger--spin.is-active .hamburger-inner::before {
+    top: 0;
+    opacity: 0;
+    -webkit-transition: top 0.1s ease-out, opacity 0.1s 0.14s ease-out;
+    transition: top 0.1s ease-out, opacity 0.1s 0.14s ease-out; 
+}
+
+.hamburger--spin.is-active .hamburger-inner::after {
+    bottom: 0;
+    -webkit-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+    -webkit-transition: bottom 0.1s ease-out, -webkit-transform 0.3s 0.14s cubic-bezier(0.215, 0.61, 0.355, 1);
+    transition: bottom 0.1s ease-out, -webkit-transform 0.3s 0.14s cubic-bezier(0.215, 0.61, 0.355, 1);
+    transition: bottom 0.1s ease-out, transform 0.3s 0.14s cubic-bezier(0.215, 0.61, 0.355, 1);
+    transition: bottom 0.1s ease-out, transform 0.3s 0.14s cubic-bezier(0.215, 0.61, 0.355, 1), -webkit-transform 0.3s 0.14s cubic-bezier(0.215, 0.61, 0.355, 1); 
+}
 
 
+.rooms-container{
+    width: 200%;
+    height: 70%;
+    transition: all 750ms;
+    overflow: hidden;
+
+    article{
+        float: left;
+        height: 70%;
+        transition: all 750ms;
+    }
+    .room{
+        width: calc(100% - 40px);
+        height: calc(70% - 40px);
+        margin: 20px 0 0 20px;
+        position: absolute;
+        transition: width 750ms;
+        border: 1px solid #242322;
+
+        &.intro-room {
+            background: #242322;
+            color: white;
+            text-align: center;
+
+            h2 {
+                font-family: 'Cabin Sketch', cursive;
+                font-size: 50px;
+            }
+
+            .btn {
+                max-width: 100px;
+                margin: 0 auto;
+                display: inline-block;;
+            }
+        }
+    }
+}
 
 
+@keyframes in{
+  0%{
+    opacity: 0;
+  }
+  30%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
+}
 
-
+@keyframes out{
+  0%{
+    opacity: 1;
+  }
+  50%{
+    margin-right: -500%;
+  }
+  100%{
+    opacity: 0;
+  }
+}
+nav{
+  position: fixed;
+  top: 33px;
+  left: 33px;
+  color: #232423;
+  font-family: 'Lora', serif;
+  font-style: italic;
+  span{
+    margin-right: 5px;
+    cursor: pointer;
+    &:hover{
+      text-decoration: underline;
+    }
+  }
+}
 

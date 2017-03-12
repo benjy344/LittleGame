@@ -1,24 +1,25 @@
-<h1>Bienvenue sur LittleGame</h1>
+<h1>LittleGame</h1>
 
 
 <% if user_signed_in? %>
 
 <% if current_user.avatar.nil? %>
 	<p>
-	<%= link_to 'créer mon avatar', new_avatar_path %>
-</p>
+		<%= link_to 'créer mon avatar', new_avatar_path, class: 'btn' %>
+	</p>
 <% else %>
-<p>
-	<%= link_to 'mon avatar', current_user.avatar %>
-</p>
+	<p>
+		<%= link_to 'mon avatar', current_user.avatar, class: 'btn' %>
+	</p>
+	<p>
+		<%= link_to 'Donjons', donjons_path, class: 'btn' %>
+	</p>
 <% end %>
 
 <%# current_user %>
 
 <% else %>
-
-<p>
-	<%= link_to 'Commencer', new_user_session_path %>
-</p>
-
+	<p>
+		<%= link_to 'Commencer', new_user_session_path, class: 'btn' %>
+	</p>
 <% end %>

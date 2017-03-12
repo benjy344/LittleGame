@@ -1,5 +1,35 @@
 <h1>Donjons</h1>
 
+<% 
+@count_objet = 0
+@count_monster = 0
+@donjon.rooms.each do |r| 
+  @count_objet = @count_objet + r.objets.count
+  @count_monster = @count_monster + r.monsters.count
+end %>
+<div id="bag">
+  <div class="open-button js-open-button">
+    <div class="button-burger">
+        <button class="js-hamburger hamburger hamburger--spin" type="button">
+            <span class="hamburger-box">
+                <span class="hamburger-inner"></span>
+            </span>
+        </button>
+    </div>
+  </div>
+  <div class="js-objects inventaire">
+    <h2>Inventaire</h2>
+      <div class="js-content-objects">
+        <%= render partial: 'objets/objets_list' , locals: {objets: @avatar.objets}%>
+      </div>
+  </div><!--
+  --><div class="js-craft-buttons craft-buttons">
+    <h2>Craft</h2>
+    <div class="js-content-craft">
+      <%= render partial: 'avatars/craft' , locals: {avatar: @avatar}%>
+    </div>
+  </div>
+</div>
 
 
 <div id="avatar" data-hp="<%= @avatar.hp %>" data-maxHp="<%= @avatar.MaxHealth %>" data-element="<%= @avatar.element %>" data-job="<%= @avatar.job.name %>" data-exp="<%= @avatar.exp %>" data-level="<%= @avatar.level %>" data-force="<%= @avatar.force %>" data-inteligence="<%= @avatar.inteligence %>" data-agility="<%= @avatar.agility %>">
@@ -10,16 +40,17 @@
   <div class="frame5"></div>
 </div>
 
-<div id="bag">
-  <div class="open-button js-open-button"></div>
-  <div class="close-button js-close-button"></div>
-  <div class="js-objects inventaire">
-    <%= render partial: 'objets/objets_list' , locals: {objets: @avatar.objets}%>
-  </div><!--
-  --><div class="js-craft-buttons craft-buttons">
-    <%= render partial: 'avatars/craft' , locals: {avatar: @avatar}%>
-  </div>
-  
+<div class="js-rooms-container rooms-container">
+  <article class="js-article">
+    <div class="room js-room intro-room">
+      <h2><%= @donjon.name%></h2>
+      <p>Nombre d'étage : <%= @donjon.rooms.count %></p>
+      <p>Nombre d'objet : <%= @count_objet %></p>
+      <p>Nombre de monstre : <%= @count_monster %></p>
+      <div class="btn nxt btn--white">Entrer</div>
+    </div>
+      </article>
+  <%= render partial: 'rooms/rooms_list' , locals: {rooms: @donjon.rooms}%>
 </div>
 
 

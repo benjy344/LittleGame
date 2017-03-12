@@ -1,2 +1,4 @@
-$('#bag .js-craft-buttons').html("<%= j render(:partial => 'avatars/craft' , locals: {avatar: @avatar}) %>");
-$('#bag .js-objects').html("<%= j render(:partial => 'objets/objets_list', locals: {objets: @avatar.objets}) %>");
+
+$('#bag .js-objects .js-content-objects').html("<%= j render(:partial => 'objets/objets_list', locals: {objets: @avatar.objets}) %>");
+
+$('#bag .js-craft-buttons .js-content-craft').html("<%= j render(:partial => 'avatars/craft' , locals: {avatar: @avatar}) %>");
