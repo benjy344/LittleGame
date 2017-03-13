@@ -71,7 +71,15 @@ class AvatarsController < ApplicationController
 
   end
 
-
+  def majAvatar 
+    @avatar = current_user.avatar
+    @avatar.update(MaxHealth: params[:MaxHealth], hp: params[:hp], level: params[:level], agility: params[:agility], force: params[:force], inteligence: params[:inteligence], exp: params[:exp])
+    respond_to do |format|
+        format.html { redirect_to :back, notice: 'Avatar was successfully updated.' }
+        format.json { render :show, status: :ok, location: @avatar }
+        format.js
+    end
+  end
   def addObjetById
     puts "=============="
     @avatar = current_user.avatar

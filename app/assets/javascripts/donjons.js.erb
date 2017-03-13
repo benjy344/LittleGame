@@ -1,11 +1,30 @@
+/************************
+
+Variables
+
+*************************/
+var avatar, 
+	monster,
+	nextLevel = 50;
+
 $(document).ready(function(){
+	init();
+})
+
+function init() {
 	$('.js-open-button').on('click', function(){
 		$('#bag').toggleClass('open');
 		$('.hamburger').toggleClass('is-active');
 	})
-	extendDescription()
-	
-})
+
+	extendDescription();
+	articleSlide();
+}
+
+
+
+
+
 
 function extendDescription() {
 	$('.js-object-to-extend').on('click', function(){
@@ -33,17 +52,15 @@ function verfifButton(count) {
 	})
 
 	if ($room.find('.js-attack').length) {
-		console.log('attack')
-		var avatar = JSON.parse($('#avatar').attr('data-avatar'));
-		var monster = JSON.parse($room.find('.js-monster').attr('data-monster'));
-		getFight(avatar, monster);
+		avatar = JSON.parse($('#avatar').attr('data-avatar'));
+		monster = JSON.parse($room.find('.js-monster').attr('data-monster'));
+		getFight();
 	}
 	if ($room.find('.js-attack-surprise').length) {
 		$room.find('.js-attack-surprise').on('click', function(){
-			console.log('surprise')
-			var avatar = JSON.parse($('#avatar').attr('data-avatar'));
-			var monster = JSON.parse($room.find('.js-monster').attr('data-monster'));
-			getFight(avatar, monster, true);
+			avatar = JSON.parse($('#avatar').attr('data-avatar'));
+			monster = JSON.parse($room.find('.js-monster').attr('data-monster'));
+			getFight(true);
 
 		})
 	}
@@ -81,48 +98,106 @@ function articleSlide() {
  
 }
 
-function getFight(avatar, monster, surprise=false) {
-	console.log('getFight');
+function getFight(surprise=false) {
 	var	win = "fight",
 		count = 0;
+
 	if (win === "fight") {
 		count++;
-		win = fight(avatar, monster, surprise);
+		win = fight(surprise);
 		surprise = false;	
 	}
+
 	if (win === true) {
-		console.log('you win in '+count+'hint')
+
+		console.log('you win in '+count+'hint', avatar)
 	} else if (win === false){
 		console.log('you wloosein in '+count+'hint')
 	} else {
+
+		//attendre reponce boutons, afficher la vie des perso
 		var alea = Math.random() * (10 - 1) + 1;
-		alea === 4 ? getFight(avatar, monster, true) : getFight(avatar, monster);	
+		console.log(avatar)
+		alea === 4 ? getFight(true) : getFight();	
 	}
 
 
 }
-function fight(avatar, monster, surprise) {
+function fight(surprise) {
 	console.log('fight')
+	var force = (avatar.force + avatar.forceW);
 	if (surprise){
-		monster.hp = monster.hp - (avatar.force*1.2);
+		monster.hp = (monster.hp - (force*1.2));
 	}else {
-		monster.hp = monster.hp - avatar.force;
+		monster.hp = (monster.hp - force);
 	}
 	avatar.hp = avatar.hp - monster.force;
-
 	if (monster.hp <= 0) {
 		win = true;
+
+		gainExp();
+
+		renderAvatar();
 	} else if (avatar.hp <= 0) {
 		win = false;
+
+		renderAvatar();
 	} else {
 		win = "fight";
+		renderAvatar();
 	} 
 	console.log('avatar ', avatar.hp)
 	console.log('monster ', monster.hp)
 	return win;
 }
 
-$(document).ready(articleSlide);
+
+function gainExp() {
+	avatar.exp += monster.exp;
+
+	if (avatar.exp >= nextLevel) levelUp();
+}
+function levelUp() {
+	console.log('LEVEL UP')
+	avatar.level += 1;
+	nextLevel += (nextLevel*1.5);
+	avatar.maxHp += 3;
+	avatar.hp += 3;
+
+	switch (avatar.job) {
+		case "Voleur":
+			avatar.force += 2;
+			avatar.agility +=4;
+			avatar.inteligence +=3;
+
+				switch (avatar.level) {
+					case 1:
+						console.log('voir possibles attaques spé');
+						break;
+				}
+			break;
+		case "Guerrier":
+			avatar.force += 5;
+			avatar.agility +=2;
+			avatar.inteligence +=2;
+			break;
+		case "Mage":
+			avatar.force += 3;
+			avatar.agility += 3;
+			avatar.inteligence +=3;
+			break;
+	}
+
+}
+function renderAvatar() {
+	console.log("render ",avatar)
+	$url = '../majAvatar?MaxHealth='+avatar.maxHp+'&hp='+avatar.hp+'&level='+avatar.level+'&agility='+avatar.agility+'&force='+avatar.force+'&inteligence='+avatar.inteligence+'&exp='+avatar.exp;
+	$.get({
+	  url: $url,
+	  dataType: "script"
+	});
+}
+
 
 
 

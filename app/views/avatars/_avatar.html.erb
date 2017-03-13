@@ -7,8 +7,10 @@
   "job" : "<%= avatar.job.name %>",
   "exp" : <%= avatar.exp %>,
   "level": <%= avatar.level %>,
-  "agility": <%= avatar.agility + @agilityArme %>, 
-  "force" : <%= avatar.force + @forceArme %>,
+  "agility": <%= avatar.agility %>,
+  "agilityW": <%= @agilityArme %>, 
+  "force" : <%= avatar.force %>,
+  "forceW" : <%= @forceArme %>,
   "inteligence" : <%= avatar.inteligence %>
 }' data-hp="<%= avatar.hp %>" data-maxHp="<%= avatar.MaxHealth %>" data-element="<%= avatar.element %>" data-job="<%= avatar.job.name %>" data-exp="<%= avatar.exp %>" data-level="<%= avatar.level %>" data-force="<%= avatar.force %>" data-inteligence="<%= avatar.inteligence %>" data-agility="<%= avatar.agility %>">
 </div>
