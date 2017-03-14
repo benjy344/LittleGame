@@ -5,6 +5,8 @@ Variables
 *************************/
 var avatar, 
 	monster,
+	$room, 
+	$currentMonsterLife,
 	nextLevel = 50;
 
 $(document).ready(function(){
@@ -34,7 +36,7 @@ function extendDescription() {
 function verfifButton(count) {
 
 	
-	var $room = $('.js-room-'+count);
+	$room = $('.js-room-'+count);
 	var $resultFindObjects;
 	var $explorer;
 
@@ -54,13 +56,25 @@ function verfifButton(count) {
 	if ($room.find('.js-attack').length) {
 		avatar = JSON.parse($('#avatar').attr('data-avatar'));
 		monster = JSON.parse($room.find('.js-monster').attr('data-monster'));
-		getFight();
+		$currentMonsterLife = $room.find('.js-monster-current-hp');
+		$room.find('.js-fight-buttons').removeClass('hidden');
 	}
 	if ($room.find('.js-attack-surprise').length) {
 		$room.find('.js-attack-surprise').on('click', function(){
 			avatar = JSON.parse($('#avatar').attr('data-avatar'));
 			monster = JSON.parse($room.find('.js-monster').attr('data-monster'));
+			$currentMonsterLife = $room.find('.js-monster-current-hp');
 			getFight(true);
+			$room.find('.js-fight-buttons').removeClass('hidden');
+		})
+	}
+
+	if ($room.find('.js-attack-button').length) {
+		$room.find('.js-attack-button').on('click', function(){
+			avatar = JSON.parse($('#avatar').attr('data-avatar'));
+			monster = JSON.parse($room.find('.js-monster').attr('data-monster'));
+			$currentMonsterLife = $room.find('.js-monster-current-hp');
+			getFight();
 
 		})
 	}
@@ -114,11 +128,9 @@ function getFight(surprise=false) {
 	} else if (win === false){
 		console.log('you wloosein in '+count+'hint')
 	} else {
-
+		console.log('wait action')
 		//attendre reponce boutons, afficher la vie des perso
-		var alea = Math.random() * (10 - 1) + 1;
-		console.log(avatar)
-		alea === 4 ? getFight(true) : getFight();	
+		//$('.js-fight-buttons').removeClass('hidden');	
 	}
 
 
@@ -126,10 +138,21 @@ function getFight(surprise=false) {
 function fight(surprise) {
 	console.log('fight')
 	var force = (avatar.force + avatar.forceW);
+	var $currentMonsterLife = $room.find('.js-monster-current-hp');
+	var MaxMonsterLife = monster.hpMax;
+
+	// Si attaque par suprise => avantage avatar
 	if (surprise){
 		monster.hp = (monster.hp - (force*1.2));
+		if (monster.hp < 0) monster.hp = 0;
+		$currentMonsterLife.css('width', calculPercentLife(monster.hp, monster.hpMax) )
 	}else {
+		// Le plus rapide commence
 		monster.hp = (monster.hp - force);
+		console.log(monster.hp)
+		if (monster.hp < 0) monster.hp = 0;
+		console.log(monster.hp, monster.hpMax)
+		$currentMonsterLife.css('width', calculPercentLife(monster.hp, monster.hpMax) )
 	}
 	avatar.hp = avatar.hp - monster.force;
 	if (monster.hp <= 0) {
@@ -138,16 +161,16 @@ function fight(surprise) {
 		gainExp();
 
 		renderAvatar();
+		renderMonster();
 	} else if (avatar.hp <= 0) {
 		win = false;
-
-		renderAvatar();
+		GameOver();
 	} else {
 		win = "fight";
 		renderAvatar();
+		renderMonster();
+
 	} 
-	console.log('avatar ', avatar.hp)
-	console.log('monster ', monster.hp)
 	return win;
 }
 
@@ -189,6 +212,15 @@ function levelUp() {
 	}
 
 }
+
+function calculPercentLife(current, max) {
+	var result;
+	current === 0 ? result = 0 : result = (current*100)/max;
+	
+	return ''+result+'%'
+}
+
+
 function renderAvatar() {
 	console.log("render ",avatar)
 	$url = '../majAvatar?MaxHealth='+avatar.maxHp+'&hp='+avatar.hp+'&level='+avatar.level+'&agility='+avatar.agility+'&force='+avatar.force+'&inteligence='+avatar.inteligence+'&exp='+avatar.exp;
@@ -198,7 +230,15 @@ function renderAvatar() {
 	});
 }
 
+function renderMonster() {
+	$room.find('.js-monster').attr('data-monster', JSON.stringify(monster));
+}
 
+function GameOver() {
+	$.get({
+	  url: '/gameover'
+	});
+}
 
 
 

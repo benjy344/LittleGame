@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   get 'addMonsterByIdToRoom'    => 'rooms#addMonsterByIdToRoom'
   get 'addObjetByIdToMonster'   => 'monsters#addObjetById'
   get 'craftEpeeFer'            => 'objets#craftEpeeFer'
+  get 'gameover'                => 'index#gameover'
   #post 'donjons/addObject'
 
   #get 'donjons/addObject/:avatar_id/:avatar_id' => 'donjons#addObject/avatar_id/objet_id'

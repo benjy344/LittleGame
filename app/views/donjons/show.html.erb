@@ -30,9 +30,7 @@ end %>
     </div>
   </div>
 </div>
-<div class="render-avatar">
-<%= render partial: 'avatars/avatar' , locals: {avatar: @avatar}%>
-</div>
+
 
 <div class="js-rooms-container rooms-container">
   <article class="js-article">
@@ -48,11 +46,32 @@ end %>
   <%= render partial: 'rooms/rooms_list' , locals: {rooms: @donjon.rooms}%>
 </div>
 
+<div class="avatar-controller js-avatar-controller">
+  <span class="name"><%= current_user.avatar.name %></span>
+  <span class="level">Lvl : <%= current_user.avatar.level %></span>
+  <div class="js-avatar-hp avatar-hp" data-hpMax="<%= current_user.avatar.MaxHealth %>">
+    <div class="js-avatar-current-hp avatar-current-hp" data-hp="<%= current_user.avatar.hp %>"></div>
+  </div>
+  <span class="js-hpcount">PV : <%= current_user.avatar.hp %>/<%= current_user.avatar.MaxHealth %></span>
+  <div class="carac">
+    <span class="js-agility">Agilité : <%= current_user.avatar.agility %></span>
+    <span class="js-force">Force : <%= current_user.avatar.force %></span>
+    <span class="js-intéligence">Intéligence : <%= current_user.avatar.inteligence %></span>
+  </div>
+  <div class="family">
+    <span class="js-job">Classe : <%= current_user.avatar.job.name %></span>
+    <span class="js-type">Type : <%= current_user.avatar.element %></span>
+  </div>
+  
+
+  <div class="render-avatar">
+    <%= render partial: 'avatars/avatar' , locals: {avatar: @avatar}%>
+  </div>
+</div>
 
 
 
-
-<table>
+<!-- <table>
   <thead>
     <tr>
       <th>Name</th>
@@ -61,18 +80,18 @@ end %>
 
   <tbody>
       <tr>
-        <td><%= @avatar.name %></td>
+        <td><%# @avatar.name %></td>
         <td><%# defined?@avatar.objets.first.name %></td>
 
-        <% @objets.each do |o| %>
-          <% @title = 'Ajouter '+o.name%>
-          <td><%= link_to @title, {controller: "avatars", action: "addObjetById", avatar_id: @avatar.id, objet_id: o.id, donjon_id: @donjon.id }, class: "js-add-object btn", remote: true %></td>
+        <%# @objets.each do |o| %>
+          <% #@title = 'Ajouter '+o.name%>
+          <td><%# link_to @title, {controller: "avatars", action: "addObjetById", avatar_id: @avatar.id, objet_id: o.id, donjon_id: @donjon.id }, class: "js-add-object btn", remote: true %></td>
           
-        <% end %>
+        <%# end %>
         
       </tr>
   </tbody>
-</table>
+</table> -->
 
 
 

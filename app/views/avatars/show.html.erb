@@ -21,7 +21,7 @@
 <div id="renderObjets">
   <p>
   <strong>objets : </strong>
-  <%= render partial: 'objets/objets_list' , locals: {objets: @avatar.objets}%>
+  <%= render partial: 'objets/objets_list' , locals: {objets: @avatar.objets, scope: @avatar}%>
 </p>
 </div>
 

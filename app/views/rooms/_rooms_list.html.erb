@@ -14,23 +14,37 @@
 					<div class="btn nxt">Tenter d'avancer</div>
 					<div class="js-monster" data-monster= '{
 					"hp" : <%= r.monsters.first.hp%>,
+					"hpMax" : <%= r.monsters.first.hp%>,
 					"exp" : <%= r.monsters.first.exp%>,
 					"force" : <%= r.monsters.first.force%>,
 					"agility" : <%= r.monsters.first.agility%>
 					}'></div>
+					<div class="js-monster-hp monster-hp" data-hpMax="<%= r.monsters.first.hp%>">
+						<div class="js-monster-current-hp monster-current-hp" data-hp="<%= r.monsters.first.hp%>"></div>
+					</div>
 					<div class="js-fight-buttons hidden">
 						<div class="btn js-attack-button">Attaquer</div>
-						<div class="btn js-trigger-menu">regarder l'inventaire</div>
-						<div class="btn js-defend">regarder l'inventaire</div>
+						<div class="btn js-trigger-menu">Regarder l'inventaire</div>
+						<div class="btn js-defend">Se défendre</div>
 					</div>
 				<% else %>
 					<p class="indication-room js-indication-room js-attack">Un <%=r.monsters.first.name%> vous attaque !</p>
 					<div class="js-monster" data-monster= '{
 					"hp" : <%= r.monsters.first.hp%>,
+					"hpMax" : <%= r.monsters.first.hp%>,
 					"exp" : <%= r.monsters.first.exp%>,
 					"force" : <%= r.monsters.first.force%>,
 					"agility" : <%= r.monsters.first.agility%>
 					}'></div>
+
+					<div class="js-monster-hp monster-hp" data-hpMax="<%= r.monsters.first.hp%>">
+						<div class="js-monster-current-hp monster-current-hp" data-hp="<%= r.monsters.first.hp%>"></div>
+					</div>
+					<div class="js-fight-buttons hidden">
+						<div class="btn js-attack-button">Attaquer</div>
+						<div class="btn js-trigger-menu">Regarder l'inventaire</div>
+						<div class="btn js-defend">Se défendre</div>
+					</div>
 
 				<% end %>
 				<!-- soit le monstre attaque => echo "un monstre vous attaque !"-->
