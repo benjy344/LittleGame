@@ -17,6 +17,7 @@ end %>
   </div>
   <div class="js-objects inventaire">
     <h2>Inventaire</h2>
+    <div class="js-money"><span>Or:</span><span class="renderGold"> <%= current_user.avatar.money %></span></div>
       <div class="js-content-objects">
         <%= render partial: 'objets/objets_list' , locals: {objets: @avatar.objets, scope: current_user.avatar}%>
       </div>
@@ -52,9 +53,9 @@ end %>
       <div class="js-avatar-current-hp avatar-current-hp" data-hp="<%= current_user.avatar.hp %>"></div>
       <span class="js-hpcount hpcount">PV : <%= current_user.avatar.hp %>/<%= current_user.avatar.MaxHealth %></span>
     </div>
-    <div class="js-avatar-exp avatar-exp" >
+    <div class="js-avatar-exp avatar-exp" data-next-level="<%= current_user.avatar.nextLevel %>">
       <div class="js-avatar-current-exp avatar-current-exp" data-exp="<%= current_user.avatar.exp %>"></div>
-      <span class="js-expcount expcount">Exp : <%= current_user.avatar.exp %></span>
+      <span class="js-expcount expcount">Exp : <%= current_user.avatar.exp %>/<%= current_user.avatar.nextLevel %></span>
     </div>
   </div>
   
@@ -63,6 +64,7 @@ end %>
     <span class="js-agility">Agilité : <%= current_user.avatar.agility %></span>
     <span class="js-force">Force : <%= current_user.avatar.force %></span>
     <span class="js-intéligence">Intéligence : <%= current_user.avatar.inteligence %></span>
+    <span class="js-defence">Défence : <%= current_user.avatar.defence %></span>
   </div>
   <div class="family">
     <span class="js-job">Classe : <%= current_user.avatar.job.name %></span>

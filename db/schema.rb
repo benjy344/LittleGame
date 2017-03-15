@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170312172633) do
+ActiveRecord::Schema.define(version: 20170315200904) do
 
   create_table "avatars", force: :cascade do |t|
     t.string  "name"
@@ -25,6 +25,11 @@ ActiveRecord::Schema.define(version: 20170312172633) do
     t.integer "inteligence",     default: 5
     t.integer "user_id"
     t.integer "id_objet_equipe"
+    t.integer "money",           default: 0
+    t.integer "id_defObject"
+    t.integer "id_armure"
+    t.integer "nextLevel",       default: 50
+    t.integer "defence",         default: 5
     t.index ["job_id"], name: "index_avatars_on_job_id"
     t.index ["user_id"], name: "index_avatars_on_user_id"
   end
@@ -81,6 +86,7 @@ ActiveRecord::Schema.define(version: 20170312172633) do
     t.integer "magic"
     t.string  "category"
     t.string  "description"
+    t.integer "defence"
   end
 
   create_table "oirs", force: :cascade do |t|

@@ -1,5 +1,27 @@
-<% @forceArme = avatar.objets.find(avatar.id_objet_equipe).force %>
-<% @agilityArme = avatar.objets.find(avatar.id_objet_equipe).agility %>
+<% 
+
+if !avatar.id_objet_equipe.nil?
+ @forceArme = avatar.objets.find(avatar.id_objet_equipe).force 
+ @agilityArme = avatar.objets.find(avatar.id_objet_equipe).agility
+else 
+ @forceArme = 0 
+ @agilityArme = 0
+end
+
+if !avatar.id_defObject.nil?
+ @defArme = avatar.objets.find(avatar.id_defObject).defence 
+else 
+ @defArme = 0
+end
+
+if !avatar.id_defObject.nil?
+ @defArme = avatar.objets.find(avatar.id_defObject).defence 
+else 
+ @defArme = 0
+end
+
+
+ %>
 <div id="avatar" data-avatar='{
   "hp" : <%= avatar.hp %>,
   "maxHp": <%= avatar.MaxHealth %>,
@@ -7,10 +29,13 @@
   "job" : "<%= avatar.job.name %>",
   "exp" : <%= avatar.exp %>,
   "level": <%= avatar.level %>,
+  "nextLevel": <%= avatar.nextLevel %>,
   "agility": <%= avatar.agility %>,
   "agilityW": <%= @agilityArme %>, 
   "force" : <%= avatar.force %>,
   "forceW" : <%= @forceArme %>,
+  "defence" : <%= avatar.defence %>,
+  "defenceW" : <%= @defArme %>,
   "inteligence" : <%= avatar.inteligence %>
 }' data-hp="<%= avatar.hp %>" data-maxHp="<%= avatar.MaxHealth %>" data-element="<%= avatar.element %>" data-job="<%= avatar.job.name %>" data-exp="<%= avatar.exp %>" data-level="<%= avatar.level %>" data-force="<%= avatar.force %>" data-inteligence="<%= avatar.inteligence %>" data-agility="<%= avatar.agility %>">
 </div>

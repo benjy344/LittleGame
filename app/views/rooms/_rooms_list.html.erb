@@ -65,6 +65,7 @@
           				<div class="finding-object js-finding-object"><%= link_to @title, {controller: "avatars", action: "addObjetById", objet_id: o.id}, class: "js-add-object btn", remote: true %></div>
 
 					<% end %>
+					<div class="add-gold js-add-gold"><%= link_to "100 Or", {controller: "avatars", action: "addGold", money: 100}, class: "js-add-gold btn", remote: true %></div>
 					<div class="btn nxt">Avancer</div>
 				</div>
 				
@@ -87,7 +88,6 @@
 
 
 			<div class="btn bck exit">Revenir à l'étage précédent</div>
-			<div class="btn nxt " style="position: absolute;right: 0; width: 100px;">suivant</div>
 		</section>
 	</article>
 	

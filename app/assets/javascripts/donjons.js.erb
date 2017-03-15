@@ -7,7 +7,7 @@ var avatar,
 	monster,
 	$room, 
 	$currentMonsterLife,
-	nextLevel = 50;
+	nextLevel;
 
 $(document).ready(function(){
 	init();
@@ -18,6 +18,13 @@ function init() {
 		$('#bag').toggleClass('open');
 		$('.hamburger').toggleClass('is-active');
 	})
+	nextLevel = $('.js-avatar-exp').attr('data-next-level');
+	var currentExp = $('.js-avatar-current-exp').attr('data-exp');
+	var currenthp = $('.js-avatar-current-hp').attr('data-hp');
+	var maxHphp = $('.js-avatar-hp').attr('data-hpmax');
+
+	$('.js-avatar-current-exp').css('width',calculPercentLife(currentExp, nextLevel) );
+	$('.js-avatar-controller .js-avatar-current-hp').css('width', calculPercentLife(currenthp, maxHphp));
 
 	extendDescription();
 	articleSlide();
@@ -138,38 +145,85 @@ function getFight(surprise=false) {
 function fight(surprise) {
 	console.log('fight')
 	var force = (avatar.force + avatar.forceW);
+	var avatarDefence = (avatar.defence + avatar.defenceW);
 	var $currentMonsterLife = $room.find('.js-monster-current-hp');
 	var MaxMonsterLife = monster.hpMax;
+	var win = "fight";
 
-	// Si attaque par suprise => avantage avatar
+	
 	if (surprise){
+		// Si attaque par suprise => avantage avatar, le monstre n'attaque pas 
 		monster.hp = (monster.hp - (force*1.2));
-		if (monster.hp < 0) monster.hp = 0;
-		$currentMonsterLife.css('width', calculPercentLife(monster.hp, monster.hpMax) )
+		if (monster.hp < 0) { monster.hp = 0;
+			renderMonster();
+			win = true;
+		} else {
+			renderMonster();
+		}
 	}else {
 		// Le plus rapide commence
-		monster.hp = (monster.hp - force);
-		console.log(monster.hp)
-		if (monster.hp < 0) monster.hp = 0;
-		console.log(monster.hp, monster.hpMax)
-		$currentMonsterLife.css('width', calculPercentLife(monster.hp, monster.hpMax) )
+		if (avatar.agility >= monster.agility) {
+			//si l'avatar est le plus rapide 
+			//attaque le monstre
+			monster.hp = (monster.hp - force);
+			if (monster.hp <= 0) { 
+				//si le montre est KO => avatar WIN
+				monster.hp = 0;
+				renderMonster();
+				win = true;
+			} else {
+				renderMonster();
+				//si le montre n'est pas KO, il attaque
+				avatar.hp = (avatar.hp + (avatarDefence / 2)) - monster.force;
+
+				if (avatar.hp <= 0) { 
+					avatar.hp = 0;
+					renderAvatar();
+					//si l'avatar est KO => avatar loose
+					win = false;
+				} else {
+					//l'avatar n'est pas mort, le combat continue
+					renderAvatar();
+				}
+			}
+		} else {
+			//si le monstre est le plus rapide
+			//attaque l'avatar
+			avatar.hp = (avatar.hp + (avatarDefence / 2)) - monster.force;
+
+			if (avatar.hp <= 0) { 
+				avatar.hp = 0;
+				renderAvatar();
+				//si l'avatar est KO => avatar loose
+				win = false;
+			} else {
+				//l'avatar n'est pas mort, le combat continue
+				renderAvatar();
+				monster.hp = (monster.hp - force);
+
+				if (monster.hp <= 0) { 
+					//si le montre est KO => avatar WIN
+					monster.hp = 0;
+					renderMonster();
+					win = true;
+				} else {
+					//sinon le combat continue
+					renderMonster();
+				}
+			}
+		}
 	}
-	avatar.hp = avatar.hp - monster.force;
-	if (monster.hp <= 0) {
-		win = true;
-
+	//avatar.hp = avatar.hp - monster.force;
+	if (win === true) {
 		gainExp();
-
 		renderAvatar();
-		renderMonster();
-	} else if (avatar.hp <= 0) {
-		win = false;
+		//montrer les objets drop par le monstre + bouton continuer
+	} else if (win === false) {
 		GameOver();
 	} else {
 		win = "fight";
-		renderAvatar();
-		renderMonster();
-
+		//le combat continue 
+		//afficher les boutons de fight
 	} 
 	return win;
 }
@@ -178,12 +232,13 @@ function fight(surprise) {
 function gainExp() {
 	avatar.exp += monster.exp;
 
-	if (avatar.exp >= nextLevel) levelUp();
+	if (avatar.exp >= avatar.nextLevel) levelUp();
 }
 function levelUp() {
 	console.log('LEVEL UP')
 	avatar.level += 1;
-	nextLevel += (nextLevel*1.5);
+	avatar.exp = avatar.exp - avatar.nextLevel;
+	avatar.nextLevel += (avatar.nextLevel*1.5);
 	avatar.maxHp += 3;
 	avatar.hp += 3;
 
@@ -192,6 +247,7 @@ function levelUp() {
 			avatar.force += 2;
 			avatar.agility +=4;
 			avatar.inteligence +=3;
+			avatar.defence +=2;
 
 				switch (avatar.level) {
 					case 1:
@@ -203,11 +259,13 @@ function levelUp() {
 			avatar.force += 5;
 			avatar.agility +=2;
 			avatar.inteligence +=2;
+			avatar.defence +=4;
 			break;
 		case "Mage":
 			avatar.force += 3;
 			avatar.agility += 3;
 			avatar.inteligence +=3;
+			avatar.defence +=3;
 			break;
 	}
 
@@ -222,15 +280,31 @@ function calculPercentLife(current, max) {
 
 
 function renderAvatar() {
-	console.log("render ",avatar)
-	$url = '../majAvatar?MaxHealth='+avatar.maxHp+'&hp='+avatar.hp+'&level='+avatar.level+'&agility='+avatar.agility+'&force='+avatar.force+'&inteligence='+avatar.inteligence+'&exp='+avatar.exp;
+	$url = '../majAvatar?MaxHealth='+avatar.maxHp+'&hp='+avatar.hp+'&level='+avatar.level+'&nextLevel='+avatar.nextLevel+'&defence='+avatar.defence+'&agility='+avatar.agility+'&force='+avatar.force+'&inteligence='+avatar.inteligence+'&exp='+avatar.exp;
 	$.get({
 	  url: $url,
 	  dataType: "script"
 	});
+	$avatarController = $('.js-avatar-controller');
+	$avatarController.find('.js-avatar-hp').attr('data-hpMax', avatar.maxHp);
+	$avatarController.find('.js-avatar-current-hp').attr('data-hp', avatar.hp);
+	$avatarController.find('.js-avatar-exp').attr('data-next-level', avatar.nextLevel);
+	$avatarController.find('.js-avatar-current-exp').attr('data-exp', avatar.exp);
+	$avatarController.find('.js-avatar-current-hp').css('width', calculPercentLife(avatar.hp, avatar.maxHp));
+	$avatarController.find('.js-avatar-current-exp').css('width', calculPercentLife(avatar.exp, avatar.nextLevel));
+	$avatarController.find(".js-agility").html("Agilité : "+avatar.agility);
+    $avatarController.find(".js-force").html("Force : "+avatar.force);
+    $avatarController.find(".js-intéligence").html("Intéligence : "+avatar.inteligence);
+    $avatarController.find(".js-defence").html("Défence : "+avatar.defence);
+    $avatarController.find('.level').html('Lvl : '+avatar.level);
+    $avatarController.find('.js-hpcount').html('PV : '+avatar.hp+'/'+avatar.maxHp);
+    $avatarController.find('.js-expcount').html('Exp : '+avatar.exp+'/'+avatar.nextLevel);
+
+
 }
 
 function renderMonster() {
+	$room.find('.js-monster-current-hp').css('width', calculPercentLife(monster.hp, monster.hpMax) );
 	$room.find('.js-monster').attr('data-monster', JSON.stringify(monster));
 }
 

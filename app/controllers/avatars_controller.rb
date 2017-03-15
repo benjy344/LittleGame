@@ -71,9 +71,23 @@ class AvatarsController < ApplicationController
 
   end
 
+  def addGold
+    @avatar = current_user.avatar
+    @currentGold = @avatar.money.to_i
+    @newGold = @currentGold + params[:money].to_i
+    @avatar.update(money: @newGold)
+
+    respond_to do |format|
+        format.html { redirect_to :back, notice: 'Avatar was successfully updated.' }
+        format.json { render :show, status: :ok, location: @avatar }
+        format.js
+    end
+
+  end
+
   def majAvatar 
     @avatar = current_user.avatar
-    @avatar.update(MaxHealth: params[:MaxHealth], hp: params[:hp], level: params[:level], agility: params[:agility], force: params[:force], inteligence: params[:inteligence], exp: params[:exp])
+    @avatar.update(MaxHealth: params[:MaxHealth], hp: params[:hp], level: params[:level], nextLevel: params[:nextLevel],defence: params[:defence], agility: params[:agility], force: params[:force], inteligence: params[:inteligence], exp: params[:exp])
     respond_to do |format|
         format.html { redirect_to :back, notice: 'Avatar was successfully updated.' }
         format.json { render :show, status: :ok, location: @avatar }

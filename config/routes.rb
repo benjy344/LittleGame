@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   get 'removeObjetById'         => 'avatars#removeObjetById'
   get 'equipeObjet'             => 'avatars#equipeObjet'
   get 'majAvatar'               => 'avatars#majAvatar'
+  get 'addGold'                 => 'avatars#addGold'
   get 'addObjetByIdToRoom'      => 'rooms#addObjetByIdToRoom'
   get 'addMonsterByIdToRoom'    => 'rooms#addMonsterByIdToRoom'
   get 'addObjetByIdToMonster'   => 'monsters#addObjetById'
