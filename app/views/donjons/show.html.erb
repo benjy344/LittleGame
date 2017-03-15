@@ -1,5 +1,3 @@
-<h1>Donjons</h1>
-
 <% 
 @count_objet = 0
 @count_monster = 0
@@ -49,10 +47,18 @@ end %>
 <div class="avatar-controller js-avatar-controller">
   <span class="name"><%= current_user.avatar.name %></span>
   <span class="level">Lvl : <%= current_user.avatar.level %></span>
-  <div class="js-avatar-hp avatar-hp" data-hpMax="<%= current_user.avatar.MaxHealth %>">
-    <div class="js-avatar-current-hp avatar-current-hp" data-hp="<%= current_user.avatar.hp %>"></div>
+  <div class="currsors">
+    <div class="js-avatar-hp avatar-hp" data-hpMax="<%= current_user.avatar.MaxHealth %>">
+      <div class="js-avatar-current-hp avatar-current-hp" data-hp="<%= current_user.avatar.hp %>"></div>
+      <span class="js-hpcount hpcount">PV : <%= current_user.avatar.hp %>/<%= current_user.avatar.MaxHealth %></span>
+    </div>
+    <div class="js-avatar-exp avatar-exp" >
+      <div class="js-avatar-current-exp avatar-current-exp" data-exp="<%= current_user.avatar.exp %>"></div>
+      <span class="js-expcount expcount">Exp : <%= current_user.avatar.exp %></span>
+    </div>
   </div>
-  <span class="js-hpcount">PV : <%= current_user.avatar.hp %>/<%= current_user.avatar.MaxHealth %></span>
+  
+  
   <div class="carac">
     <span class="js-agility">Agilité : <%= current_user.avatar.agility %></span>
     <span class="js-force">Force : <%= current_user.avatar.force %></span>
