@@ -253,10 +253,14 @@ function fight(surprise) {
 	}
 	//avatar.hp = avatar.hp - monster.force;
 	if (win === true) {
-		$room.find('.js-result-find-objects').removeClass('hidden');
-		$room.find('.js-next-room').removeClass('hidden');
 		$room.find('.js-fight-buttons').addClass('hidden-delay');
 		$room.find('.js-monster-hp').addClass('hidden-delay');
+		setTimeout(function(){
+			$room.find('.js-result-find-objects').removeClass('hidden');
+			$room.find('.js-next-room').removeClass('hidden');
+		}, 1500);
+		
+		
 		gainExp();
 		renderAvatar();
 		//montrer les objets drop par le monstre + bouton continuer
