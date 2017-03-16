@@ -30,7 +30,6 @@ end %>
   </div>
 </div>
 
-
 <div class="js-rooms-container rooms-container">
   <article class="js-article">
     <div class="room js-room intro-room js-room-0">
@@ -41,8 +40,15 @@ end %>
       <div class="btn nxt btn--white">Entrer</div>
       <%= link_to 'Sortir', donjons_path, class: "btn exit btn--white" %>
     </div>
-      </article>
+  </article>
   <%= render partial: 'rooms/rooms_list' , locals: {rooms: @donjon.rooms}%>
+  <article class="js-article">
+    <div class="room js-room intro-room js-room-<%= @donjon.rooms.count + 1 %>">
+      <p>Il y a une lumière au bout ...</p>
+      <!-- voir pour unlock les autres donjons -->
+      <%= link_to 'Sortir', donjons_path, class: "btn exit btn--white" %>
+    </div>
+  </article>
 </div>
 
 <div class="avatar-controller js-avatar-controller">
@@ -76,81 +82,3 @@ end %>
     <%= render partial: 'avatars/avatar' , locals: {avatar: @avatar}%>
   </div>
 </div>
-
-
-
-<!-- <table>
-  <thead>
-    <tr>
-      <th>Name</th>
-    </tr>
-  </thead>
-
-  <tbody>
-      <tr>
-        <td><%# @avatar.name %></td>
-        <td><%# defined?@avatar.objets.first.name %></td>
-
-        <%# @objets.each do |o| %>
-          <% #@title = 'Ajouter '+o.name%>
-          <td><%# link_to @title, {controller: "avatars", action: "addObjetById", avatar_id: @avatar.id, objet_id: o.id, donjon_id: @donjon.id }, class: "js-add-object btn", remote: true %></td>
-          
-        <%# end %>
-        
-      </tr>
-  </tbody>
-</table> -->
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- <h2>avatar</h2>
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-    </tr>
-  </thead>
-
-  <tbody>
-      <tr>
-        <td><%= @avatar.name %></td>
-        <td><%# defined?@avatar.objets.first.name %></td>
-
-        <% @objets.each do |o| %>
-          <% @title = 'Ajouter '+o.name%>
-          <td><%= link_to @title, {controller: "avatars", action: "addObjetById", avatar_id: @avatar.id, objet_id: o.id }, {method: 'get'} %></td>
-          
-        <% end %>
-        
-      </tr>
-  </tbody>
-</table>
-
-<% @monsters.each do |m| %>
-      <tr>
-        <td><%= m.name %></td>
-
-        <% @objets.each do |o| %>
-          <% @title = 'Ajouter '+o.name%>
-          <td><%= link_to @title, {controller: "monsters", action: "addObjetById", monster_id: @avatar.id, objet_id: o.id }, {method: 'get'} %></td>
-          
-        <% end %>
-        
-      </tr>
-    <% end %>
-
-
-
-<br>
- -->
-
-

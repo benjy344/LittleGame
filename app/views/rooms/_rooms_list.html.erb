@@ -8,12 +8,9 @@
 
 			<%= @alea = rand(5)%>
 			<% if r.monsters.any?%>
-				<% if @alea == 3 %>
+				<% if @alea == @alea %>
 					<p class="indication-room js-indication-room ">Un <%=r.monsters.first.name%> dors au fond de la pièce, que voulez vous faire ?</p>
-					<div class="js-attack-surprise-buttons">
-						<div class="btn js-attack-surprise">Attaquer par surprise</div>
-						<div class="btn nxt">Tenter d'avancer</div>
-					</div>
+					
 					
 					<div class="js-monster" data-monster= '{
 					"hp" : <%= r.monsters.first.hp%>,
@@ -24,6 +21,10 @@
 					}'></div>
 					<div class="js-monster-hp monster-hp" data-hpMax="<%= r.monsters.first.hp%>">
 						<div class="js-monster-current-hp monster-current-hp" data-hp="<%= r.monsters.first.hp%>"></div>
+					</div>
+					<div class="js-attack-surprise-buttons">
+						<div class="btn js-attack-surprise">Attaquer par surprise</div>
+						<div class="btn nxt">Tenter d'avancer</div>
 					</div>
 					<div class="js-fight-buttons hidden">
 						<div class="btn js-attack-button">Attaquer</div>
@@ -39,7 +40,11 @@
 		          				<div class="finding-object js-finding-object"><%= link_to @title, {controller: "avatars", action: "addObjetById", objet_id: o.id}, class: "js-add-object btn", remote: true %></div>
 
 							<% end %>
-							<div class="add-gold js-add-gold finding-object js-finding-object"><%= link_to "100 Or", {controller: "avatars", action: "addGold", money: 100}, class: "js-add-gold btn js-add-object", remote: true %></div>
+
+							<% @gold = rand(3..r.monsters.first.hp)
+							   @winGoldTitle = @gold.to_s+' Or'
+							%>
+							<div class="add-gold js-add-gold finding-object js-finding-object"><%= link_to @winGoldTitle, {controller: "avatars", action: "addGold", money: @gold}, class: "js-add-gold btn js-add-object", remote: true %></div>
 						</div>
 						
 						

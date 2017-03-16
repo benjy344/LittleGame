@@ -1,6 +1,41 @@
-<% if @avatar.objets.where(name: "Baton") && (@avatar.objets.where(name: "Fer").count)>= 2  %>
+<% if (@avatar.objets.where(name: "Baton").count)>= 1 && (@avatar.objets.where(name: "Fer").count)>= 2  %>
 
 <%= link_to 'Créer une Épée de Fer', {controller: "objets", action: "craftEpeeFer", avatar_id: @avatar.id } ,remote: true, class: 'btn btn--white' %>
 <p>Baton(x1), Fer(x2)</p>
+
+<% end %>
+
+<% if (@avatar.objets.where(name: "Peau de bête").count)>= 4 %>
+
+<%= link_to 'Créer une Armure de peaux', {controller: "objets", action: "craftEpeeFer", avatar_id: @avatar.id } ,remote: true, class: 'btn btn--white' %>
+<p>Peau de bête(x4)</p>
+
+<% end %>
+
+<% if (@avatar.objets.where(name: "Fer").count)>= 10 %>
+
+<%= link_to 'Créer une Armure de Fer', {controller: "objets", action: "craftEpeeFer", avatar_id: @avatar.id } ,remote: true, class: 'btn btn--white' %>
+<p>Fer(x10)</p>
+
+<% end %>
+
+<% if (@avatar.objets.where(name: "Baton").count)>= 8 %>
+
+<%= link_to 'Créer un Bouclier de bois', {controller: "objets", action: "craftEpeeFer", avatar_id: @avatar.id } ,remote: true, class: 'btn btn--white' %>
+<p>Baton(x8)</p>
+
+<% end %>
+
+<% if (@avatar.objets.where(name: "Herbe médicinale").count)>= 5 %>
+
+<%= link_to 'Créer une Potion de Soin', {controller: "objets", action: "craftEpeeFer", avatar_id: @avatar.id } ,remote: true, class: 'btn btn--white' %>
+<p>Herbe médicinale(x5)</p>
+
+<% end %>
+
+<% if (@avatar.objets.where(name: "Potion de Soin").count)>= 5 %>
+
+<%= link_to 'Créer une Potion de Vie', {controller: "objets", action: "craftEpeeFer", avatar_id: @avatar.id } ,remote: true, class: 'btn btn--white' %>
+<p>Potion de Soin(x5)</p>
 
 <% end %>
