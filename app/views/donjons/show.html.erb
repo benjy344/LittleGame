@@ -33,11 +33,11 @@ end %>
 
 <div class="js-rooms-container rooms-container">
   <article class="js-article">
-    <div class="room js-room intro-room">
+    <div class="room js-room intro-room js-room-0">
       <h2><%= @donjon.name%></h2>
-      <p>Nombre d'étage : <%= @donjon.rooms.count %></p>
-      <p>Nombre d'objet : <%= @count_objet %></p>
-      <p>Nombre de monstre : <%= @count_monster %></p>
+      <p>Nombre d'étages : <%= @donjon.rooms.count %></p>
+      <p>Nombre d'objets : <%= @count_objet %></p>
+      <p>Nombre de monstres : <%= @count_monster %></p>
       <div class="btn nxt btn--white">Entrer</div>
       <%= link_to 'Sortir', donjons_path, class: "btn exit btn--white" %>
     </div>
@@ -63,7 +63,7 @@ end %>
   <div class="carac">
     <span class="js-agility">Agilité : <%= current_user.avatar.agility %></span>
     <span class="js-force">Force : <%= current_user.avatar.force %></span>
-    <span class="js-intéligence">Intéligence : <%= current_user.avatar.inteligence %></span>
+    <span class="js-intéligence">Intelligence : <%= current_user.avatar.inteligence %></span>
     <span class="js-defence">Défence : <%= current_user.avatar.defence %></span>
   </div>
   <div class="family">

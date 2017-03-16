@@ -373,6 +373,8 @@
         width: calc(100% - 40px);
         height: calc(70% - 40px);
         margin: 20px 0 0 20px;
+        box-sizing: border-box;
+        padding: 20px;
         position: absolute;
         transition: width 750ms;
         border: 1px solid #242322;
@@ -384,6 +386,28 @@
         .hidden {
             visibility: hidden;
             height: 0;
+        }
+        .js-result-find-objects {
+            .nxt {
+                display: block;
+                width: 100px;
+                text-align: center;
+                margin-top: 30px;
+                margin: 30px auto;
+            }
+        }
+        .finding-object {
+            display: inline-block;
+            .btn {
+                display: inline-block;
+            }
+            
+        }
+        .js-actions {
+            text-align: center;
+            .btn {
+                display: inline-block;
+            }
         }
         &.intro-room {
             background: #242322;

@@ -10,8 +10,11 @@
 			<% if r.monsters.any?%>
 				<% if @alea == 3 %>
 					<p class="indication-room js-indication-room ">Un <%=r.monsters.first.name%> dors au fond de la pièce, que voulez vous faire ?</p>
-					<div class="btn js-attack-surprise">Attaquer par surprise</div>
-					<div class="btn nxt">Tenter d'avancer</div>
+					<div class="js-attack-surprise-buttons">
+						<div class="btn js-attack-surprise">Attaquer par surprise</div>
+						<div class="btn nxt">Tenter d'avancer</div>
+					</div>
+					
 					<div class="js-monster" data-monster= '{
 					"hp" : <%= r.monsters.first.hp%>,
 					"hpMax" : <%= r.monsters.first.hp%>,
@@ -27,6 +30,23 @@
 						<div class="btn js-trigger-menu">Regarder l'inventaire</div>
 						<div class="btn js-defend">Se défendre</div>
 					</div>
+					<% if r.monsters.first.objets.any? %>
+					<!-- si le monstre drop des objets -->
+						<div class="js-result-find-objects hidden">
+							<p class="indication-room js-indication-room ">Le monstre à laissé des objets</p>
+							<% r.monsters.first.objets.each do |o| %>
+								<% @title = 'Ajouter '+o.name%>
+		          				<div class="finding-object js-finding-object"><%= link_to @title, {controller: "avatars", action: "addObjetById", objet_id: o.id}, class: "js-add-object btn", remote: true %></div>
+
+							<% end %>
+							<div class="add-gold js-add-gold finding-object js-finding-object"><%= link_to "100 Or", {controller: "avatars", action: "addGold", money: 100}, class: "js-add-gold btn js-add-object", remote: true %></div>
+							<div class="btn nxt">Avancer</div>
+						</div>
+						
+						
+					<% else %>
+
+					<% end %>
 				<% else %>
 					<p class="indication-room js-indication-room js-attack">Un <%=r.monsters.first.name%> vous attaque !</p>
 					<div class="js-monster" data-monster= '{
@@ -46,12 +66,30 @@
 						<div class="btn js-defend">Se défendre</div>
 					</div>
 
+					<% if r.monsters.first.objets.any? %>
+					<!-- si le monstre drop des objets -->
+						<div class="js-result-find-objects hidden">
+							<p class="indication-room js-indication-room ">Le monstre à laissé des objets</p>
+							<% r.monsters.first.objets.each do |o| %>
+								<% @title = 'Ajouter '+o.name%>
+		          				<div class="finding-object js-finding-object"><%= link_to @title, {controller: "avatars", action: "addObjetById", objet_id: o.id}, class: "js-add-object btn", remote: true %></div>
+
+							<% end %>
+							<div class="add-gold js-add-gold finding-object js-finding-object"><%= link_to "100 Or", {controller: "avatars", action: "addGold", money: 100}, class: "js-add-gold btn js-add-object", remote: true %></div>
+							<div class="btn nxt">Avancer</div>
+						</div>
+						
+						
+					<% else %>
+
+					<% end %>
+
 				<% end %>
 				<!-- soit le monstre attaque => echo "un monstre vous attaque !"-->
 				<!-- soit le monstre n'attaque pas et on peut explorer=> echo "un monstre dors au fond de la piece, que voulez vous faire ? " attaquer(bonus surprise) ou essayer de passer (2 chance sur 10-agilité du perso) -->
 			<% else %>
 				<!-- pas de monstres, "la piece semble sans danger que voulez vous faire ? " explorer : avancer -->
-				<p class="indication-room js-indication-room">La piece semble sans danger que voulez vous faire ?</p>
+				<p class="indication-room js-indication-room">La pièce semble sans danger que voulez vous faire ?</p>
 				<div class="js-actions">
 					<div class="btn explorer js-explorer">Explorer</div>
 					<div class="btn nxt">Avancer</div>
@@ -65,7 +103,7 @@
           				<div class="finding-object js-finding-object"><%= link_to @title, {controller: "avatars", action: "addObjetById", objet_id: o.id}, class: "js-add-object btn", remote: true %></div>
 
 					<% end %>
-					<div class="add-gold js-add-gold"><%= link_to "100 Or", {controller: "avatars", action: "addGold", money: 100}, class: "js-add-gold btn", remote: true %></div>
+					<div class="add-gold js-add-gold finding-object js-finding-object"><%= link_to "100 Or", {controller: "avatars", action: "addGold", money: 100}, class: "js-add-gold btn js-add-object", remote: true %></div>
 					<div class="btn nxt">Avancer</div>
 				</div>
 				
