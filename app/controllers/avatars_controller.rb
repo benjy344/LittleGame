@@ -29,9 +29,6 @@ class AvatarsController < ApplicationController
   def create
     @avatar = Avatar.new(avatar_params)
     @user = current_user
-    puts "=============="
-    puts @user
-    puts "=============="
     @user.avatar = @avatar
     respond_to do |format|
       if @avatar.save
@@ -95,11 +92,7 @@ class AvatarsController < ApplicationController
     end
   end
   def addObjetById
-    puts "=============="
     @avatar = current_user.avatar
-    puts "=============="
-    puts @avatar
-    puts "=============="
     @obj = Objet.find(params[:objet_id])
     #@donjon = Donjon.find(params[:donjon_id])
 

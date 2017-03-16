@@ -105,39 +105,34 @@ function verfifButton() {
 
 
 function articleSlide() {
-  var art = $('.js-article'),
-      mag = $('.js-rooms-container'),
-      aCount = art.length;  
-  var mLength = aCount * 100,
-      aLength = 100 / aCount;
-  
-  mag.css('width', mLength + '%');
-  art.css('width', aLength + '%');
+	var art = $('.js-article'),
+	mag = $('.js-rooms-container'),
+	aCount = art.length;  
+	var mLength = aCount * 100,
+	aLength = 100 / aCount;
 
-  
-  	  
-      max = mLength - 100;
-      console.log($room);
-  $('.nxt').off();
-  $('.nxt').on('click', function(){
-  	console.log('next')
-    if(pos > "-" + max){
-      pos += -100;
-      countRoom += 1;
-      mag.css('margin-left', pos + '%');
-      verfifButton();
-    }
-  });
-  $('.bck').off();
-  $('.bck').on('click', function(){
-  	console.log('back')
-    if(pos < 0 ){
-      pos += 100;
-      countRoom += -1;
-      mag.css('margin-left', pos + '%');
-    }
-  });
- 
+	mag.css('width', mLength + '%');
+	art.css('width', aLength + '%');
+
+	max = mLength - 100;
+	$('.nxt').off();
+	$('.nxt').on('click', function(){
+		if(pos > "-" + max){
+			pos += -100;
+			countRoom += 1;
+			mag.css('margin-left', pos + '%');
+			verfifButton();
+		}
+	});
+	$('.bck').off();
+	$('.bck').on('click', function(){
+		if(pos < 0 ){
+			pos += 100;
+			countRoom += -1;
+			mag.css('margin-left', pos + '%');
+		}
+	});
+
 }
 
 
@@ -259,7 +254,9 @@ function fight(surprise) {
 	//avatar.hp = avatar.hp - monster.force;
 	if (win === true) {
 		$room.find('.js-result-find-objects').removeClass('hidden');
-		$room.find('.js-fight-buttons').addClass('hidden');
+		$room.find('.js-next-room').removeClass('hidden');
+		$room.find('.js-fight-buttons').addClass('hidden-delay');
+		$room.find('.js-monster-hp').addClass('hidden-delay');
 		gainExp();
 		renderAvatar();
 		//montrer les objets drop par le monstre + bouton continuer

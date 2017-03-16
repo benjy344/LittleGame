@@ -33,14 +33,13 @@
 					<% if r.monsters.first.objets.any? %>
 					<!-- si le monstre drop des objets -->
 						<div class="js-result-find-objects hidden">
-							<p class="indication-room js-indication-room ">Le monstre à laissé des objets</p>
+							<p class="indication-room js-indication-room ">Le monstre a laissé des objets</p>
 							<% r.monsters.first.objets.each do |o| %>
 								<% @title = 'Ajouter '+o.name%>
 		          				<div class="finding-object js-finding-object"><%= link_to @title, {controller: "avatars", action: "addObjetById", objet_id: o.id}, class: "js-add-object btn", remote: true %></div>
 
 							<% end %>
 							<div class="add-gold js-add-gold finding-object js-finding-object"><%= link_to "100 Or", {controller: "avatars", action: "addGold", money: 100}, class: "js-add-gold btn js-add-object", remote: true %></div>
-							<div class="btn nxt">Avancer</div>
 						</div>
 						
 						
@@ -76,7 +75,6 @@
 
 							<% end %>
 							<div class="add-gold js-add-gold finding-object js-finding-object"><%= link_to "100 Or", {controller: "avatars", action: "addGold", money: 100}, class: "js-add-gold btn js-add-object", remote: true %></div>
-							<div class="btn nxt">Avancer</div>
 						</div>
 						
 						
@@ -111,7 +109,6 @@
 				<% else %>
 				<div class="js-result-find-objects hidden">
 					<p class="indication-room js-indication-room">Il n'y a rien d'interessant ici...</p>
-					<div class="btn nxt">Avancer</div>
 				</div>
 				<% end %>
 			<% end %>
@@ -124,7 +121,7 @@
 
 
 
-
+			<div class="js-next-room btn nxt hidden">Avancer</div>
 			<div class="btn bck exit">Revenir à l'étage précédent</div>
 		</section>
 	</article>
