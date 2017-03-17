@@ -17,3 +17,12 @@
 
 
 
+$(document).ready(function () {
+	$select = $('form select');
+
+	if ($select.length) {
+		$select.on('change', function(e){
+			console.log($(e.currentTarget).find('option:selected').val())
+		})
+	}
+})

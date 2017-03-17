@@ -91,6 +91,7 @@ class AvatarsController < ApplicationController
         format.js
     end
   end
+
   def addObjetById
     @avatar = current_user.avatar
     @obj = Objet.find(params[:objet_id])
@@ -106,11 +107,27 @@ class AvatarsController < ApplicationController
 
   end
 
+  def payObjetById
+    @avatar = current_user.avatar
+    @obj = Objet.find(params[:objet_id])
+    @price = @obj.price
+    @money = @avatar.money - @price
+
+    @avatar.update(money: @money)
+    @avatar.objets << @obj
+
+    respond_to do |format|
+        format.html { redirect_to :back, notice: 'Avatar was successfully updated.' }
+        format.json { render :show, status: :ok, location: @avatar }
+        format.js
+    end
+
+  end
+
   def removeObjetById
     @avatar = current_user.avatar
     @bag = @avatar.bags.where(objet_id: params[:objet_id]).first
     @avatar.bags.delete(@bag)
-    #@donjon = Donjon.find(params[:donjon_id])
     respond_to do |format|
         format.html { redirect_to :back, notice: 'Avatar was successfully updated.' }
         format.json { render :show, status: :ok, location: @avatar }

@@ -21,12 +21,26 @@
 			<% if !@objet.agility.nil? && @objet.agility > 0%><span>Agilité : +<%= @objet.agility %></span> <%end%>
 			<% if !@objet.health.nil? && @objet.health > 0%><span>Santé : +<%= @objet.health %></span> <%end%>
 			<%= link_to 'Supprimer', {controller: "avatars", action: "removeObjetById", objet_id: @objet.id }, class: "js-remove-object btn btn--white", remote: true %>
-			<% if !@objet.force.nil? && @objet.force > 0 && current_user.avatar.id_objet_equipe != @objet.id %>
+
+			<!-- s'équipé d'une arme -->
+			<% if @objet.category === "Arme" && !@objet.force.nil? && @objet.force > 0 && current_user.avatar.id_objet_equipe != @objet.id %>
 				<%= link_to 'Équiper', {controller: "avatars", action: "equipeObjet", objet_id: @objet.id }, class: "js-remove-object btn btn--white", remote: true %>
 			<% end %>
-			<% if current_user.avatar.id_objet_equipe == @objet.id %>
+
+			<!-- s'équipé d'une armure -->
+			<% if @objet.category === "Armure" && !@objet.defence.nil? && @objet.defence > 0 && !@objet.agility.nil? && @objet.agility > 0 && current_user.avatar.id_armure != @objet.id %>
+				<%= link_to 'Équiper', {controller: "avatars", action: "equipeObjet", objet_id: @objet.id }, class: "js-remove-object btn btn--white", remote: true %>
+			<% end %>
+
+			<!-- s'équipé d'un objet de défence -->
+			<% if @objet.category === "Défence" && !@objet.defence.nil? && @objet.defence > 0 && current_user.avatar.id_defObject != @objet.id %>
+				<%= link_to 'Équiper', {controller: "avatars", action: "equipeObjet", objet_id: @objet.id }, class: "js-remove-object btn btn--white", remote: true %>
+			<% end %>
+
+			<% if current_user.avatar.id_objet_equipe == @objet.id || current_user.avatar.id_defObject == @objet.id || current_user.avatar.id_armure == @objet.id %>
 				<p>Vous étes équipé</p>
 			<% end %>
+
 			</div>
 		<% end %>
 	

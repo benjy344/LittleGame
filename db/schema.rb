@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170315200904) do
+ActiveRecord::Schema.define(version: 20170315192538) do
 
   create_table "avatars", force: :cascade do |t|
     t.string  "name"
@@ -79,14 +79,15 @@ ActiveRecord::Schema.define(version: 20170315200904) do
 
   create_table "objets", force: :cascade do |t|
     t.string  "name"
-    t.integer "rarity"
-    t.integer "health"
-    t.integer "force"
-    t.integer "agility"
-    t.integer "magic"
+    t.integer "rarity",      default: 0
+    t.integer "health",      default: 0
+    t.integer "force",       default: 0
+    t.integer "agility",     default: 0
+    t.integer "magic",       default: 0
+    t.integer "price",       default: 0
+    t.integer "defence",     default: 0
     t.string  "category"
     t.string  "description"
-    t.integer "defence"
   end
 
   create_table "oirs", force: :cascade do |t|

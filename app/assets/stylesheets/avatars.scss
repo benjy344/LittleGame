@@ -1,3 +1,54 @@
-// Place all the styles related to the avatars controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.avatars {
+
+	form {
+		max-width: 30%;
+		margin: 0 auto;
+	}
+
+	.selectbox {
+		position: relative;
+		width: 100%;
+		border: 1px solid #242322;
+		z-index: 1;
+		margin-bottom: 10px;
+		box-sizing: border-box;
+
+	}
+
+	.selectbox:before {
+		content: "";
+		position: absolute;
+		top: 50%;
+		right: 15px;
+		width: 0;
+		height: 0;
+		margin-top: -1px;
+		border-left: 5px solid transparent;
+		border-right: 5px solid transparent;
+		border-top: 5px solid #242322;
+	}
+
+	.selectbox label {
+		position: absolute;
+		top: 1px;
+		left: 5px;
+		padding: 6px .5em;
+		color: #242322;
+		z-index: -1;
+	}
+
+	.selectbox select {
+		width: 100%;
+		height: auto;
+		line-height: normal;
+		font-family: inherit;
+		padding: 6px .5em;
+		border: 0;
+		opacity: 0;
+		filter:alpha(opacity=0);
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		appearance: none;
+	}
+
+}
