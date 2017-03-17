@@ -12,6 +12,7 @@ class MonstersController < ApplicationController
   # GET /monsters/1
   # GET /monsters/1.json
   def show
+    @objects = Objet.all
   end
 
   # GET /monsters/new
@@ -27,9 +28,6 @@ class MonstersController < ApplicationController
   # POST /monsters.json
   def create
     @monster = Monster.new(monster_params)
-    puts"================"
-    puts @monster.errors.inspect
-    puts"================"
     respond_to do |format|
       if @monster.save
         format.html { redirect_to @monster, notice: 'Monster was successfully created.' }
@@ -50,6 +48,7 @@ class MonstersController < ApplicationController
     respond_to do |format|
         format.html { redirect_to donjons_path, notice: 'monster was successfully updated.' }
         format.json { render :show, status: :ok, location: @monster }
+        format.js
     end
 
   end
@@ -88,6 +87,7 @@ class MonstersController < ApplicationController
     respond_to do |format|
       format.html { redirect_to monsters_url, notice: 'Monster was successfully destroyed.' }
       format.json { head :no_content }
+      format.js
     end
   end
 

@@ -1,12 +1,7 @@
 <h1>Editing Donjon </h1>
 
-<%= render 'form', donjon: @donjon %>
-<% numberRoom = @donjon.level %>
-<% for num in 1..numberRoom %>
-	<div class="js-room room-<%=num%>">
-		<%=num%>
-	</div>
-<%end %>
+<%= render 'form', {donjon: @donjon, context: 'edit'}%>
+
 
 <%= link_to 'Show', @donjon %> |
 <%= link_to 'Back', donjons_path %>

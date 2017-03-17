@@ -21,8 +21,32 @@ $(document).ready(function () {
 	$select = $('form select');
 
 	if ($select.length) {
+
+		$select.find('option[value=""]').remove();
+
 		$select.on('change', function(e){
-			console.log($(e.currentTarget).find('option:selected').val())
+			$val = $(e.currentTarget).find('option:selected').text();
+			$label = $(e.currentTarget).prev('label:first');
+			$label.html($val);
+			$(e.currentTarget).find('option[value=""]').remove();
 		})
 	}
+
+	$link = $('.user-info .link');
+	$link.on('click', function(){
+		$link.toggleClass('open');
+		$('.user-info').toggleClass('open');
+	})
+var body = document.body;
+  var burgerMenu = document.getElementsByClassName('b-menu')[0];
+  var burgerContain = document.getElementsByClassName('b-container')[0];
+  var burgerNav = document.getElementsByClassName('b-nav')[0];
+
+  burgerMenu.addEventListener('click', function toggleClasses() {
+    [body, burgerContain, burgerNav].forEach(function (el) {
+      el.classList.toggle('open');
+    });
+  }, false);
+
 })
+

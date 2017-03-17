@@ -1,29 +1,54 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @objet.name %>
+<div class="container">
+  <p>
+    <strong>Nom:</strong>
+    <%= @objet.name %>
 </p>
 
-
-<p>
-  <strong>rarity:</strong>
-  <%= @objet.rarity %>
-</p>
-
-<p>
-  <strong>agility:</strong>
-  <%= @objet.agility %>
+<div class="half left">
+    <p>
+    <strong>Rareté:</strong>
+    <%= @objet.rarity %>
 </p>
 
 <p>
-  <strong>force:</strong>
-  <%= @objet.force %>
-</p>
-<p>
-  <strong>magic:</strong>
-  <%= @objet.magic %>
+    <strong>Agilité:</strong>
+    <%= @objet.agility %>
 </p>
 
-<%= link_to 'Edit', edit_objet_path(@objet) %> |
-<%= link_to 'Back', objets_path %>
+<p>
+    <strong>Force:</strong>
+    <%= @objet.force %>
+</p>
+</div><!--
+--><div class="half right">
+    <p>
+    <strong>Magie:</strong>
+    <%= @objet.magic %>
+</p>
+
+<p>
+    <strong>Défence:</strong>
+    <%= @objet.defence %>
+</p>
+<p>
+    <strong>Prix:</strong>
+    <%= @objet.price %>
+</p>
+</div>
+
+
+
+<p>
+    <strong>Type:</strong>
+    <%= @objet.category %>
+</p>
+<p>
+    <strong>Description:</strong>
+    <%= @objet.description %>
+</p>
+</div>
+
+
+
+<%= link_to 'Éditer', edit_objet_path(@objet), class: 'btn btn-white' %>
+<%= link_to 'Retour', objets_path , class: 'btn btn-white'%>

@@ -1,15 +1,20 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Donjons</h1>
+<div class="container">
+	<h1>Donjons</h1>
 
 
 
   <div>
     <% @donjons.each do |a| %>
-        <p><%= link_to a.name, a %></p>
+        <p><%= link_to a.name, a, class: 'btn' %></p>
         <% if current_user.role === "admin" %>
-        <p><%= link_to 'Edit', edit_donjon_path(a) %></p>
+        <p><%= link_to 'Edit', edit_donjon_path(a), class: 'btn' %></p>
         <% end %>
     <% end %>
   </div>
 
+
+<% if current_user.role === "admin" %>
+	<p><%= link_to 'Nouveau Donjon', new_donjon_path, class: 'btn' %></p>
+<% end %>
+
+</div>

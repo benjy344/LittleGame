@@ -1,0 +1,10 @@
+<% if @room.money === 0 || @room.money.nil? %>
+<div id="formMoney">
+	<%= form_for @room, remote: true, url: {controller:"rooms", action: "addGold"} do |f| %>
+	<%= number_field(@room, :money) %>
+	<%= f.submit "Ajouter de l'or" %>
+	<% end %>
+</div>
+<% else %>
+<p><%= @room.money.inspect %> Or</p>
+<% end %>

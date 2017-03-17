@@ -105,7 +105,8 @@ ActiveRecord::Schema.define(version: 20170315192538) do
   end
 
   create_table "rooms", force: :cascade do |t|
-    t.string "name"
+    t.string  "name"
+    t.integer "money", default: 0
   end
 
   create_table "users", force: :cascade do |t|

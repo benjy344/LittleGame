@@ -12,7 +12,7 @@
 	<li><span class="js-object-to-extend"><%= @objet.name %> (x <%= r[1]%>)</span>
 
 	
-		<% if !scope.MaxHealth.nil? %>
+		<% if scope != "" %>
 			<div class="description js-description">
 			<% if !@objet.name.nil? && @objet.name != ""%><h3><%= @objet.name %></h3> <%end%>
 			<% if !@objet.description.nil? && @objet.description != "" %><p><%= @objet.description %></p> <%end%>

@@ -8,7 +8,9 @@
     <%= f.input :agility %>
     <%= f.input :inteligence %>
     <%= f.input :exp %>
-    <%= f.input :element %>
+    <div class="selectbox">
+    <%= f.input :element, collection: ['Pas d\'élément','Feu', 'Eau', 'Terre'], label: "Choisir un élémement", required: true %>
+    </div>
   </div>
 
   <div class="form-actions">

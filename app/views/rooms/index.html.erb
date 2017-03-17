@@ -1,12 +1,15 @@
-<h1>Rooms</h1>
+<div class="container">
+	<h1>Rooms du donjon "<%= @donjon.name %>"</h1>
   <div>
   
     <% @rooms.each do |a| %>
-        <p><%= link_to a.name, a %></p>
-        <p><%= link_to 'éditer', edit_donjon_room_path(@donjon.id, a.id) %></p>
+        <p class="room-<%= a.id %>"><%= link_to a.name, donjon_room_path(@donjon.id, a.id), class:'btn' %>
+        <%= link_to 'Supprimer', a, method: :delete, class: 'btn btn--white', remote: true %></p>
     <% end %>
 
-    <%= link_to 'Nouvelle Room', new_donjon_room_path %>
+    <%= link_to 'Nouvelle Room', new_donjon_room_path, class: "btn " %>
 
   </div>
+
+</div>
 

@@ -1,6 +1,5 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Monsters</h1>
+<div class="container">
+  <h1>Monsters</h1>
 
 <table>
   <thead>
@@ -17,16 +16,16 @@
 
   <tbody>
     <% @monsters.each do |monster| %>
-      <tr>
+      <tr class="monster-<%= monster.id %>">
         <td><%= monster.name %></td>
         <td><%= monster.hp %></td>
         <td><%= monster.force %></td>
         <td><%= monster.agility %></td>
         <td><%= monster.exp %></td>
         <td><%= monster.element %></td>
-        <td><%= link_to 'Show', monster %></td>
-        <td><%= link_to 'Edit', edit_monster_path(monster) %></td>
-        <td><%= link_to 'Destroy', monster, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', monster,class:'btn' %></td>
+        <td><%= link_to 'Edit', edit_monster_path(monster),class:'btn' %></td>
+        <td><%= link_to 'Destroy', monster, method: :delete, remote:true, class:'btn btn--white' %></td>
       </tr>
     <% end %>
   </tbody>
@@ -34,4 +33,6 @@
 
 <br>
 
-<%= link_to 'New Monster', new_monster_path %>
+<%= link_to 'Créer un monstre', new_monster_path, class:"btn" %>
+</div>
+

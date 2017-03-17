@@ -17,7 +17,7 @@ class RoomsController < ApplicationController
   # GET /rooms/1.json
   def show
   	@objets = Objet.all
-	@monsters = Monster.includes(:objets).all
+    @monsters = Monster.includes(:objets).all
   end
 
   # GET /rooms/new
@@ -35,12 +35,41 @@ class RoomsController < ApplicationController
   	@room = Room.find(params[:room_id])
   	@donjon = @room.donjons.first
     @obj = Objet.find(params[:objet_id])
+    @objets = Objet.all
+    @monsters = Monster.all
 
     @room.objets << @obj
 
     respond_to do |format|
         format.html { redirect_to donjon_room_path(@donjon.id, @room.id), notice: 'Room was successfully updated.' }
         format.json { render :show, status: :ok, location: @room }
+        format.js
+    end
+  end
+
+  def addGold
+    @room = Room.find(params[:id])
+    puts "================"
+    puts @room.inspect
+    puts "================"
+    puts "================"
+    puts params.permit(:money).inspect
+    puts "================"
+
+    puts "================"
+    puts params.inspect
+    puts "================"
+
+    @room.update(money: params[:money])
+
+    puts "================"
+    puts @room.money
+    puts "================"
+
+    respond_to do |format|
+        format.html { redirect_to :back, notice: 'Room was successfully updated.' }
+        format.json { render :show, status: :ok, location: @room }
+        format.js
     end
   end
 
@@ -49,12 +78,14 @@ class RoomsController < ApplicationController
     @donjon = @room.donjons.first
     @monster = Monster.find(params[:monster_id])
 
+    @monsters = Monster.all
+    @objets = Objet.all
     @room.monsters << @monster
 
     respond_to do |format|
-        format.html { redirect_to donjon_room_path(@donjon.id, @room.id), notice: 'Room was successfully updated.' }
+        format.html { redirect_to :back, notice: 'Room was successfully updated.' }
         format.json { render :show, status: :ok, location: @room }
-        format.js { render :show, status: :ok, location: @room }
+        format.js
     end
   end
   # POST /rooms
@@ -103,10 +134,12 @@ class RoomsController < ApplicationController
   # DELETE /rooms/1
   # DELETE /rooms/1.json
   def destroy
+    @donjon_id = @room.donjons.first.id
     @room.destroy
     respond_to do |format|
-      format.html { redirect_to rooms_url, notice: 'Room was successfully destroyed.' }
+      format.html { redirect_to donjon_rooms_path(@donjon_id), notice: 'Room was successfully destroyed.' }
       format.json { head :no_content }
+      format.js
     end
   end
 
@@ -121,6 +154,6 @@ class RoomsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def room_params
-      params.require(:room).permit(:name, objet_ids: [], monster_ids: [], donjon_ids: [])
+      params.require(:room).permit(:id, :name, :money, objet_ids: [], monster_ids: [], donjon_ids: [])
     end
 end

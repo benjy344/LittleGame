@@ -1,0 +1,15 @@
+<% if @room.monsters.any? %>
+<div id="monster-room">
+   <p><%= @room.monsters.first.name %></p> 
+</div>
+    <% else %>
+
+    <% @monsters.each do |o| %>
+        <% if @room.monsters.count < 1 && @room.objets.count < 1 %>
+            <% @title = 'Ajouter '+o.name%>
+            <p><%= link_to @title, {controller: "rooms", action: "addMonsterByIdToRoom", room_id: @room.id, monster_id: o.id }, class:"btn btn-white" , remote: true %></p>
+        <% end %>
+
+    <% end %>
+<% end %>
+

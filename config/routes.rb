@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   get 'craftEpeeFer'            => 'objets#craftEpeeFer'
   get 'gameover'                => 'index#gameover'
   get 'payObjetById'            => 'avatar#payObjetById'
+  patch 'addGoldInRoom/:id/'           => 'rooms#addGold'
   #post 'donjons/addObject'
 
   #get 'donjons/addObject/:avatar_id/:avatar_id' => 'donjons#addObject/avatar_id/objet_id'

@@ -1,6 +1,5 @@
-<p id="notice"><%= notice %></p>
-
-<p>
+<div class="container">
+  <p>
   <strong>Name:</strong>
   <%= @monster.name %>
 </p>
@@ -32,9 +31,21 @@
 <div id="renderObjets">
   <p>
   <strong>objets : </strong>
-  <%= render partial: 'objets/objets_list' , locals: {objets: @monster.objets}%>
+  <div class="js-render-objet">
+  <%= render partial: 'objets/objets_list' , locals: {objets: @monster.objets, scope: ''}%>
+  </div>
 </p>
 </div>
+<% if !@objects.nil? %>
+<div class="objects">
+  <% @objects.each do |o|
+ @title = 'Ajouter '+o.name%>
+  <%= link_to @title, {controller: "monsters", action: "addObjetById", objet_id: o.id, monster_id: @monster.id}, class: "js-add-object btn", remote: true, class: 'btn' %>
+<% end %>
+</div>
+<% end %>
 
-<%= link_to 'Edit', edit_monster_path(@monster) %> |
-<%= link_to 'Back', monsters_path %>
+<%= link_to 'Éditer', edit_monster_path(@monster) ,class:'btn' %> 
+<%= link_to 'Retour', monsters_path ,class:'btn' %>
+</div>
+

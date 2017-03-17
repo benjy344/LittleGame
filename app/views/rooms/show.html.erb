@@ -1,29 +1,20 @@
-<h1><%= @room.name%></h1>
-
+<div class="container">
+	<h1><%= @room.name%></h1>
 
 <div id="objets-room">
-<%= render partial: 'objets/objets_list' , locals: {objets: @room.objets}%>
+<%= render partial: 'objets/objets_list' , locals: {objets: @room.objets, scope: ''}%>
+</div>
+<div class="button-add-o">
+    <%= render partial: 'rooms/addObjets' , locals: {objets: @objets, room: @room}%>
+</div>
+<div class="button-add-money">
+    <%= render partial: 'rooms/formMoney' , locals: {room: @room}%>
 </div>
 
-<% @objets.each do |o| %>
-    <% if @room.objets.count < 5 %>
-        <% @title = 'Ajouter '+o.name%>
-        <p><%= link_to @title, {controller: "rooms", action: "addObjetByIdToRoom", room_id: @room.id, objet_id: o.id }, {method: 'get'} %></p>
-    <% end %>
-
-<% end %>
-
-<% if @room.monsters.any? %>
-<div id="monster-room">
-    <%= @room.monsters.first.name %>
+<div class="button-add-m">
+    <%= render partial: 'rooms/addMonster' , locals: {monsters: @monsters, room: @room}%>
 </div>
-    <% else %>
 
-    <% @monsters.each do |o| %>
-        <% if @room.monsters.count < 1 %>
-            <% @title = 'Ajouter '+o.name%>
-            <p><%= link_to @title, {controller: "rooms", action: "addMonsterByIdToRoom", room_id: @room.id, monster_id: o.id }, {method: 'get'} %></p>
-        <% end %>
+<%= link_to 'Retour', donjon_rooms_path, class: 'btn btn-white' %>
+</div>
 
-    <% end %>
-<% end %>

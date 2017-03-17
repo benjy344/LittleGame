@@ -15,8 +15,27 @@
       <p class="notice"><%= notice %></p>
       <p class="alert"><%= alert %></p>
     </div>
-  		
-    <%= yield %>
+  		<% if current_user.role === "admin" %>
+      <!-- Navigation -->
+      <div class="b-nav">
+        <li><%= link_to "Monstres", monsters_path, class:"b-link" %></li>
+        <li><%= link_to "Donjons", donjons_path, class:"b-link" %></li>
+        <li><%= link_to "Objets", objets_path, class:"b-link" %></li>
+        <li><%= link_to "Jobs", jobs_path, class:"b-link" %></li>
+      </div>
+
+      <!-- Burger-Icon -->
+      <div class="b-container">
+        <div class="b-menu">
+          <div class="b-bun b-bun--top"></div>
+          <div class="b-bun b-bun--mid"></div>
+          <div class="b-bun b-bun--bottom"></div>
+        </div>
+
+      </div>
+
+          <% end %>
+      <%= yield %>
 
     
     <% if user_signed_in?%>
@@ -25,6 +44,7 @@
       <p>
         <%= link_to 'Déconnection' , destroy_user_session_path, :method => :delete %>
       </p>
+      <div class="close-user"><div class="link"><span class="link__icon__bar"></span></div></div>
     </div>
     
     
