@@ -83,6 +83,7 @@ class AvatarsController < ApplicationController
   end
 
   def majAvatar 
+
     @avatar = current_user.avatar
     @avatar.update(MaxHealth: params[:MaxHealth], hp: params[:hp], level: params[:level], nextLevel: params[:nextLevel],defence: params[:defence], agility: params[:agility], force: params[:force], inteligence: params[:inteligence], exp: params[:exp])
     respond_to do |format|

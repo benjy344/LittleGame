@@ -6,7 +6,7 @@
 		<section  class="room js-room js-room-<%=count.to_s%> ">
 			<%=r.name%>
 
-			<%= @alea = rand(5)%>
+			<% @alea = rand(5)%>
 			<% if r.monsters.any?%>
 				<% if @alea == 3 %>
 					<p class="indication-room js-indication-room ">Un <%=r.monsters.first.name%> dors au fond de la pièce, que voulez vous faire ?</p>

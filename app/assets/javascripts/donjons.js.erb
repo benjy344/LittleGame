@@ -144,27 +144,6 @@ function articleSlide() {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function getFight(surprise=false) {
 		win = "fight";
 	var	count = 0;
@@ -220,6 +199,7 @@ function fight(surprise) {
 			} else {
 				renderMonster();
 				//si le montre n'est pas KO, il attaque
+				console.log('attak monster')
 				avatar.hp = (avatar.hp + (avatarDefence / 2)) - monster.force;
 
 				if (avatar.hp <= 0) { 
@@ -335,6 +315,7 @@ function calculPercentLife(current, max) {
 
 function renderAvatar() {
 	$url = '../majAvatar?MaxHealth='+avatar.maxHp+'&hp='+avatar.hp+'&level='+avatar.level+'&nextLevel='+avatar.nextLevel+'&defence='+avatar.defence+'&agility='+avatar.agility+'&force='+avatar.force+'&inteligence='+avatar.inteligence+'&exp='+avatar.exp;
+	console.log($url)
 	$.get({
 	  url: $url,
 	  dataType: "script"
