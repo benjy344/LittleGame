@@ -47,25 +47,11 @@ class RoomsController < ApplicationController
     end
   end
 
-  def addGold
+  def addGoldInRoom
     @room = Room.find(params[:id])
-    puts "================"
-    puts @room.inspect
-    puts "================"
-    puts "================"
-    puts params.permit(:money).inspect
-    puts "================"
-
-    puts "================"
-    puts params.inspect
-    puts "================"
-
-    @room.update(money: params[:money])
-
-    puts "================"
-    puts @room.money
-    puts "================"
-
+    @room.update(money: params.require(:room).permit(:money)[:money])
+    @objets = Objet.all
+    @monsters = Monster.all
     respond_to do |format|
         format.html { redirect_to :back, notice: 'Room was successfully updated.' }
         format.json { render :show, status: :ok, location: @room }
@@ -92,6 +78,9 @@ class RoomsController < ApplicationController
   # POST /rooms.json
   def create
     @room = Room.new(params.require(:room).permit(:name, :donjon_ids))
+    puts "================"
+    puts params.require(:room).inspect
+    puts "================"
     @donjon_id = params.require(:room).permit(:name, :donjon_ids)[:donjon_ids]
     respond_to do |format|
       if @room.save

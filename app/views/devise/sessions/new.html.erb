@@ -9,7 +9,7 @@
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit, "Log in" %>
+    <%= f.button :submit, "Se connecter" %>
   </div>
 <% end %>
 
@@ -28,11 +28,11 @@
   	<%= f.input :username, required: true, autofocus: true %>
     <%= f.input :email, required: true %>
     <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
-    <%= f.input :password_confirmation, label: 'Confirmer le mont de passe', required: true %>
+    <%= f.input :password_confirmation, label: 'Confirmer le mot de passe', required: true %>
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit, "Sign up" %>
+    <%= f.button :submit, "Créer un compte" %>
   </div>
 <% end %>
 

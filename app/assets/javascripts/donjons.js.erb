@@ -55,15 +55,16 @@ function verfifButton() {
 	$room.find('.js-result-find-objects').length != 0 ?  $resultFindObjects = $room.find('.js-result-find-objects') : $resultFindObjects = "";
 	$room.find('.js-explorer').length != 0 ?  $explorer = $room.find('.js-explorer') : $explorer = "";
 	if ($explorer != "") {
+		$explorer.off();
 		$explorer.on('click', function(){
-			$('.js-actions').hide();
+			$room.find('.js-actions').hide();
 			$resultFindObjects.removeClass('hidden');
 		})
 	}
 
-	if($('.js-add-object').length){
-		$('.js-add-object').off();
-		$('.js-add-object').on('click', function(){
+	if($room.find('.js-add-object').length){
+		$room.find('.js-add-object').off();
+		$room.find('.js-add-object').on('click', function(){
 			$(this).remove();
 		})
 	}
@@ -99,6 +100,13 @@ function verfifButton() {
 			$currentMonsterLife = $room.find('.js-monster-current-hp');
 			getFight();
 
+		})
+	}
+	
+	if ($room.find('.js-trigger-menu').length) {
+		$('.js-trigger-menu').off();
+		$room.find('.js-trigger-menu').on('click', function(){
+			$('.js-open-button').trigger( "click" );
 		})
 	}
 }
@@ -355,9 +363,8 @@ function renderMonster() {
 }
 
 function GameOver() {
-	$.get({
-	  url: '/gameover'
-	});
+	console.log('GO')
+	window.location.href = "/gameover";
 }
 
 

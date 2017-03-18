@@ -8,7 +8,7 @@
 
 			<%= @alea = rand(5)%>
 			<% if r.monsters.any?%>
-				<% if @alea == @alea %>
+				<% if @alea == 3 %>
 					<p class="indication-room js-indication-room ">Un <%=r.monsters.first.name%> dors au fond de la pièce, que voulez vous faire ?</p>
 					
 					
@@ -79,7 +79,10 @@
 		          				<div class="finding-object js-finding-object"><%= link_to @title, {controller: "avatars", action: "addObjetById", objet_id: o.id}, class: "js-add-object btn", remote: true %></div>
 
 							<% end %>
-							<div class="add-gold js-add-gold finding-object js-finding-object"><%= link_to "100 Or", {controller: "avatars", action: "addGold", money: 100}, class: "js-add-gold btn js-add-object", remote: true %></div>
+							<% @gold = rand(3..r.monsters.first.hp)
+							   @winGoldTitle = @gold.to_s+' Or'
+							%>
+							<div class="add-gold js-add-gold finding-object js-finding-object"><%= link_to @winGoldTitle, {controller: "avatars", action: "addGold", money: @gold}, class: "js-add-gold btn js-add-object", remote: true %></div>
 						</div>
 						
 						
@@ -106,7 +109,10 @@
           				<div class="finding-object js-finding-object"><%= link_to @title, {controller: "avatars", action: "addObjetById", objet_id: o.id}, class: "js-add-object btn", remote: true %></div>
 
 					<% end %>
-					<div class="add-gold js-add-gold finding-object js-finding-object"><%= link_to "100 Or", {controller: "avatars", action: "addGold", money: 100}, class: "js-add-gold btn js-add-object", remote: true %></div>
+					<% if !r.money.nil? && r.money > 0%>
+					<% @moneyFinding = r.money.to_s+' Or' %>
+					<div class="add-gold js-add-gold finding-object js-finding-object"><%= link_to @moneyFinding, {controller: "avatars", action: "addGold", money: r.money.to_i}, class: "js-add-gold btn js-add-object", remote: true %></div>
+					<%end%>
 					<div class="btn nxt">Avancer</div>
 				</div>
 				
@@ -114,7 +120,9 @@
 				<% else %>
 				<div class="js-result-find-objects hidden">
 					<p class="indication-room js-indication-room">Il n'y a rien d'interessant ici...</p>
+					<div class="btn nxt">Avancer</div>
 				</div>
+				
 				<% end %>
 			<% end %>
 

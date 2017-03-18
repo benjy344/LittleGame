@@ -1,5 +1,5 @@
 <% @objets.each do |o| %>
-    <% if @room.objets.count < 5 && @room.monsters.count < 1%>
+    <% if @room.objets.count < 5 && @room.monsters.count < 1 %>
         <% @title = 'Ajouter '+o.name%>
         <p><%= link_to @title, {controller: "rooms", action: "addObjetByIdToRoom", room_id: @room.id, objet_id: o.id }, class:"btn btn-white", remote: true  %></p>
     <% end %>
