@@ -28,4 +28,34 @@
 		}
 	}
 
+
+	.shop {
+
+		h1 {
+			font-size: 40px;
+		}
+		display: inline-block;
+		width: 33.33%;
+		height: 70vh;
+		vertical-align: middle;
+		padding: 20px;
+		box-sizing: border-box;
+
+		.wall {
+			border: 1px solid #242322; 
+		}
+	}
+
+	.shopin {
+		position: fixed;
+		height: 100%;
+		width: 100%;
+		background: #242322;
+
+		&.open {
+			top: 0;
+			left: 0;
+		}
+	}
+
 }

@@ -98,6 +98,6 @@ class ObjetsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def objet_params
-      params.require(:objet).permit(:name, :rarity, :family, :force, :agility, :magic, :description, :health, :category)
+      params.require(:objet).permit(:name, :rarity, :family, :force, :agility, :magic, :description, :health, :category, :defence, :price)
     end
 end

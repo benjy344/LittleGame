@@ -103,7 +103,7 @@ class AvatarsController < ApplicationController
       @newhp = @avatar.MaxHealth
     end
     @avatar.update(hp: @newhp)
-    
+
     #delete object of the bag
     @bag = @avatar.bags.where(objet_id: params[:objet_id]).first
     @avatar.bags.delete(@bag)
@@ -138,6 +138,20 @@ class AvatarsController < ApplicationController
 
     @avatar.update(money: @money)
     @avatar.objets << @obj
+
+    respond_to do |format|
+        format.html { redirect_to :back, notice: 'Avatar was successfully updated.' }
+        format.json { render :show, status: :ok, location: @avatar }
+        format.js
+    end
+
+  end
+
+  def rest
+    @avatar = current_user.avatar
+    @money = @avatar.money - 3
+
+    @avatar.update(hp: @avatar.MaxHealth, money: @money)
 
     respond_to do |format|
         format.html { redirect_to :back, notice: 'Avatar was successfully updated.' }

@@ -23,8 +23,10 @@ Rails.application.routes.draw do
   get 'addObjetByIdToMonster'   => 'monsters#addObjetById'
   get 'craftEpeeFer'            => 'objets#craftEpeeFer'
   get 'gameover'                => 'index#gameover'
-  get 'payObjetById'            => 'avatar#payObjetById'
+  get 'payObjetById'            => 'avatars#payObjetById'
   get 'restorHpWithObject'      => 'avatars#restorHpWithObject'
+  get 'town'                    => 'index#town'
+  get 'rest'                    => 'avatars#rest'
   patch 'addGoldInRoom/:id/'    => 'rooms#addGoldInRoom'
   #post 'donjons/addObject'
 

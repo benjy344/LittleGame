@@ -73,7 +73,7 @@
 					<% if r.monsters.first.objets.any? %>
 					<!-- si le monstre drop des objets -->
 						<div class="js-result-find-objects hidden">
-							<p class="indication-room js-indication-room ">Le monstre à laissé des objets</p>
+							<p class="indication-room js-indication-room ">Le monstre a laissé des objets</p>
 							<% r.monsters.first.objets.each do |o| %>
 								<% @title = 'Ajouter '+o.name%>
 		          				<div class="finding-object js-finding-object"><%= link_to @title, {controller: "avatars", action: "addObjetById", objet_id: o.id}, class: "js-add-object btn", remote: true %></div>
