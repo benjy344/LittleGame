@@ -51,7 +51,6 @@ function verfifButton() {
 	$room = $('.js-room-'+countRoom);
 	var $resultFindObjects;
 	var $explorer;
-
 	$room.find('.js-result-find-objects').length != 0 ?  $resultFindObjects = $room.find('.js-result-find-objects') : $resultFindObjects = "";
 	$room.find('.js-explorer').length != 0 ?  $explorer = $room.find('.js-explorer') : $explorer = "";
 	if ($explorer != "") {
@@ -125,6 +124,7 @@ function articleSlide() {
 	max = mLength - 100;
 	$('.nxt').off();
 	$('.nxt').on('click', function(){
+
 		if(pos > "-" + max){
 			pos += -100;
 			countRoom += 1;
@@ -138,6 +138,7 @@ function articleSlide() {
 			pos += 100;
 			countRoom += -1;
 			mag.css('margin-left', pos + '%');
+			verfifButton();
 		}
 	});
 
@@ -200,8 +201,8 @@ function fight(surprise) {
 				renderMonster();
 				//si le montre n'est pas KO, il attaque
 				console.log('attak monster')
-				avatar.hp = (avatar.hp + (avatarDefence / 2)) - monster.force;
-
+				
+				avatar.hp = Math.round((avatar.hp + (avatarDefence / 2)) - monster.force);
 				if (avatar.hp <= 0) { 
 					avatar.hp = 0;
 					renderAvatar();
@@ -215,8 +216,7 @@ function fight(surprise) {
 		} else {
 			//si le monstre est le plus rapide
 			//attaque l'avatar
-			avatar.hp = (avatar.hp + (avatarDefence / 2)) - monster.force;
-
+			avatar.hp = Math.round((avatar.hp + (avatarDefence / 2)) - monster.force);
 			if (avatar.hp <= 0) { 
 				avatar.hp = 0;
 				renderAvatar();
@@ -269,7 +269,6 @@ function gainExp() {
 	if (avatar.exp >= avatar.nextLevel) levelUp();
 }
 function levelUp() {
-	console.log('LEVEL UP')
 	avatar.level += 1;
 	avatar.exp = avatar.exp - avatar.nextLevel;
 	avatar.nextLevel += (avatar.nextLevel*1.5);
@@ -315,7 +314,6 @@ function calculPercentLife(current, max) {
 
 function renderAvatar() {
 	$url = '../majAvatar?MaxHealth='+avatar.maxHp+'&hp='+avatar.hp+'&level='+avatar.level+'&nextLevel='+avatar.nextLevel+'&defence='+avatar.defence+'&agility='+avatar.agility+'&force='+avatar.force+'&inteligence='+avatar.inteligence+'&exp='+avatar.exp;
-	console.log($url)
 	$.get({
 	  url: $url,
 	  dataType: "script"

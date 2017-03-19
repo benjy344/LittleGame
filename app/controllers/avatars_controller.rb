@@ -93,6 +93,28 @@ class AvatarsController < ApplicationController
     end
   end
 
+  def restorHpWithObject 
+
+    @avatar = current_user.avatar
+    @objet = @avatar.objets.where(id: params[:objet_id]).first
+    @percent = (@avatar.MaxHealth*(@objet.health/100.00))
+    @newhp = @avatar.hp + @percent
+    if @newhp > @avatar.MaxHealth
+      @newhp = @avatar.MaxHealth
+    end
+    @avatar.update(hp: @newhp)
+    
+    #delete object of the bag
+    @bag = @avatar.bags.where(objet_id: params[:objet_id]).first
+    @avatar.bags.delete(@bag)
+
+    respond_to do |format|
+        format.html { redirect_to :back, notice: 'Avatar was successfully updated.' }
+        format.json { render :show, status: :ok, location: @avatar }
+        format.js
+    end
+  end
+
   def addObjetById
     @avatar = current_user.avatar
     @obj = Objet.find(params[:objet_id])

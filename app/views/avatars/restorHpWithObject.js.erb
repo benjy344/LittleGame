@@ -1,0 +1,6 @@
+$('#bag .js-objects .js-content-objects').html("<%= j render(:partial => 'objets/objets_list', locals: {objets: @avatar.objets, scope: @avatar}) %>");
+$('#bag .js-craft-buttons .js-content-craft').html("<%= j render(:partial => 'avatars/craft' , locals: {avatar: @avatar}) %>");
+$('.render-avatar').html("<%= j render(:partial => 'avatars/avatar' , locals: {avatar: @avatar}) %>");
+$('.js-avatar-current-hp').attr('data-hp', '<%= @avatar.hp %>');
+$('.js-hpcount').html('PV : <%= @avatar.hp %>/<%= @avatar.MaxHealth %>');
+init();

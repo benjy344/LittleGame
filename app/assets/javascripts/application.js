@@ -37,16 +37,16 @@ $(document).ready(function () {
 		$link.toggleClass('open');
 		$('.user-info').toggleClass('open');
 	})
-var body = document.body;
-  var burgerMenu = $('b-menu');
-  var burgerContain = $('b-container');
-  var burgerNav = $('b-nav');
+var body = $('body');
+  var burgerMenu = $('.b-menu');
+  var burgerContain = $('.b-container');
+  var burgerNav = $('.b-nav');
 if (burgerMenu.length) {
-	burgerMenu.on('click', function toggleClasses() {
+	burgerMenu.on('click', function() {
     [body, burgerContain, burgerNav].forEach(function (el) {
-      el.classList.toggle('open');
+      el.toggleClass('open');
     });
-  }, false);
+  });
 
 }
   

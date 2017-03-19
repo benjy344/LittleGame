@@ -23,6 +23,11 @@
 			<%= link_to 'Supprimer', {controller: "avatars", action: "removeObjetById", objet_id: @objet.id }, class: "js-remove-object btn btn--white", remote: true %>
 
 			<!-- s'équipé d'une arme -->
+			<% if @objet.category === "Santé" && !@objet.health.nil? && @objet.health > 0 %>
+				<%= link_to 'Se Soigner', {controller: "avatars", action: "restorHpWithObject", objet_id: @objet.id }, class: "js-remove-object btn btn--white", remote: true %>
+			<% end %>
+
+			<!-- s'équipé d'une arme -->
 			<% if @objet.category === "Arme" && !@objet.force.nil? && @objet.force > 0 && current_user.avatar.id_objet_equipe != @objet.id %>
 				<%= link_to 'Équiper', {controller: "avatars", action: "equipeObjet", objet_id: @objet.id }, class: "js-remove-object btn btn--white", remote: true %>
 			<% end %>
