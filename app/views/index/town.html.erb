@@ -1,25 +1,49 @@
-<div class="shop inn">
-<div class="wall">
-	<h1>Auberge</h1>
-	<% if current_user.avatar.money >= 3 %>
-		<%= link_to "Se reposer (3 Or)", {controller: "avatars", action: "rest"} ,remote: true, class: 'btn btn--white'%>
-	<%end%>
+<div id="bag">
+  <div class="open-button js-open-button">
+    <div class="button-burger">
+        <button class="js-hamburger hamburger hamburger--spin" type="button">
+            <span class="hamburger-box">
+                <span class="hamburger-inner"></span>
+            </span>
+        </button>
+    </div>
+  </div>
+  <div class="js-objects inventaire">
+    <h2>Inventaire</h2>
+    <div class="js-money"><span>Or:</span><span class="renderGold"> <%= current_user.avatar.money %></span></div>
+      <div class="js-content-objects">
+        <%= render partial: 'objets/objets_list' , locals: {objets: @avatar.objets, scope: current_user.avatar}%>
+      </div>
+  </div><!--
+  --><div class="js-craft-buttons craft-buttons">
+    <h2>Craft</h2>
+    <div class="js-content-craft">
+      <%= render partial: 'avatars/craft' , locals: {avatar: @avatar}%>
+    </div>
+  </div>
 </div>
-	
-</div><!-- 
---><div class="shop drugstore-portal">
-	<div class="wall">
-		<h1>Droguerie</h1>
-		<div class="btn btn--white" data-shop="#drugstore">Entrer</div>
-	</div>
-	
+
+<div class="town">
+	<div class="shop inn">
+		<div class="wall">
+			<%= render partial: 'inn' , locals: {avatar: @avatar}%>
+		</div>
 </div><!-- 
 --><div class="shop wrought-portal">
-	<div class="wall">
-		<h1>Forge</h1>
-		<div class="btn btn--white" data-shop="#wrought">Entrer</div>
-	</div>
+<div class="wall">
+	<h1>Forge</h1>
+	<div class="btn btn--white js-open-shop" data-shop="#wrought">Entrer</div>
 </div>
+</div><!-- 
+--><div class="shop drugstore-portal">
+<div class="wall">
+	<h1>Droguerie</h1>
+	<div class="btn btn--white js-open-shop" data-shop="#drugstore">Entrer</div>
+</div>
+
+</div>
+</div>
+
 
 <div class="rest js-rest">
 	<p class="glitch">Qui suis-je ?</p>
@@ -28,18 +52,8 @@
 </div>
 
 <div id="drugstore" class="shopin">
-	<% @objetDroguery.each do |o| %>
-		<% if @avatar.money >= o.price %>
-			<%= link_to "Acheter "+o.name.to_s+" ("+o.price.to_s+" Or)", {controller: "avatars", action: "payObjetById"} ,remote: true, class: 'btn btn--white'%>
-		<% end %>
-	<% end %>
-	<div class="btn btn--white js-exit">Sortir</div>
+<%= render partial: 'drog' , locals: {avatar: @avatar}%>
 </div>
 <div id="wrought" class="shopin">
-	<% @objetForge.each do |o| %>
-		<% if @avatar.money >= o.price %>
-			<%= link_to "Acheter "+o.name.to_s+" ("+o.price.to_s+" Or)", {controller: "avatars", action: "payObjetById"} ,remote: true, class: 'btn btn--white'%>
-		<% end %>
-	<% end %>
-	<div class="btn btn--white js-exit">Sortir</div>
+<%= render partial: 'forge' , locals: {avatar: @avatar}%>
 </div>

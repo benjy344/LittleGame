@@ -139,6 +139,9 @@ class AvatarsController < ApplicationController
     @avatar.update(money: @money)
     @avatar.objets << @obj
 
+    @objetDroguery = Objet.where('category = "Santé" OR category= "Pierre Magique" OR category = "Matériaux"').order(:price)
+    @objetForge = Objet.where('category = "Armure" OR category= "Arme" OR category = "Défence"').order(:price)
+
     respond_to do |format|
         format.html { redirect_to :back, notice: 'Avatar was successfully updated.' }
         format.json { render :show, status: :ok, location: @avatar }
@@ -152,7 +155,8 @@ class AvatarsController < ApplicationController
     @money = @avatar.money - 3
 
     @avatar.update(hp: @avatar.MaxHealth, money: @money)
-
+    @objetDroguery = Objet.where('category = "Santé" OR category= "Pierre Magique" OR category = "Matériaux"').order(:price)
+    @objetForge = Objet.where('category = "Armure" OR category= "Arme" OR category = "Défence"').order(:price)
     respond_to do |format|
         format.html { redirect_to :back, notice: 'Avatar was successfully updated.' }
         format.json { render :show, status: :ok, location: @avatar }

@@ -1,4 +1,5 @@
 .index {
+	overflow: hidden;
 	h1 {
 	    font-family: 'Cabin Sketch', cursive;
 	    text-align: center;
@@ -30,7 +31,8 @@
 
 
 	.shop {
-
+		margin-top: 50vh; 
+  		transform: translateY(-50%);
 		h1 {
 			font-size: 40px;
 		}
@@ -43,7 +45,20 @@
 
 		.wall {
 			border: 1px solid #242322; 
+			height: 100%;
+			text-align: center;
+
+			.btn {
+				text-align: center;
+				display: inline-block;
+				margin: 0 auto;
+			}
 		}
+	}
+	.town {
+		height: 100%;
+		width: 100%;
+		vertical-align: middle;
 	}
 
 	.shopin {
@@ -51,11 +66,88 @@
 		height: 100%;
 		width: 100%;
 		background: #242322;
+		color: #fff;
+		top: -100%;
+		left: -100%;
+		transition: all 1s;
+		padding: 3em;
+		
+		ul {
+			max-height: 70%;
+			overflow: auto;
+			padding: 30px;
+
+			li {
+				list-style: none;
+				margin-bottom: 30px;
+			}
+		}
 
 		&.open {
 			top: 0;
 			left: 0;
+			transition: all 1s;
+		}
+	}
+	#drugstore {
+		left: 100%;
+		&.open {
+			top: 0;
+			left: 0;			
+		}
+	}
+	.rest {
+		background: transparent;
+		position: fixed;
+		height: 100%;
+		width: 100%;
+		color: transparent;
+		top: -100%;
+		right: 0;
+
+		&.open {
+			top: 0;
+			-webkit-animation: rest 4s linear;
+			animation: rest 4s linear;
 		}
 	}
 
+}
+
+@keyframes "rest" {
+	0% {
+		color: transparent;
+		background: transparent;
+	}
+	30% {
+		color: #fff;
+		background: #242322;
+	}
+	60% {
+		color: #fff;
+		background: #242322;
+	}
+	100% {
+		color: transparent;
+		background: transparent;
+	}
+}
+
+@-webkit-keyframes "rest" {
+	0% {
+		color: transparent;
+		background: transparent;
+	}
+	30% {
+		color: #fff;
+		background: #242322;
+	}
+	60% {
+		color: #fff;
+		background: #242322;
+	}
+	100% {
+		color: transparent;
+		background: transparent;
+	}
 }

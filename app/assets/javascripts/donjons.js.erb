@@ -32,11 +32,29 @@ function init() {
 
 	extendDescription();
 	articleSlide();
+
+	if ($('body').hasClass('index')){
+		town();
+	}
 }
 
 
 
+function town() {
+	$openShop = $('.js-open-shop');
 
+	if($openShop.length) {
+		$openShop.on('click', function(){
+			_shop = $(this).attr('data-shop');
+			$(_shop).addClass('open');
+		})
+
+		$('.js-exit').on('click', function(){
+			$(this).parent('.shopin:first').removeClass('open');
+		})
+	}
+	
+}
 
 
 function extendDescription() {
