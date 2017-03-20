@@ -6,7 +6,7 @@ class CreateAvatars < ActiveRecord::Migration[5.0]
       t.integer :hp , default: 20
       t.integer :level, default: 1
       t.integer :exp, default: 0
-      t.integer :countUnlockDonjon, default: 0
+      t.integer :countUnlockDonjon, default: 1
     end
   end
 end

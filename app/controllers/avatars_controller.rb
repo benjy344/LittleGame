@@ -55,6 +55,13 @@ class AvatarsController < ApplicationController
     end
   end
 
+  def unlockNewDonjon
+    @avatar = current_user.avatar
+    @avatar.update(countUnlockDonjon: params[:level])
+    redirect_to town_path
+  end
+
+
   def equipeObjet
     @avatar = current_user.avatar
 

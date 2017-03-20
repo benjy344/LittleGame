@@ -5,10 +5,12 @@
 
   <div>
     <% @donjons.each do |a| %>
+      <% if a.level >= current_user.avatar.countUnlockDonjon || current_user.role === "admin"%>
         <p><%= link_to a.name, a, class: 'btn' %></p>
         <% if current_user.role === "admin" %>
         <p><%= link_to 'Edit', edit_donjon_path(a), class: 'btn' %></p>
         <% end %>
+      <% end %>
     <% end %>
   </div>
 
