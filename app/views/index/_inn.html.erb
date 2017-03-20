@@ -1,4 +1,6 @@
 <h1>Auberge</h1>
 <% if current_user.avatar.money >= 3 %>
 <%= link_to "Se reposer (3 Or)", {controller: "avatars", action: "rest"} ,remote: true, class: 'btn btn--white'%>
-<%end%>
+<% else %>
+<p>Pas assez d'or..</p>
+<% end %>

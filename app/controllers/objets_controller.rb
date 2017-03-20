@@ -87,6 +87,7 @@ class ObjetsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to objets_url, notice: 'Objet was successfully destroyed.' }
       format.json { head :no_content }
+      format.js
     end
   end
 

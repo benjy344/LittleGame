@@ -1,6 +1,10 @@
-<h1>Editing Job</h1>
+<div class="container">
+	<h1>Modifier la classe "<%=@job.name%>"</h1>
+</div>
 
 <%= render 'form', job: @job %>
+<div class="container">
+	<%= link_to 'Voir', @job, class: 'btn' %> 
+	<%= link_to 'Retour', jobs_path, class: 'btn' %>
+</div>
 
-<%= link_to 'Show', @job %> |
-<%= link_to 'Back', jobs_path %>

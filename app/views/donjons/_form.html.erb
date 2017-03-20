@@ -3,10 +3,13 @@
 
   	<div class="form-inputs">
 	    <%= f.input :name, label:'Nom', class: 'form-control' %>
+      <%= f.input :level, label:'Débloque après le donjon : ', class: 'form-control' %>
 	</div>
 
   <% if context === 'edit' %>
-	<div><%= link_to 'Ajouter une Chambre', new_room_path, remote: true%></div>
+	<div><p>
+    <%= link_to 'Modifier les étages', donjon_rooms_path(@donjon.id), class: 'btn btn--white'%>
+  </p></div>
   <% end %>
   	<div class="form-actions">
     	<%= f.button :submit %>

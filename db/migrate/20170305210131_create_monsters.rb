@@ -6,6 +6,7 @@ class CreateMonsters < ActiveRecord::Migration[5.0]
       t.integer :force
       t.integer :agility
       t.integer :exp
+      t.integer :defence
       t.string :element
     end
   end

@@ -1,35 +1,40 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+  <h1>objet</h1>
 
-<h1>objet</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>rarity</th>
-      <th>agility</th>
-      <th>force</th>
-      <th>magic</th>
-      <th colspan="3"></th>
-    </tr>
+  <table>
+      <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Rareté</th>
+            <th>Agilité</th>
+            <th>Force</th>
+            <th>Magic</th>
+            <th>Défence</th>
+            <th>Prix</th>
+            <th colspan="3"></th>
+        </tr>
   </thead>
 
   <tbody>
     <% @objets.each do |objet| %>
-      <tr>
+    <tr class="objet-<%= objet.id %>">
         <td><%= objet.name %></td>
         <td><%= objet.rarity %></td>
         <td><%= objet.agility %></td>
         <td><%= objet.force %></td>
         <td><%= objet.magic %></td>
-        <td><%= link_to 'Show', objet %></td>
-        <td><%= link_to 'Edit', edit_objet_path(objet) %></td>
-        <td><%= link_to 'Destroy', objet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+        <td><%= objet.defence %></td>
+        <td><%= objet.price %></td>
+        <td><%= link_to 'Voir', objet, class:'btn btn--black' %></td>
+        <td><%= link_to 'Modifier', edit_objet_path(objet), class:'btn btn--black' %></td>
+        <td><%= link_to 'Supprimer', objet, method: :delete, remote:true, class:'btn btn--white' %></td>
+    </tr>
     <% end %>
-  </tbody>
+</tbody>
 </table>
 
 <br>
 
-<%= link_to 'New objet', new_objet_path %>
+<%= link_to 'Nouvel objet', new_objet_path , class:'btn btn--black'%>
+</div>
+

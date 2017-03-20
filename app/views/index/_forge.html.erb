@@ -1,15 +1,12 @@
 <% if @avatar.money >= 10 %>
 <ul>
-	<% @countDrog = 0 %>
 	<% @objetDroguery.each do |o| %>
 		<% if @avatar.money >= o.price %>
-		<% @countDrog = 1%>
 		<li><%= link_to "Acheter " + o.name.to_s + " (" + o.price.to_s + " Or)", {controller: "avatars", action: "payObjetById", objet_id: o.id} ,remote: true, class: 'btn btn--white'%></li>
 		<% end %>
 	<% end %>
 </ul>
-<% end %>	
-	<% if @countDrog === 0 %>
-		<p>Vous ne pouvez rien acheter...</p>
-	<% end %>
+<% else %> 
+<p>Vous ne pouvez rien acheter...</p>
+<% end %>
 	<div class="btn btn--white js-exit">Sortir</div>

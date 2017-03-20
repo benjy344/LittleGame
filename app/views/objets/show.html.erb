@@ -46,9 +46,10 @@
     <strong>Description:</strong>
     <%= @objet.description %>
 </p>
+<%= link_to 'Éditer', edit_objet_path(@objet), class: 'btn btn-white' %>
+<%= link_to 'Retour', objets_path , class: 'btn btn-white'%>
 </div>
 
 
 
-<%= link_to 'Éditer', edit_objet_path(@objet), class: 'btn btn-white' %>
-<%= link_to 'Retour', objets_path , class: 'btn btn-white'%>
+

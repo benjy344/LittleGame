@@ -1,15 +1,12 @@
 <% if @avatar.money >= 60 %>
 <ul>
-		<% @countForge = 0 %>
 	<% @objetForge.each do |o| %>
 		<% if @avatar.money >= o.price %>
-			<% @countForge = 1%>
 			<li><%= link_to "Acheter "+o.name.to_s+" ("+o.price.to_s+" Or)", {controller: "avatars", action: "payObjetById", objet_id: o.id} ,remote: true, class: 'btn btn--white'%></li>
 		<% end %>
 	<% end %>
 </ul>
+<% else %> 
+<p>Vous ne pouvez rien acheter...</p>
 <% end %>
-	<% if @countForge === 0 %>
-		<p>Vous ne pouvez rien acheter...</p>
-	<% end %>
-	<div class="btn btn--white js-exit">Sortir</div>
+<div class="btn btn--white js-exit">Sortir</div>

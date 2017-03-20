@@ -23,9 +23,9 @@
         <td><%= monster.agility %></td>
         <td><%= monster.exp %></td>
         <td><%= monster.element %></td>
-        <td><%= link_to 'Show', monster,class:'btn' %></td>
-        <td><%= link_to 'Edit', edit_monster_path(monster),class:'btn' %></td>
-        <td><%= link_to 'Destroy', monster, method: :delete, remote:true, class:'btn btn--white' %></td>
+        <td><%= link_to 'Voir', monster,class:'btn' %></td>
+        <td><%= link_to 'Modifier', edit_monster_path(monster),class:'btn' %></td>
+        <td><%= link_to 'Supprimer', monster, method: :delete, remote:true, class:'btn btn--white' %></td>
       </tr>
     <% end %>
   </tbody>

@@ -7,9 +7,12 @@
         <%= link_to 'Supprimer', a, method: :delete, class: 'btn btn--white', remote: true %></p>
     <% end %>
 
-    <%= link_to 'Nouvelle Room', new_donjon_room_path, class: "btn " %>
+    <p><%= link_to 'Nouvelle Room', new_donjon_room_path, class: "btn " %></p>
 
   </div>
-
+	<p>
+		<%= link_to 'Retour', donjons_path, class: "btn " %>
+	</p>
+	
 </div>
 

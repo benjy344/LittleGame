@@ -1,8 +1,7 @@
 <% if (@room.money === 0 || @room.money.nil?) && @room.objets.count < 5 && @room.monsters.count < 1 %>
 <div id="formMoney">
-	<%= form_for @room, remote: true, url: {controller:"rooms", action: "addGoldInRoom"} do |f| %>
-	<%# number_field(room, :money) %>
-	<%= f.text_field :money %>
+	<%= form_for @room, remote: true, url: {controller:"rooms", action: "addGoldInRoom", id: @room.id} do |f| %>
+	<%= f.number_field :money %>
 	<%= f.submit "Ajouter de l'or" %>
 	<% end %>
 </div>

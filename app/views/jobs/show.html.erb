@@ -1,5 +1,4 @@
-<p id="notice"><%= notice %></p>
-
+<div class="container">
 <p>
   <strong>Name:</strong>
   <%= @job.name %>
@@ -19,5 +18,7 @@
   <%= @job.intelligence %>
 </p>
 
-<%= link_to 'Edit', edit_job_path(@job) %> |
-<%= link_to 'Back', jobs_path %>
+<%= link_to 'Modifier', edit_job_path(@job), class: 'btn' %>
+<%= link_to 'Retour', jobs_path , class: 'btn'%>
+	
+</div>

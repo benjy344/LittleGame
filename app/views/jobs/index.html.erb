@@ -1,14 +1,13 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Job</h1>
+<div class="container">
+ <h1>Classes</h1>
 
 <table>
   <thead>
     <tr>
-      <th>Name</th>
-      <th>agility</th>
-      <th>force</th>
-      <th>intelgence</th>
+      <th>Nom</th>
+      <th>Agilité</th>
+      <th>Force</th>
+      <th>Intelligence</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -20,9 +19,9 @@
         <td><%= job.agility %></td>
         <td><%= job.strong %></td>
         <td><%= job.intelligence %></td>
-        <td><%= link_to 'Show', job %></td>
-        <td><%= link_to 'Edit', edit_job_path(job) %></td>
-        <td><%= link_to 'Destroy', job, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Voir', job, class: 'btn' %></td>
+        <td><%= link_to 'Modifier', edit_job_path(job), class: 'btn' %></td>
+        <td><%= link_to 'Supprimer', job, method: :delete, class: 'btn btn--white' %></td>
       </tr>
     <% end %>
   </tbody>
@@ -30,4 +29,6 @@
 
 <br>
 
-<%= link_to 'New Job', new_job_path %>
+<%= link_to 'Nouvelle classe', new_job_path, class: 'btn' %> 
+</div>
+

@@ -1,6 +1,9 @@
-<h1>Editing objet</h1>
+<div class="container">
+	<h1>Modifier "<%= @objet.name %>"</h1>
 
 <%= render 'form', objet: @objet %>
 
-<%= link_to 'Show', @objet %> |
-<%= link_to 'Back', objets_path %>
+<%= link_to 'Voir', @objet, class: "btn" %> 
+<%= link_to 'Retour', objets_path , class: "btn"%>
+</div>
+

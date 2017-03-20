@@ -1,4 +1,4 @@
-$('.button-add-money').html('<%= j render(:partial =>"rooms/formMoney" , locals: {room: @room})%>');
+$('.button-add-money').html('<%= j render(:partial => "rooms/formMoney" , locals: {room: @room})%>');
 $('#objets-room').html("<%= j render(:partial => 'objets/objets_list', locals: {objets: @room.objets, scope: ''}) %>");
 $('.button-add-o').html("<%= j render( :partial => 'rooms/addObjets' , locals: {objets: @objets, room: @room}) %>");
 $('.button-add-m').html("<%= j render( :partial => 'rooms/addMonster' , locals: {monsters: @monsters, room: @room})%>")

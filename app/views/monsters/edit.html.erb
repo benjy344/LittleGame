@@ -1,6 +1,11 @@
-<h1>Editing Monster</h1>
+<div class="container">
+	<h1>Modifier <%= @monster.name %></h1>
+</div>
+
 
 <%= render 'form', monster: @monster %>
-
-<%= link_to 'Voir', @monster ,class:'btn' %> 
+<div class="container">
+	<%= link_to 'Voir', @monster ,class:'btn' %> 
 <%= link_to 'Retour', monsters_path, class:'btn' %>
+</div>
+
