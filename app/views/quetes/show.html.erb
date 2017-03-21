@@ -1,0 +1,20 @@
+<div class="container">
+	<h1><%= @room.name%></h1>
+
+<div id="objets-room">
+<%= render partial: 'objets/objets_list' , locals: {objets: @room.objets, scope: ''}%>
+</div>
+<div class="button-add-o">
+    <%= render partial: 'rooms/addObjets' , locals: {objets: @objets, room: @room}%>
+</div>
+<div class="button-add-money">
+    <%= render partial: 'rooms/formMoney' , locals: {room: @room}%>
+</div>
+
+<div class="button-add-m">
+    <%= render partial: 'rooms/addMonster' , locals: {monsters: @monsters, room: @room}%>
+</div>
+
+<%= link_to 'Retour', donjon_rooms_path, class: 'btn btn-white' %>
+</div>
+

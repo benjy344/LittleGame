@@ -1,0 +1,18 @@
+<div class="container">
+	<h1>Rooms du donjon "<%= @donjon.name %>"</h1>
+  <div>
+  
+    <% @rooms.each do |a| %>
+        <p class="room-<%= a.id %>"><%= link_to a.name, donjon_room_path(@donjon.id, a.id), class:'btn' %>
+        <%= link_to 'Supprimer', a, method: :delete, class: 'btn btn--white', remote: true %></p>
+    <% end %>
+
+    <p><%= link_to 'Nouvelle Room', new_donjon_room_path, class: "btn " %></p>
+
+  </div>
+	<p>
+		<%= link_to 'Retour', donjons_path, class: "btn " %>
+	</p>
+	
+</div>
+

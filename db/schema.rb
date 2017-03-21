@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170315192538) do
+ActiveRecord::Schema.define(version: 20170321123910) do
 
   create_table "avatars", force: :cascade do |t|
     t.string  "name",                           null: false
@@ -97,6 +97,16 @@ ActiveRecord::Schema.define(version: 20170315192538) do
     t.integer "room_id"
     t.index ["objet_id"], name: "index_oirs_on_objet_id"
     t.index ["room_id"], name: "index_oirs_on_room_id"
+  end
+
+  create_table "quetes", force: :cascade do |t|
+    t.string  "title",       null: false
+    t.string  "description", null: false
+    t.integer "unlockLevel"
+    t.string  "done"
+    t.integer "type"
+    t.integer "objetToFind"
+    t.integer "reward"
   end
 
   create_table "rids", force: :cascade do |t|
