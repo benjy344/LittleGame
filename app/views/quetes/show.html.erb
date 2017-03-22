@@ -1,20 +1,29 @@
 <div class="container">
-	<h1><%= @room.name%></h1>
+	<p>
+  <strong>titre:</strong>
+  <%= @quete.title %>
+</p>
 
-<div id="objets-room">
-<%= render partial: 'objets/objets_list' , locals: {objets: @room.objets, scope: ''}%>
-</div>
-<div class="button-add-o">
-    <%= render partial: 'rooms/addObjets' , locals: {objets: @objets, room: @room}%>
-</div>
-<div class="button-add-money">
-    <%= render partial: 'rooms/formMoney' , locals: {room: @room}%>
-</div>
+<p>
+  <strong>Déscription:</strong>
+  <%= @quete.description %>
+</p>
 
-<div class="button-add-m">
-    <%= render partial: 'rooms/addMonster' , locals: {monsters: @monsters, room: @room}%>
-</div>
+<p>
+  <strong>Récompence:</strong>
+  <% if @quete.rewardType === "Objet" %>
+         <%= Objet.find(@quete.reward).name %>
+        <%else%>
+         <%= @quete.reward %> Or
+        <% end %>
+</p>
 
-<%= link_to 'Retour', donjon_rooms_path, class: 'btn btn-white' %>
+<p>
+  <strong>Objet à trouver:</strong>
+  <%= Objet.find(@quete.objetToFind).name %>
+</p>
+
+<%= link_to 'Modifier', edit_quete_path(@quete), class: 'btn' %>
+<%= link_to 'Retour', quetes_path, class: 'btn' %>
 </div>
 

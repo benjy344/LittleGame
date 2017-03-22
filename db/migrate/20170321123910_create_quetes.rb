@@ -5,7 +5,7 @@ class CreateQuetes < ActiveRecord::Migration[5.0]
     	t.string :description,  null: false
     	t.integer :unlockLevel
     	t.string :done
-    	t.integer :type
+    	t.string :rewardType
     	t.integer :objetToFind
     	t.integer :reward
     end

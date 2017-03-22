@@ -35,6 +35,12 @@
 	<div class="btn btn--white js-open-shop" data-shop="#wrought">Entrer</div>
 </div>
 </div><!-- 
+--><div class="shop guild-portal">
+<div class="wall">
+  <h1>Guilde</h1>
+  <div class="btn btn--white js-open-shop" data-shop="#guilde">Entrer</div>
+</div>
+</div><!-- 
 --><div class="shop drugstore-portal">
 <div class="wall">
 	<h1>Droguerie</h1>
@@ -56,4 +62,7 @@
 </div>
 <div id="wrought" class="shopin">
 <%= render partial: 'forge' , locals: {avatar: @avatar}%>
+</div>
+<div id="guilde" class="shopin">
+<%= render partial: 'guilde' , locals: {avatar: @avatar, quetes: @quetes}%>
 </div>

@@ -1,21 +1,48 @@
 <% @objets = Objet.all %>
 <%= simple_form_for(@quete) do |f| %>
-  	<%= f.error_notification %>
+<%= f.error_notification %>
 
-  	<div class="form-inputs">
-	    <%= f.input :title, label:'Titre', class: 'form-control' %>
-	    <%= f.input :description, label:'Description', class: 'form-control' %>
-	    <%= f.input :unlockLevel, label:'Se débloque aprés le donjon de niveau ', class: 'form-control' %>
-	    <%# f.input :objetToFind, label:'L\'objet à trouver', class: 'form-control' %>
-	    <%= f.input :objetToFind, collection: @objets, as: :grouped_select, group_method: :id, group_label_method: :name, label_method: :title %>
-	    
-	    
-	  </div>
+<div class="form-inputs">
+	<%= f.input :title, label:'Titre', class: 'form-control' %>
+	<%= f.input :description, label:'Description', class: 'form-control' %>
+	<%= f.input :unlockLevel, label:'Se débloque aprés le donjon de niveau ', class: 'form-control' %>
+	<div class="selectbox">
+		<div class="input select required quete_objetToFind">
+			<label class="select required" for="quete_objetToFind"><abbr title="required">*</abbr> l'objet à trouver</label>
 
-  	<div class="form-actions">
-    	<%= f.button :submit %>
-  	</div>
+			<select class="select required" required="required" aria-required="true" name="quete[objetToFind]" id="quete_objetToFind">
+				<% @objets.each do |o| %>
+					<option value="<%= o.id %>"><%= o.name %></option>
+				<% end %>
+			</select>
+		</div>
+	</div>
+	<div class="selectbox js-select-quest-type">
+    <%= f.input :rewardType, collection: ['Or', 'Objet'], selected: 'Or', label: "Choisir un type de récompense", required: true %>
+    </div>
+    <div class="js-money">
+    	<%= f.number_field :reward, placeholder: "Nombre de pièce d'or", class: 'form-control' %>
+    </div>
+    <div class="js-objet" style="display: none;" hidden>
+    	<div class="selectbox">
+			<div class="input select required quete_reward">
+				<label class="select required" for="quete_reward"><abbr title="required">*</abbr> l'objet en récompense</label>
+
+				<select class="select required" required="required" aria-required="true" name="quete[reward]" id="quete_reward">
+					<% @objets.each do |o| %>
+						<option value="<%= o.id %>"><%= o.name %></option>
+					<% end %>
+				</select>
+			</div>
+		</div>
+    </div>
+	
+</div>
+
+	<div class="form-actions">
+		<%= f.button :submit %>
+	</div>
 
 
 
-<% end %>
+	<% end %>

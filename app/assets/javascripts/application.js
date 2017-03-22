@@ -22,7 +22,7 @@ $(document).ready(function () {
 
 	if ($select.length) {
 
-		$select.find('option[value=""]').remove();
+		//$select.find('option[value=""]').remove();
 
 		$select.on('change', function(e){
 			$val = $(e.currentTarget).find('option:selected').text();

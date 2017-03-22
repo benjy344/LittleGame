@@ -53,6 +53,48 @@ class QuetesController < ApplicationController
     end
   end
 
+  def changeStatus
+  	@avatar = current_user.avatar
+  	@quetes = Quete.all
+  	@quete = Quete.find(params[:quete_id])
+  	@avatar.quetes << @quete
+  	@avatar.qtum.where(quete_id: @quete.id).first.update(state: "progress")
+  	respond_to do |format|
+      format.html { redirect_to :back, notice: 'quete was successfully update.' }
+      format.json { head :no_content }
+      format.js
+    end
+  	
+  end
+  def finishQuest
+  	@avatar = current_user.avatar
+  	@quetes = Quete.all
+  	@quete = Quete.find(params[:quete_id])
+
+  	@bag = @avatar.bags.where(objet_id: @quete.objetToFind).first
+    @avatar.bags.delete(@bag)
+
+  	if @quete.rewardType === "Or"
+  		@reward = @quete.reward
+  		@currentGold = @avatar.money
+  		@newGold = @currentGold + @reward
+  		@avatar.update(money: @newGold)
+  	else
+  		@reward = Objet.find(@quete.reward)
+  		@avatar.objets << @reward 
+  	end
+  	 
+
+  	@avatar.qtum.where(quete_id: @quete.id).first.update(state: "completed")
+
+  	respond_to do |format|
+      format.html { redirect_to :back, notice: 'quete was successfully update.' }
+      format.json { head :no_content }
+      format.js
+    end
+  	
+  end
+
   # DELETE /quetes/1
   # DELETE /quetes/1.json
   def destroy
@@ -71,7 +113,7 @@ class QuetesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def quete_params
-      params.require(:quete).permit(:title, :descrition, :done, :unlock, :type, :reward, :objetToFind)
+      params.require(:quete).permit(:title, :description, :unlockLevel, :rewardType, :done, :reward, :objetToFind)
     end
 
 

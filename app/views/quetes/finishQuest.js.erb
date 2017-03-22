@@ -1,0 +1,8 @@
+$('#guilde').html("<%= j render( :partial=> 'index/guilde' , locals: {avatar: @avatar, quetes: @quetes})%>");
+$('#bag .js-objects .js-content-objects').html("<%= j render(:partial => 'objets/objets_list', locals: {objets: @avatar.objets, scope: @avatar}) %>");
+$('#bag .js-craft-buttons .js-content-craft').html("<%= j render(:partial => 'avatars/craft' , locals: {avatar: @avatar}) %>");
+$('.inn .wall').html("<%= j render( :partial => 'index/inn' , locals: {avatar: @avatar})%>");
+$('#bag .js-money .renderGold').html("<%= current_user.avatar.money %>");
+$('#drugstore').html("<%= j render( :partial => 'index/drog' , locals: {avatar: @avatar})%>");
+$('#wrought').html("<%= j render( :partial => 'index/forge' , locals: {avatar: @avatar})%>");
+init();

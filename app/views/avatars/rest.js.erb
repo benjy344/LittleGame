@@ -1,6 +1,8 @@
 $('.js-rest').addClass('open');
 $('.inn .wall').html("<%= j render( :partial => 'index/inn' , locals: {avatar: @avatar})%>");
 $('#bag .js-money .renderGold').html("<%= current_user.avatar.money %>");
+$('#drugstore').html("<%= j render( :partial => 'index/drog' , locals: {avatar: @avatar})%>");
+$('#wrought').html("<%= j render( :partial => 'index/forge' , locals: {avatar: @avatar})%>");
 setTimeout(function () {
 	$('.js-rest').removeClass('open');
 }, 5000)

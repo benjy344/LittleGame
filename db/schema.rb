@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170321123910) do
+ActiveRecord::Schema.define(version: 20170321210656) do
 
   create_table "avatars", force: :cascade do |t|
     t.string  "name",                           null: false
@@ -99,12 +99,20 @@ ActiveRecord::Schema.define(version: 20170321123910) do
     t.index ["room_id"], name: "index_oirs_on_room_id"
   end
 
+  create_table "qta", force: :cascade do |t|
+    t.integer "avatar_id"
+    t.integer "quete_id"
+    t.string  "state",     default: "lock"
+    t.index ["avatar_id"], name: "index_qta_on_avatar_id"
+    t.index ["quete_id"], name: "index_qta_on_quete_id"
+  end
+
   create_table "quetes", force: :cascade do |t|
     t.string  "title",       null: false
     t.string  "description", null: false
     t.integer "unlockLevel"
     t.string  "done"
-    t.integer "type"
+    t.string  "rewardType"
     t.integer "objetToFind"
     t.integer "reward"
   end

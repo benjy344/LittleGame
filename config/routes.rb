@@ -28,6 +28,9 @@ Rails.application.routes.draw do
   get 'restorHpWithObject'      => 'avatars#restorHpWithObject'
   get 'town'                    => 'index#town'
   get 'rest'                    => 'avatars#rest'
+  get 'changeStatus'            => 'quetes#changeStatus'
+  get 'finishQuest'              => 'quetes#finishQuest'
+
   patch 'addGoldInRoom/:id/'    => 'rooms#addGoldInRoom'
   #post 'donjons/addObject'
 

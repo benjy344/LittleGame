@@ -1,0 +1,26 @@
+$(document).ready(function(){
+
+	$selectType = $('.js-select-quest-type');
+	
+
+	if ($selectType.length) {
+		$val = $selectType.find('option:selected').text();
+		$selectType.on('change', function(e){
+			$val = $(e.currentTarget).find('option:selected').text();
+			hiddenForm($val);
+		})
+	}
+
+})
+
+function hiddenForm(val) {
+	$rewardObj 	= $('.js-objet');
+	$rewardOr 	= $('.js-money');
+	if (val === 'Or') {
+		$rewardObj.css('display', 'none').attr('hidden', true);
+		$rewardOr.css('display', 'block').attr('hidden', false);
+	} else {
+		$rewardObj.css('display', 'block').attr('hidden', false);
+		$rewardOr.css('display', 'none').attr('hidden', true);
+	}
+}

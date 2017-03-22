@@ -4,4 +4,7 @@ class Avatar < ApplicationRecord
 	
 	has_many :bags
 	has_many :objets, through: :bags
+
+	has_many :qtum
+	has_many :quetes, through: :qtum
 end
