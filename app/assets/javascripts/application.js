@@ -19,6 +19,33 @@
 
 $(document).ready(function () {
 	$select = $('form select');
+	$loading = $('.loading.in');
+	$glitch = $('.loading .js-glitch');
+
+	catchFrase = {
+		0 : "...",
+		1 : "Où suis-je ...",
+		2 : "Qui suis-je ...",
+		3 : "Où es tu ...",
+		4 : "Quel est cet endroit...",
+		5 : "Pourquoi...",
+		6 : "J'entends des bruits ..."
+	}
+	if ($loading.length) {
+		setTimeout(function(){
+			$loading.css('display', 'none');
+		}, 4000)
+	}
+	if ($glitch.length) {
+
+		if ($glitch.find('.js-text').length) {
+			var alea = Math.floor((Math.random() * Object.keys(catchFrase).length) + 1);
+			$glitch.find('.js-text').html(catchFrase[alea]);
+		}
+		setTimeout(function(){
+			$glitch.css('display', 'none');
+		}, 2400)
+	}
 
 	if ($select.length) {
 
