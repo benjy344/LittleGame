@@ -186,3 +186,127 @@
 		background: transparent;
 	}
 }
+
+@keyframes "loadwhiteOut" {
+	0% {
+		color: transparent;
+		background: transparent;
+	}
+	60% {
+		color: transparent;
+		background: transparent;
+	}
+
+	100% {
+		color: #242322;
+		background: #fff;
+	}
+}
+
+@-webkit-keyframes "loadwhiteOut" {
+	0% {
+		color: transparent;
+		background: transparent;
+	}
+	60% {
+		color: transparent;
+		background: transparent;
+	}
+	100% {
+		color: #242322;
+		background: #fff;
+	}
+}
+
+@keyframes "loadwhiteIn" {
+	0% {
+		color: #242322;
+		background: #fff;
+	}
+	60% {
+		color: #242322;
+		background: #fff;
+	}
+
+	100% {
+		color: transparent;
+		background: transparent;
+	}
+}
+
+@-webkit-keyframes "loadwhiteIn" {
+	0% {
+		color: #242322;
+		background: #fff;
+	}
+	60% {
+		color: #242322;
+		background: #fff;
+	}
+	100% {
+		color: transparent;
+		background: transparent;
+	}
+}
+
+@keyframes "loadblackOut" {
+	0% {
+		color: transparent;
+		background: transparent;
+	}
+	60% {
+		color: transparent;
+		background: transparent;
+	}
+
+	100% {
+		background: #242322;
+		color: #fff;
+	}
+}
+
+@-webkit-keyframes "loadblackOut" {
+	0% {
+		color: transparent;
+		background: transparent;
+	}
+	0% {
+		color: transparent;
+		background: transparent;
+	}
+
+	100% {
+		background: #242322;
+		color: #fff;
+	}
+}
+
+@keyframes "loadblackIn" {
+	0% {
+		background: #242322;
+		color: #fff;
+	}
+	60% {
+		background: #242322;
+		color: #fff;
+	}
+	100% {
+		color: transparent;
+		background: transparent;
+	}
+}
+
+@-webkit-keyframes "loadblackIn" {
+	0% {
+		background: #242322;
+		color: #fff;	
+	}
+	60% {
+		background: #242322;
+		color: #fff;
+	}
+	100% {
+		color: transparent;
+		background: transparent;
+	}
+}

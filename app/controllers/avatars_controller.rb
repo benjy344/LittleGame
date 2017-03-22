@@ -32,7 +32,7 @@ class AvatarsController < ApplicationController
     @user.avatar = @avatar
     respond_to do |format|
       if @avatar.save
-        format.html { redirect_to @avatar, notice: 'Avatar was successfully created.' }
+        format.html { redirect_to donjon_path(1), notice: 'Avatar was successfully created.' }
         format.json { render :show, status: :created, location: @avatar }
       else
         format.html { render :new }

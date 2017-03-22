@@ -370,7 +370,7 @@ p, a, button, ul, li, h2, h3, h4 {
 .messages {
 	position: fixed;
 	background: black;
-	left: 0;
+	left: -200%;
 	top: 10px;
 	color: white;
 
@@ -398,7 +398,41 @@ p, a, button, ul, li, h2, h3, h4 {
 	}
 
 }
+.loading{
+	position: fixed;
+	top:0;
+	z-index: 999999;
+	left:0;
+	height: 100vh;
+	width: 100vw;
+	
 
+	&.in {
+		background: transparent;
+		-webkit-animation: loadwhiteIn 2s linear;
+			animation: loadwhiteIn 2s linear;
+	}
+	&.out {
+		background: #fff;
+		-webkit-animation: loadwhiteOut 2s linear;
+			animation: loadwhiteOut 2s linear;
+	}
+	
+
+	&.black {	
+
+		&.in {
+			background: transparent;
+			-webkit-animation: loadblackIn 2s linear;
+				animation: loadblackIn 2s linear;
+		}
+		&.out {
+			background: #242322;
+			-webkit-animation: loadblackOut 2s linear;
+				animation: loadblackOut 2s linear;
+		}
+	}
+}
 
 label {
 	margin-bottom: 10px;
