@@ -137,6 +137,25 @@ class AvatarsController < ApplicationController
 
   end
 
+  def finishDonjon
+    @avatar = current_user.avatar
+    @LevelWin = Donjon.find(params[:donjon_id]).level + 1
+    @currentLevel = @avatar.countUnlockDonjon
+
+    if @LevelWin > @currentLevel
+      @currentLevel = @LevelWin
+    end
+
+    @avatar.update(countUnlockDonjon: @currentLevel)
+
+    respond_to do |format|
+        format.html { redirect_to town_path, notice: 'Avatar was successfully updated.' }
+        format.json { render :show, status: :ok, location: @avatar }
+        format.js
+    end
+
+  end
+
   def payObjetById
     @avatar = current_user.avatar
     @obj = Objet.find(params[:objet_id])

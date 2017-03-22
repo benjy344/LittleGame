@@ -29,7 +29,8 @@ Rails.application.routes.draw do
   get 'town'                    => 'index#town'
   get 'rest'                    => 'avatars#rest'
   get 'changeStatus'            => 'quetes#changeStatus'
-  get 'finishQuest'              => 'quetes#finishQuest'
+  get 'finishQuest'             => 'quetes#finishQuest'
+  get 'finishDonjon'            => 'avatars#finishDonjon'
 
   patch 'addGoldInRoom/:id/'    => 'rooms#addGoldInRoom'
   #post 'donjons/addObject'

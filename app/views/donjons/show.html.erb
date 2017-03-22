@@ -45,8 +45,7 @@ end %>
   <article class="js-article">
     <div class="room js-room intro-room js-room-<%= @donjon.rooms.count + 1 %>">
       <p>Il y a une lumière au bout ...</p>
-      <!-- voir pour unlock les autres donjons -->
-      <%= link_to 'Sortir', donjons_path, class: "btn exit btn--white" %>
+      <%= link_to 'Sortir', {controller: "avatars", action: "finishDonjon", donjon_id: @donjon.id }, class: " btn btn--white" %>
     </div>
   </article>
 </div>

@@ -29,16 +29,22 @@
 		}
 	}
 
+	.avatar-controller {
+		position: absolute;
+    	bottom: 0;
+    	width: 70vw;
+	}
+
 
 	.shop {
-		margin-top: 50vh; 
+		margin-top: 40vh; 
 		transform: translateY(-50%);
 		h1 {
 			font-size: 40px;
 		}
 		display: inline-block;
 		width: 25%;
-		height: 70vh;
+		height: 60vh;
 		vertical-align: middle;
 		padding: 20px;
 		box-sizing: border-box;
