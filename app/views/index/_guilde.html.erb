@@ -1,33 +1,30 @@
 
 <ul>
 	<% @quetes.each do |q| %>
-		<% if (q.unlockLevel <= @avatar.countUnlockDonjon) && (!current_user.avatar.qtum.find(q.id).nil?)
-
-		if current_user.avatar.qtum.find(q.id).state != "completed" %>
-
-			<li class="quete-<%= q.id %>">
-				<div class="quest">
-					<h2><%= q.title %></h2>
-					<p><%= q.description %></p>
-					<span class="objetToFind">Objet à trouver : <%= Objet.find(q.objetToFind).name %></span>
-					
-					<% if q.rewardType === "Objet" %>
-					<span class="reward">Récompense : <%= Objet.find(q.reward).name %></span>
-					<% else %>
-					<span class="reward">Récompense :<%= q.reward %> Or</span>
-					<% end %>
-					</span>
-					<%= current_user.avatar.qtum.find(q.id).state%>
-					<% if current_user.avatar.qtum.find(q.id).state === "lock" %>
-						<%= link_to "Commencer "+q.title.to_s, {controller: "quetes", action: "changeStatus", quete_id: q.id} ,remote: true, class: 'btn btn--white'%>
-					<% elsif current_user.avatar.qtum.find(q.id).state === "progress" && !current_user.avatar.objets.where(id: q.objetToFind).first.nil?  %>
-						<%= link_to "Terminer "+q.title.to_s, {controller: "quetes", action: "finishQuest", quete_id: q.id} ,remote: true, class: 'btn btn--white' %>
-					<% elsif current_user.avatar.qtum.find(q.id).state === "progress" %>
-						<p>En cours..</p>
-					<% end %>
-				</div>
-			</li>
-			<%end%>
+		<% if q.unlockLevel <= @avatar.countUnlockDonjon %>
+		<li class="quete-<%= q.id %>">
+			<div class="quest">
+				<h2><%= q.title %></h2>
+				<p><%= q.description %></p>
+				<span class="objetToFind">Objet à trouver : <%= Objet.find(q.objetToFind).name %></span>
+				
+				<% if q.rewardType === "Objet" %>
+				<span class="reward">Récompense : <%= Objet.find(q.reward).name %></span>
+				<% else %>
+				<span class="reward">Récompense :<%= q.reward %> Or</span>
+				<% end %>
+				</span>
+				<% if current_user.avatar.qtum.where(quete_id: q.id).count === 0 %>
+					<%= link_to "Commencer "+q.title.to_s, {controller: "quetes", action: "changeStatus", quete_id: q.id, state: "progress"} ,remote: true, class: 'btn btn--white'%>
+				<% elsif current_user.avatar.qtum.where(quete_id: q.id).count != 0 && current_user.avatar.qtum.where(quete_id: q.id).first.state === "progress" && current_user.avatar.objets.where(id: q.objetToFind).count != 0 %>
+					<%= link_to "Terminer "+q.title.to_s, {controller: "quetes", action: "finishQuest", quete_id: q.id} ,remote: true, class: 'btn btn--white' %>
+				<% elsif current_user.avatar.qtum.where(quete_id: q.id).count != 0 && current_user.avatar.qtum.where(quete_id: q.id).first.state === "progress" && current_user.avatar.objets.where(id: q.objetToFind).count === 0 %>
+					<p>En cours..</p>
+				<% elsif current_user.avatar.qtum.where(quete_id: q.id).count != 0 && current_user.avatar.qtum.where(quete_id: q.id).first.state === "completed" %>
+					<p>COMPLETED</p>
+				<% end %>
+			</div>
+		</li>
 		<% end %>
 	<% end %>
 </ul>
