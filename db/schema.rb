@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20170321210656) do
     t.integer "level",             default: 1
     t.integer "exp",               default: 0
     t.integer "countUnlockDonjon", default: 1
+    t.integer "history",           default: 0
     t.integer "job_id"
     t.integer "MaxHealth",         default: 20
     t.integer "force",             default: 5
