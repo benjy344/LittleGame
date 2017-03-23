@@ -9,7 +9,17 @@
 <%# r[0] == id , r[1] == number %>
 <% @objet = objets.find(r[0])%>
 
-	<li><span class="js-object-to-extend"><%= @objet.name %> (x <%= r[1]%>)</span>
+	<li><span class="js-object-to-extend">
+	<% if current_user.avatar.id_objet_equipe === r[0] || current_user.avatar.id_defObject === r[0] || current_user.avatar.id_armure === r[0]%>
+		<% if r[1] - 1 <= 0 %>
+			<%= @objet.name %>
+		<% else %>
+			<%= @objet.name %> (x <%= r[1] - 1%>)
+		<% end %>
+	<% else %>
+	<%= @objet.name %> (x <%= r[1]%>)
+	<% end %>
+	</span>
 
 	
 		<% if scope != "" %>

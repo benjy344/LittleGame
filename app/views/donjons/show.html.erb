@@ -57,34 +57,11 @@ end %>
   </article>
 </div>
 
-<div class="avatar-controller js-avatar-controller">
-  <span class="name"><%= current_user.avatar.name %></span>
-  <span class="level">Lvl : <%= current_user.avatar.level %></span>
-  <div class="currsors">
-    <div class="js-avatar-hp avatar-hp" data-hpMax="<%= current_user.avatar.MaxHealth %>">
-      <div class="js-avatar-current-hp avatar-current-hp" data-hp="<%= current_user.avatar.hp %>"></div>
-      <span class="js-hpcount hpcount">PV : <%= current_user.avatar.hp %>/<%= current_user.avatar.MaxHealth %></span>
-    </div>
-    <div class="js-avatar-exp avatar-exp" data-next-level="<%= current_user.avatar.nextLevel %>">
-      <div class="js-avatar-current-exp avatar-current-exp" data-exp="<%= current_user.avatar.exp %>"></div>
-      <span class="js-expcount expcount">Exp : <%= current_user.avatar.exp %>/<%= current_user.avatar.nextLevel %></span>
-    </div>
-  </div>
-  
-  
-  <div class="carac">
-    <span class="js-agility">Agilité : <%= current_user.avatar.agility %></span>
-    <span class="js-force">Force : <%= current_user.avatar.force %><% if current_user.avatar.id_objet_equipe != 0 && !current_user.avatar.id_objet_equipe.nil?%> + <%= current_user.avatar.objets.find(current_user.avatar.id_objet_equipe).force %> <%end%></span>
-    <span class="js-intéligence">Intelligence : <%= current_user.avatar.inteligence %></span>
-    <span class="js-defence">Défence : <%= current_user.avatar.defence %><% if current_user.avatar.id_defObject != 0 && !current_user.avatar.id_defObject.nil? %> + <%= current_user.avatar.objets.find(current_user.avatar.id_defObject).force %> <%end%></span>
-  </div>
-  <div class="family">
-    <span class="js-job">Classe : <%= current_user.avatar.job.name %></span>
-    <span class="js-type">Type : <%= current_user.avatar.element %></span>
+<div class="js-render-avatar-controller">
+    <%= render partial: 'avatars/avatar-controller' %>
   </div>
   
 
   <div class="render-avatar">
     <%= render partial: 'avatars/avatar' , locals: {avatar: @avatar}%>
   </div>
-</div>

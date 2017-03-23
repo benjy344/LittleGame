@@ -64,8 +64,17 @@ class AvatarsController < ApplicationController
 
   def equipeObjet
     @avatar = current_user.avatar
+    @objetType = @avatar.objets.where(id: params[:objet_id]).first.category
 
-    @avatar.update(id_objet_equipe: params[:objet_id])
+    if @objetType === "Arme"
+      @avatar.update(id_objet_equipe: params[:objet_id])
+    elsif @objetType === "Armure"
+      @avatar.update(id_armure: params[:objet_id])
+    elsif @objetType === "Défence"
+      @avatar.update(id_defObject: params[:objet_id])
+    end
+
+    
 
     respond_to do |format|
         format.html { redirect_to :back, notice: 'Avatar was successfully updated.' }
@@ -194,6 +203,22 @@ class AvatarsController < ApplicationController
   def removeObjetById
     @avatar = current_user.avatar
     @bag = @avatar.bags.where(objet_id: params[:objet_id]).first
+    @count = @avatar.bags.where(objet_id: params[:objet_id]).count
+
+    if     @count === 1 && @avatar.id_objet_equipe === params[:objet_id] 
+    
+        @avatar.update(id_objet_equipe: 0)
+
+    elsif  @count === 1 &&  @avatar.id_defObject === params[:objet_id] 
+
+         @avatar.update(id_defObject: 0)
+      
+    elsif  @count === 1 && @avatar.id_armure === params[:objet_id]
+
+         @avatar.update(id_armure: 0)
+        
+    end
+
     @avatar.bags.delete(@bag)
     respond_to do |format|
         format.html { redirect_to :back, notice: 'Avatar was successfully updated.' }

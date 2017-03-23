@@ -8,7 +8,7 @@ class Ability
         can :manage, :all
       else
         #can [:read,:update] :all
-        can [:create, :show, :addObjetById, :removeObjetById, :equipeObjet, :majAvatar, :payObjetById, :addGold, :rest], Avatar
+        can [:create, :show, :addObjetById, :removeObjetById, :equipeObjet, :majAvatar, :payObjetById, :addGold, :rest, :finishDonjon, :unlockNewDonjon], Avatar
         can [:show, :index, :craftEpeeFer] , Objet
         can [:show, :index], Donjon        
         can [:show, :index], Room

@@ -3,6 +3,7 @@
     <div class="glitchContent is-off"><span class="text js-text"></span></div>
   </div>  
 </div>
+
 <div id="bag">
   <div class="open-button js-open-button">
     <div class="button-burger">
@@ -33,54 +34,36 @@
 		<div class="wall">
 			<%= render partial: 'inn' , locals: {avatar: @avatar}%>
 		</div>
-</div><!-- 
+  </div><!-- 
 --><div class="shop wrought-portal">
-<div class="wall">
-	<h1>Forge</h1>
-	<div class="btn btn--white js-open-shop" data-shop="#wrought">Entrer</div>
-</div>
-</div><!-- 
---><div class="shop guild-portal">
-<div class="wall">
-  <h1>Guilde</h1>
-  <div class="btn btn--white js-open-shop" data-shop="#guilde">Entrer</div>
-</div>
-</div><!-- 
---><div class="shop drugstore-portal">
-<div class="wall">
-	<h1>Droguerie</h1>
-	<div class="btn btn--white js-open-shop" data-shop="#drugstore">Entrer</div>
-</div>
-
-</div>
-
-<div class="avatar-controller js-avatar-controller">
-  <span class="name"><%= current_user.avatar.name %></span>
-  <span class="level">Lvl : <%= current_user.avatar.level %></span>
-  <div class="currsors">
-    <div class="js-avatar-hp avatar-hp" data-hpMax="<%= current_user.avatar.MaxHealth %>">
-      <div class="js-avatar-current-hp avatar-current-hp" data-hp="<%= current_user.avatar.hp %>"></div>
-      <span class="js-hpcount hpcount">PV : <%= current_user.avatar.hp %>/<%= current_user.avatar.MaxHealth %></span>
+    <div class="wall">
+	    <h1>Forge</h1>
+      <div class="btn btn--white js-open-shop" data-shop="#wrought">Entrer</div>
     </div>
-    <div class="js-avatar-exp avatar-exp" data-next-level="<%= current_user.avatar.nextLevel %>">
-      <div class="js-avatar-current-exp avatar-current-exp" data-exp="<%= current_user.avatar.exp %>"></div>
-      <span class="js-expcount expcount">Exp : <%= current_user.avatar.exp %>/<%= current_user.avatar.nextLevel %></span>
+  </div><!-- 
+--><div class="shop guild-portal">
+    <div class="wall">
+      <h1>Guilde</h1>
+      <div class="btn btn--white js-open-shop" data-shop="#guilde">Entrer</div>
+    </div>
+  </div><!-- 
+--><div class="shop drugstore-portal">
+    <div class="wall">
+    	<h1>Droguerie</h1>
+    	<div class="btn btn--white js-open-shop" data-shop="#drugstore">Entrer</div>
     </div>
   </div>
-  
-  
-  <div class="carac">
-    <span class="js-agility">Agilité : <%= current_user.avatar.agility %></span>
-    <span class="js-force">Force : <%= current_user.avatar.force %><% if current_user.avatar.id_objet_equipe != 0 && !current_user.avatar.id_objet_equipe.nil?%> + <%= current_user.avatar.objets.find(current_user.avatar.id_objet_equipe).force %> <%end%></span>
-    <span class="js-intéligence">Intelligence : <%= current_user.avatar.inteligence %></span>
-    <span class="js-defence">Défence : <%= current_user.avatar.defence %><% if current_user.avatar.id_defObject != 0 && !current_user.avatar.id_defObject.nil? %> + <%= current_user.avatar.objets.find(current_user.avatar.id_defObject).force %> <%end%></span>
+
+
+  <div class="js-render-avatar-controller">
+    <%= render partial: 'avatars/avatar-controller' %>
   </div>
   
 
   <div class="render-avatar">
     <%= render partial: 'avatars/avatar' , locals: {avatar: @avatar}%>
   </div>
-</div>
+
 </div>
 
 
