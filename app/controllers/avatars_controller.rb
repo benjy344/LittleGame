@@ -146,6 +146,19 @@ class AvatarsController < ApplicationController
 
   end
 
+  def history
+    @avatar = current_user.avatar
+    @avatar.update(history: params[:history])
+    @history = params[:history] - 1
+
+    respond_to do |format|
+        format.html { redirect_to :back, notice: 'Avatar was successfully updated.' }
+        format.json { render :show, status: :ok, location: @avatar }
+        format.js
+    end
+
+  end
+
   def finishDonjon
     @avatar = current_user.avatar
     @LevelWin = Donjon.find(params[:donjon_id]).level + 1
@@ -205,15 +218,15 @@ class AvatarsController < ApplicationController
     @bag = @avatar.bags.where(objet_id: params[:objet_id]).first
     @count = @avatar.bags.where(objet_id: params[:objet_id]).count
 
-    if     @count === 1 && @avatar.id_objet_equipe === params[:objet_id] 
+    if    (@count === 1 && @avatar.id_objet_equipe.to_i == params[:objet_id].to_i)
     
         @avatar.update(id_objet_equipe: 0)
 
-    elsif  @count === 1 &&  @avatar.id_defObject === params[:objet_id] 
+    elsif  (@count === 1 &&  @avatar.id_defObject.to_i == params[:objet_id].to_i) 
 
          @avatar.update(id_defObject: 0)
       
-    elsif  @count === 1 && @avatar.id_armure === params[:objet_id]
+    elsif  (@count === 1 && @avatar.id_armure == params[:objet_id].to_i)
 
          @avatar.update(id_armure: 0)
         

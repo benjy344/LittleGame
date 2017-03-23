@@ -9,27 +9,26 @@
 			<% @alea = rand(5)%>
 			<% if r.monsters.any?%>
 				<% if @alea == 3 %>
-					<p class="indication-room js-indication-room ">Un <%=r.monsters.first.name%> dors au fond de la pièce, que voulez vous faire ?</p>
+					<p class="indication-room js-indication-fight-room ">Un <%=r.monsters.first.name%> dors au fond de la pièce, que voulez vous faire ?</p>
 					
-					
-					<div class="js-monster" data-monster= '{
+					<div class="js-monster-hp monster-hp" data-hpMax="<%= r.monsters.first.hp%>">
+						<div class="js-monster-current-hp monster-current-hp" data-hp="<%= r.monsters.first.hp%>"></div>
+					</div>
+					<div class="js-monster the_monster" data-monster= '{
 					"hp" : <%= r.monsters.first.hp%>,
 					"hpMax" : <%= r.monsters.first.hp%>,
 					"exp" : <%= r.monsters.first.exp%>,
 					"force" : <%= r.monsters.first.force%>,
 					"agility" : <%= r.monsters.first.agility%>
 					}'></div>
-					<div class="js-monster-hp monster-hp" data-hpMax="<%= r.monsters.first.hp%>">
-						<div class="js-monster-current-hp monster-current-hp" data-hp="<%= r.monsters.first.hp%>"></div>
-					</div>
+					
 					<div class="js-attack-surprise-buttons">
 						<div class="btn js-attack-surprise">Attaquer par surprise</div>
 						<div class="btn nxt">Tenter d'avancer</div>
 					</div>
 					<div class="js-fight-buttons hidden">
 						<div class="btn js-attack-button">Attaquer</div>
-						<div class="btn js-trigger-menu">Regarder l'inventaire</div>
-						<div class="btn js-defend">Se défendre</div>
+						<div class="btn js-trigger-menu">Regarder l'inventaire</div>						
 					</div>
 					<% if r.monsters.first.objets.any? %>
 					<!-- si le monstre drop des objets -->
@@ -52,28 +51,30 @@
 
 					<% end %>
 				<% else %>
-					<p class="indication-room js-indication-room js-attack">Un <%=r.monsters.first.name%> vous attaque !</p>
-					<div class="js-monster" data-monster= '{
+					<p class="indication-room js-indication-room js-indication-fight-room js-attack">Un <%=r.monsters.first.name%> vous attaque !</p>
+					
+
+					<div class="js-monster-hp monster-hp" data-hpMax="<%= r.monsters.first.hp%>">
+						<div class="js-monster-current-hp monster-current-hp" data-hp="<%= r.monsters.first.hp%>"></div>
+					</div>
+					<div class="js-monster the_monster" data-monster= '{
 					"hp" : <%= r.monsters.first.hp%>,
 					"hpMax" : <%= r.monsters.first.hp%>,
 					"exp" : <%= r.monsters.first.exp%>,
 					"force" : <%= r.monsters.first.force%>,
 					"agility" : <%= r.monsters.first.agility%>
-					}'></div>
-
-					<div class="js-monster-hp monster-hp" data-hpMax="<%= r.monsters.first.hp%>">
-						<div class="js-monster-current-hp monster-current-hp" data-hp="<%= r.monsters.first.hp%>"></div>
+					}'>
+						<div class="glitch-img"></div>
 					</div>
 					<div class="js-fight-buttons hidden">
 						<div class="btn js-attack-button">Attaquer</div>
-						<div class="btn js-trigger-menu">Regarder l'inventaire</div>
-						<div class="btn js-defend">Se défendre</div>
+						<div class="btn js-trigger-menu">Regarder l'inventaire</div>						
 					</div>
 
 					<% if r.monsters.first.objets.any? %>
 					<!-- si le monstre drop des objets -->
 						<div class="js-result-find-objects hidden">
-							<p class="indication-room js-indication-room ">Le monstre a laissé des objets</p>
+							<p class="indication-room js-indication-room ">Il a laissé des objets</p>
 							<% r.monsters.first.objets.each do |o| %>
 								<% @title = 'Ajouter '+o.name%>
 		          				<div class="finding-object js-finding-object"><%= link_to @title, {controller: "avatars", action: "addObjetById", objet_id: o.id}, class: "js-add-object btn", remote: true %></div>

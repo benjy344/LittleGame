@@ -14,7 +14,7 @@ else
  @defArme = 0
 end
 
-if !avatar.id_armure.nil? && avatar.objets.where(id: avatar.id_armure).count > 0
+if !avatar.id_armure.nil? && avatar.objets.where(id: avatar.id_armure).count > 0 && avatar.objets.where(id: avatar.id_objet_equipe).count > 0
  @defArme += avatar.objets.find(avatar.id_armure).defence 
  @agilityArme += avatar.objets.find(avatar.id_objet_equipe).agility
 end

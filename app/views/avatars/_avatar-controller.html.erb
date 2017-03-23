@@ -12,7 +12,7 @@
         </div>
     </div>
     <div class="carac">
-        <span class="js-agility">Agilité : <%= current_user.avatar.agility %><% if current_user.avatar.id_objet_equipe != 0 && !current_user.avatar.id_objet_equipe.nil? && current_user.avatar.objets.find(current_user.avatar.id_objet_equipe).agility > 0 %> + <%= current_user.avatar.objets.find(current_user.avatar.id_objet_equipe).agility %> <%end%><% if current_user.avatar.id_armure != 0 && !current_user.avatar.id_armure.nil? && current_user.avatar.objets.find(current_user.avatar.id_armure).agility > 0 %> + <%= current_user.avatar.objets.find(current_user.avatar.id_armure).agility %> <%end%>
+        <span class="js-agility">Agilité : <%= current_user.avatar.agility %><% if current_user.avatar.id_objet_equipe != 0 && !current_user.avatar.id_objet_equipe.nil? && current_user.avatar.objets.where(id: current_user.avatar.id_objet_equipe).count > 0 %> + <%= current_user.avatar.objets.find(current_user.avatar.id_objet_equipe).agility %> <%end%><% if current_user.avatar.id_armure != 0 && !current_user.avatar.id_armure.nil? && current_user.avatar.objets.where(id: current_user.avatar.id_armure).count > 0 %> + <%= current_user.avatar.objets.find(current_user.avatar.id_armure).agility %> <%end%>
         </span>
         <span class="js-force">Force : <%= current_user.avatar.force %><% if current_user.avatar.id_objet_equipe != 0 && !current_user.avatar.id_objet_equipe.nil? && current_user.avatar.objets.where(id: current_user.avatar.id_objet_equipe).count > 0 %> + <%= current_user.avatar.objets.find(current_user.avatar.id_objet_equipe).force %> <%end%></span>
         <span class="js-intéligence">Intelligence : <%= current_user.avatar.inteligence %></span>

@@ -88,6 +88,10 @@ $b-pad-top: ($b-height / 2 - $b-bun-width-half); //Vertically centers bun in men
 }
 
 body {
+	-webkit-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
 	&:after {
 		background: color(primary);
 		content: '';
@@ -184,7 +188,10 @@ body {
 	padding-top: $b-pad-top;
 	position: relative;
 	transition: $b-transition;
-	user-select: none;
+	-webkit-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
 	width: $b-height;
 	z-index: 12;
 
@@ -192,6 +199,47 @@ body {
 		border: color(complement) solid $b-border-width;
 	}
 }
+
+.history {
+	position: fixed;
+	height: 100%;
+	width: 100%;
+	top: 0;
+	left: 0;
+	z-index: 300;
+
+	&.history-0 {
+		.btn {
+			position: absolute;
+		    bottom: 80px;
+		    right: 80px;
+		    background: #fff;
+
+		    &:hover {
+		    	background: #242322;
+		    }
+		}
+	}
+
+	.overlay {
+		background: #242322;
+		opacity: 0.8;
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		z-index: -1;
+	}
+	.content-history {
+		color: #fff;
+
+		svg {
+			height: 100vh;
+			width: 100vw;
+		}
+	}
+}
+
+
 
 .b-bun {
 	background: color(complement);

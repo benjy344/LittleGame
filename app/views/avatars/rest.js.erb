@@ -3,6 +3,15 @@ $('.inn .wall').html("<%= j render( :partial => 'index/inn' , locals: {avatar: @
 $('#bag .js-money .renderGold').html("<%= current_user.avatar.money %>");
 $('#drugstore').html("<%= j render( :partial => 'index/drog' , locals: {avatar: @avatar})%>");
 $('#wrought').html("<%= j render( :partial => 'index/forge' , locals: {avatar: @avatar})%>");
+$('.js-render-avatar-controller').html("<%= j render(:partial => 'avatars/avatar-controller' )%>");
+$('.render-avatar').html("<%= j render(:partial => 'avatars/avatar' , locals: {avatar: @avatar}) %>");
+$avatarController = $('.js-avatar-controller');
+var nextLevel = $('.js-avatar-exp').attr('data-next-level');
+var currentExp = $('.js-avatar-current-exp').attr('data-exp');
+var currenthp = $('.js-avatar-current-hp').attr('data-hp');
+var maxHp = $('.js-avatar-hp').attr('data-hpmax');
+$avatarController.find('.js-avatar-current-hp').css('width', calculPercentLife(currenthp, maxHp));
+$avatarController.find('.js-avatar-current-exp').css('width', calculPercentLife(currentExp, nextLevel));
 setTimeout(function () {
 	$('.js-rest').removeClass('open');
 }, 5000)

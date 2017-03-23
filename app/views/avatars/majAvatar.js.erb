@@ -1,2 +1,4 @@
 $('.render-avatar').html("<%= j render(:partial => 'avatars/avatar' , locals: {avatar: @avatar}) %>");
+$('.js-render-avatar-controller').html("<%= j render(:partial => 'avatars/avatar-controller' )%>");
+
 init();

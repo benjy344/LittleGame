@@ -26,15 +26,19 @@ function init() {
 	nextLevel = $('.js-avatar-exp').attr('data-next-level');
 	var currentExp = $('.js-avatar-current-exp').attr('data-exp');
 	var currenthp = $('.js-avatar-current-hp').attr('data-hp');
-	var maxHphp = $('.js-avatar-hp').attr('data-hpmax');
+	var maxHp = $('.js-avatar-hp').attr('data-hpmax');
 	$('.js-avatar-current-exp').css('width',calculPercentLife(currentExp, nextLevel) );
-	$('.js-avatar-controller .js-avatar-current-hp').css('width', calculPercentLife(currenthp, maxHphp));
+	$('.js-avatar-controller .js-avatar-current-hp').css('width', calculPercentLife(currenthp, maxHp));
 
 	extendDescription();
 	articleSlide();
 
 	if ($('body').hasClass('index')){
 		town();
+	}
+
+	if ($( ".glitch-img" ).length) {
+		glitchImg()
 	}
 }
 
@@ -203,6 +207,7 @@ function fight(surprise) {
 			win = true;
 		} else {
 			renderMonster();
+			$room.find('.js-indication-fight-room').html("Le monstre se réveille !");
 		}
 	}else {
 		// Le plus rapide commence
@@ -215,12 +220,21 @@ function fight(surprise) {
 				monster.hp = 0;
 				renderMonster();
 				win = true;
+				$room.find('.js-indication-fight-room').html("Le monstre a été battu !");
 			} else {
 				renderMonster();
 				//si le montre n'est pas KO, il attaque
-				console.log('attak monster')
+				$room.find('.js-indication-fight-room').html("Le monstre vous attaque !");
 				
-				avatar.hp = Math.round((avatar.hp + (avatarDefence / 2)) - monster.force);
+				if ( Math.round( avatar.hp - (monster.force - (avatarDefence / 2))) < avatar.hp  ) {
+					avatar.hp = Math.round( avatar.hp - (monster.force - (avatarDefence / 2)));
+				} else {
+					avatar.hp = avatar.hp - 1
+				}
+				
+
+				
+
 				if (avatar.hp <= 0) { 
 					avatar.hp = 0;
 					renderAvatar();
@@ -234,6 +248,7 @@ function fight(surprise) {
 		} else {
 			//si le monstre est le plus rapide
 			//attaque l'avatar
+			$room.find('.js-indication-fight-room').html("Le monstre vous attaque !");
 			avatar.hp = Math.round((avatar.hp + (avatarDefence / 2)) - monster.force);
 			if (avatar.hp <= 0) { 
 				avatar.hp = 0;
@@ -250,6 +265,7 @@ function fight(surprise) {
 					monster.hp = 0;
 					renderMonster();
 					win = true;
+					$room.find('.js-indication-fight-room').html("Le monstre a été battu !");
 				} else {
 					//sinon le combat continue
 					renderMonster();
@@ -261,9 +277,13 @@ function fight(surprise) {
 	if (win === true) {
 		$room.find('.js-fight-buttons').addClass('hidden-delay');
 		$room.find('.js-monster-hp').addClass('hidden-delay');
+		$room.find('.the_monster').addClass('hidden-delay');
 		setTimeout(function(){
 			$room.find('.js-result-find-objects').removeClass('hidden');
 			$room.find('.js-next-room').removeClass('hidden');
+			$room.find('.js-fight-buttons').css('display', 'none');
+			$room.find('.js-monster-hp').css('display', 'none');
+			$room.find('.the_monster').css('display', 'none');
 		}, 1500);
 		
 		
@@ -331,25 +351,25 @@ function calculPercentLife(current, max) {
 
 
 function renderAvatar() {
-	$url = '../majAvatar?MaxHealth='+avatar.maxHp+'&hp='+avatar.hp+'&level='+avatar.level+'&nextLevel='+avatar.nextLevel+'&defence='+avatar.defence+'&agility='+avatar.agility+'&force='+avatar.force+'&inteligence='+avatar.inteligence+'&exp='+avatar.exp;
+	$url = window.location.origin+'/majAvatar?MaxHealth='+avatar.maxHp+'&hp='+avatar.hp+'&level='+avatar.level+'&nextLevel='+avatar.nextLevel+'&defence='+avatar.defence+'&agility='+avatar.agility+'&force='+avatar.force+'&inteligence='+avatar.inteligence+'&exp='+avatar.exp;
 	$.get({
 	  url: $url,
 	  dataType: "script"
 	});
-	$avatarController = $('.js-avatar-controller');
-	$avatarController.find('.js-avatar-hp').attr('data-hpMax', avatar.maxHp);
-	$avatarController.find('.js-avatar-current-hp').attr('data-hp', avatar.hp);
-	$avatarController.find('.js-avatar-exp').attr('data-next-level', avatar.nextLevel);
-	$avatarController.find('.js-avatar-current-exp').attr('data-exp', avatar.exp);
-	$avatarController.find('.js-avatar-current-hp').css('width', calculPercentLife(avatar.hp, avatar.maxHp));
-	$avatarController.find('.js-avatar-current-exp').css('width', calculPercentLife(avatar.exp, avatar.nextLevel));
-	$avatarController.find(".js-agility").html("Agilité : "+avatar.agility);
-    $avatarController.find(".js-force").html("Force : "+avatar.force);
-    $avatarController.find(".js-intéligence").html("Intéligence : "+avatar.inteligence);
-    $avatarController.find(".js-defence").html("Défence : "+avatar.defence);
-    $avatarController.find('.level').html('Lvl : '+avatar.level);
-    $avatarController.find('.js-hpcount').html('PV : '+avatar.hp+'/'+avatar.maxHp);
-    $avatarController.find('.js-expcount').html('Exp : '+avatar.exp+'/'+avatar.nextLevel);
+	// $avatarController = $('.js-avatar-controller');
+	// $avatarController.find('.js-avatar-hp').attr('data-hpMax', avatar.maxHp);
+	// $avatarController.find('.js-avatar-current-hp').attr('data-hp', avatar.hp);
+	// $avatarController.find('.js-avatar-exp').attr('data-next-level', avatar.nextLevel);
+	// $avatarController.find('.js-avatar-current-exp').attr('data-exp', avatar.exp);
+	// $avatarController.find('.js-avatar-current-hp').css('width', calculPercentLife(avatar.hp, avatar.maxHp));
+	// $avatarController.find('.js-avatar-current-exp').css('width', calculPercentLife(avatar.exp, avatar.nextLevel));
+	// $avatarController.find(".js-agility").html("Agilité : "+avatar.agility);
+ //    $avatarController.find(".js-force").html("Force : "+avatar.force);
+ //    $avatarController.find(".js-intéligence").html("Intéligence : "+avatar.inteligence);
+ //    $avatarController.find(".js-defence").html("Défence : "+avatar.defence);
+ //    $avatarController.find('.level').html('Lvl : '+avatar.level);
+ //    $avatarController.find('.js-hpcount').html('PV : '+avatar.hp+'/'+avatar.maxHp);
+ //    $avatarController.find('.js-expcount').html('Exp : '+avatar.exp+'/'+avatar.nextLevel);
 
 
 }
@@ -367,7 +387,29 @@ function GameOver() {
 
 
 
-
+function glitchImg() {
+		console.log('coucou')
+		$( ".glitch-img" ).mgGlitch({
+          // set 'true' to stop the plugin
+			destroy : false, 
+          // set 'false' to stop glitching
+          glitch: true, 
+          // set 'false' to stop scaling
+          scale: true, 
+          // set 'false' to stop glitch blending
+          blend : true, 
+          // select blend mode type
+          blendModeType : 'hue',
+          // set min time for glitch 1 elem
+          glitch1TimeMin : 1, 
+          // set max time for glitch 1 elem
+          glitch1TimeMax : 2,
+          // set min time for glitch 2 elem
+          glitch2TimeMin : 1, 
+          // set max time for glitch 2 elem
+          glitch2TimeMax : 2, 
+		});
+}
 
 
 

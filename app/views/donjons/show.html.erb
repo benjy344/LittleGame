@@ -9,9 +9,29 @@
 @count_objet = 0
 @count_monster = 0
 @donjon.rooms.each do |r| 
-  @count_objet = @count_objet + r.objets.count
-  @count_monster = @count_monster + r.monsters.count
+  @count_objet += r.objets.count
+  @count_monster += r.monsters.count
 end %>
+
+<div class="history history-0">
+  <div class="overlay"></div>
+  <div class="histroy-content">
+    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+    viewBox="0 0 1280 630" enable-background="new 0 0 1280 630" xml:space="preserve">
+    <g id="Calque_1">
+    </g>
+    <g id="Calque_2">
+      <polyline fill="none" stroke="#FFFFFF" stroke-width="7" stroke-miterlimit="10" points="693,353.5 482.5,353.5 482.5,500  "/>
+      <polyline fill="none" stroke="#FFFFFF" stroke-width="7" stroke-miterlimit="10" points="639.5,20 639.5,174.5 384,174.5   "/>
+      <rect x="75.7" y="130.8" fill="none" width="290.6" height="115.8"/>
+      <text transform="matrix(1 0 0 1 75.6816 144.9585)"><tspan x="0" y="0" fill="#FFFFFF" font-family="'Poiret One'" font-size="20">Cliquez ici pour gérer votre inventaire,</tspan><tspan x="275.9" y="0" fill="#FFFFFF" font-family="'Poiret One'" font-size="20">-</tspan><tspan x="0" y="24" fill="#FFFFFF" font-family="'Poiret One'" font-size="20">tous vos objets y sont stockés,<tspan x="0" y="48" fill="#FFFFFF" font-family="'Poiret One'" font-size="20">n’hésitez pas a les utilisé pour </tspan><tspan x="0" y="72" fill="#FFFFFF" font-family="'Poiret One'" font-size="20">vous soigner ou les crafter</tspan></text>
+      <rect x="714.8" y="303.6" fill="none" width="290.6" height="115.8"/>
+      <text transform="matrix(1 0 0 1 714.8176 317.8185)"><tspan x="0" y="0" fill="#FFFFFF" font-family="'Poiret One'" font-size="20">Le statut de votre avatar se trouve </tspan><tspan x="0" y="24" fill="#FFFFFF" font-family="'Poiret One'" font-size="20">ici, veillez à ce que vos points de </tspan><tspan x="0" y="48" fill="#FFFFFF" font-family="'Poiret One'" font-size="20">vie ne tombent pas à zéro</tspan></text>
+    </g>
+  </svg>
+  <%= link_to 'OK', {controller: "avatars", action: "history", history: 1 }, class: " btn btn--black" %>
+</div>
+</div>
 <div id="bag">
   <div class="open-button js-open-button">
     <div class="button-burger">
@@ -45,7 +65,7 @@ end %>
       <p>Nombre d'objets : <%= @count_objet %></p>
       <p>Nombre de monstres : <%= @count_monster %></p>
       <div class="btn nxt btn--white">Entrer</div>
-      <%= link_to 'Sortir', donjons_path, class: "btn exit btn--white" %>
+      <%# link_to 'Sortir', donjons_path, class: "btn exit btn--white" %>
     </div>
   </article>
   <%= render partial: 'rooms/rooms_list' , locals: {rooms: @donjon.rooms}%>

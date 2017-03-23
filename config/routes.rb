@@ -31,6 +31,7 @@ Rails.application.routes.draw do
   get 'changeStatus'            => 'quetes#changeStatus'
   get 'finishQuest'             => 'quetes#finishQuest'
   get 'finishDonjon'            => 'avatars#finishDonjon'
+  get 'history'                 => 'avatars#history'
 
   patch 'addGoldInRoom/:id/'    => 'rooms#addGoldInRoom'
   #post 'donjons/addObject'

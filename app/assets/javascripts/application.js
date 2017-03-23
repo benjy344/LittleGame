@@ -26,10 +26,12 @@ $(document).ready(function () {
 		0 : "...",
 		1 : "Où suis-je ...",
 		2 : "Qui suis-je ...",
-		3 : "Où es tu ...",
+		3 : "Où es-tu ...",
 		4 : "Quel est cet endroit...",
 		5 : "Pourquoi...",
-		6 : "J'entends des bruits ..."
+		6 : "J'entends des bruits ...",
+		7 : "J'ai froid ...",
+		8 : "Quelque chose approche ...",
 	}
 	if ($loading.length) {
 		setTimeout(function(){
@@ -39,7 +41,8 @@ $(document).ready(function () {
 	if ($glitch.length) {
 
 		if ($glitch.find('.js-text').length) {
-			var alea = Math.floor((Math.random() * Object.keys(catchFrase).length) + 1);
+			var alea = Math.floor((Math.random() * Object.keys(catchFrase).length) - 1);
+			console.log(catchFrase[alea])
 			$glitch.find('.js-text').html(catchFrase[alea]);
 		}
 		setTimeout(function(){
