@@ -9,7 +9,8 @@ else
 end
 
 if !avatar.id_defObject.nil? && avatar.objets.where(id: avatar.id_defObject).count >0
- @defArme = avatar.objets.find(avatar.id_defObject).defence 
+ @defArme = avatar.objets.find(avatar.id_defObject).defence
+ @agilityArme += avatar.objets.find(avatar.id_defObject).agility 
 else 
  @defArme = 0
 end
