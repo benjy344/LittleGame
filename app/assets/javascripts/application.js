@@ -16,6 +16,7 @@
 //= require_tree .
 
 
+var konami = true;
 
 $(document).ready(function () {
 	$select = $('form select');
@@ -42,7 +43,6 @@ $(document).ready(function () {
 
 		if ($glitch.find('.js-text').length) {
 			var alea = Math.floor((Math.random() * Object.keys(catchFrase).length) - 1);
-			console.log(catchFrase[alea])
 			$glitch.find('.js-text').html(catchFrase[alea]);
 		}
 		setTimeout(function(){
@@ -79,6 +79,39 @@ if (burgerMenu.length) {
   });
 
 }
-  
+
+
+var secret = [38,38,40,40,37,39,37,39,66,65]; //konami code
+var i = 0;
+
+
+$(document).keyup(function(e) {
+	if (konami) {
+		if(secret[i]==e.which){        
+			i++;
+
+			if(i==10){
+				$('body').prepend('<div class="loading in konami black"><div class="screen glitch js-glitch"><div class="figure"></div><div class="figure-mask"></div></div></div>');
+				var $url = window.location.origin+'/addObjetById?objet_id=17';
+				$.get({
+				  url: $url,
+				  dataType: "script"
+				});
+				setTimeout(function(){
+					$('.konami').remove();
+				}, 4000);
+				setTimeout(function(){
+					$('.konami .js-glitch').remove();
+				}, 2400)
+				konami = false;
+			}
+		}else{
+			i=0;
+		};
+	}
+});
+
+
+
 })
 
