@@ -38,6 +38,26 @@ class ObjetsController < ApplicationController
       @avatar.objets << @craft
     end
 
+    # craft acier raffiné
+    if params[:objet_id] == 29
+
+      @bag1 = @avatar.bags.where(objet_id: 28).first(2)
+
+      @avatar.bags.delete(@bag1)
+      @craft = Objet.find(id: params[:objet_id])
+      @avatar.objets << @craft
+    end
+
+    # craft or raffiné
+    if params[:objet_id] == 31
+
+      @bag1 = @avatar.bags.where(objet_id: 30).first(2)
+
+      @avatar.bags.delete(@bag1)
+      @craft = Objet.find(id: params[:objet_id])
+      @avatar.objets << @craft
+    end
+
     # craft potion soin mineur
     if params[:objet_id] == 2
 
@@ -169,7 +189,16 @@ class ObjetsController < ApplicationController
     # craft épée de fer
     if params[:objet_id] == 12
       @bag1 = @avatar.bags.where(objet_id: 5).first #baton
-      @bag2 = @avatar.bags.where(objet_id: 27).first(2) #fer x2
+      @bag2 = @avatar.bags.where(objet_id: 26).first(2) #fer x2
+
+      @avatar.bags.delete(@bag1, @bag2)
+      @craft = Objet.find(id: params[:objet_id])
+      @avatar.objets << @craft
+    end
+    # craft épée de fer raffiné
+    if params[:objet_id] == 12
+      @bag1 = @avatar.bags.where(objet_id: 5).first #baton
+      @bag2 = @avatar.bags.where(objet_id: 27).first(2) #fer rafiné x2
 
       @avatar.bags.delete(@bag1, @bag2)
       @craft = Objet.find(id: params[:objet_id])
@@ -182,6 +211,27 @@ class ObjetsController < ApplicationController
       @bag2 = @avatar.bags.where(objet_id: 28).first(2) #acier x2
 
       @avatar.bags.delete(@bag1, @bag2)
+      @craft = Objet.find(id: params[:objet_id])
+      @avatar.objets << @craft
+    end
+
+    # craft épée dor
+    if params[:objet_id] == 14
+      @bag1 = @avatar.bags.where(objet_id: 13).first #epee d'acier
+      @bag2 = @avatar.bags.where(objet_id: 30).first(2) #or x2
+
+      @avatar.bags.delete(@bag1, @bag2)
+      @craft = Objet.find(id: params[:objet_id])
+      @avatar.objets << @craft
+    end
+
+    # craft katana
+    if params[:objet_id] == 15
+      @bag1 = @avatar.bags.where(objet_id: 52).first #epee d'acier rafiné
+      @bag2 = @avatar.bags.where(objet_id: 31).first #or raffiné 
+      @bag3 = @avatar.bags.where(objet_id: 43).first #plasma
+
+      @avatar.bags.delete(@bag1, @bag2, @bag3)
       @craft = Objet.find(id: params[:objet_id])
       @avatar.objets << @craft
     end
