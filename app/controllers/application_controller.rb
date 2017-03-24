@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
 
   rescue_from CanCan::AccessDenied do |exception|
-  	redirect_to root_path, notify: 'Accés interdit'
+  	redirect_to donjons_path, notify: 'Accés interdit'
   end
   #before_filter :configure_permitted_parameters,if: :devise_controller?
 	protected

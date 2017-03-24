@@ -18,7 +18,7 @@
   <tbody>
     <% @objets.each do |objet| %>
     <tr class="objet-<%= objet.id %>">
-        <td><%= objet.name %></td>
+        <td><%= objet.id %> - <%= objet.name %></td>
         <td><%= objet.rarity %></td>
         <td><%= objet.agility %></td>
         <td><%= objet.force %></td>

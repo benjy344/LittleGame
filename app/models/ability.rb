@@ -9,10 +9,11 @@ class Ability
       else
         #can [:read,:update] :all
         can [:create, :show, :addObjetById, :removeObjetById, :equipeObjet, :majAvatar, :payObjetById, :addGold, :rest, :finishDonjon, :unlockNewDonjon, :history], Avatar
-        can [:craftEpeeFer] , Objet
+        can [:craftObjetById] , Objet
         can [:show, :index], Donjon        
         can [:show, :index], Room
         can :index, Monster
+        can [:changeStatus, :finishQuest], Quete
 
       end
 

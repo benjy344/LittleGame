@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   get 'addObjetByIdToRoom'      => 'rooms#addObjetByIdToRoom'
   get 'addMonsterByIdToRoom'    => 'rooms#addMonsterByIdToRoom'
   get 'addObjetByIdToMonster'   => 'monsters#addObjetById'
-  get 'craftEpeeFer'            => 'objets#craftEpeeFer'
+  get 'craftObjetById'          => 'objets#craftObjetById'
   get 'gameover'                => 'index#gameover'
   get 'payObjetById'            => 'avatars#payObjetById'
   get 'restorHpWithObject'      => 'avatars#restorHpWithObject'
