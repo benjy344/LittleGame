@@ -99,6 +99,6 @@ class MonstersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def monster_params
-      params.require(:monster).permit(:name, :hp, :force, :agility, :exp, :element, :inteligence, :force, objet_ids: [])
+      params.require(:monster).permit(:name, :hp, :force, :agility, :exp, :element, :inteligence, :defence, :force, objet_ids: [])
     end
 end

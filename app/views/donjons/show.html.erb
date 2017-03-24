@@ -13,6 +13,7 @@
   @count_monster += r.monsters.count
 end %>
 
+<% if current_user.avatar.history === 0 %>
 <div class="history history-0">
   <div class="overlay"></div>
   <div class="histroy-content">
@@ -29,9 +30,10 @@ end %>
       <text transform="matrix(1 0 0 1 714.8176 317.8185)"><tspan x="0" y="0" fill="#FFFFFF" font-family="'Poiret One'" font-size="20">Le statut de votre avatar se trouve </tspan><tspan x="0" y="24" fill="#FFFFFF" font-family="'Poiret One'" font-size="20">ici, veillez à ce que vos points de </tspan><tspan x="0" y="48" fill="#FFFFFF" font-family="'Poiret One'" font-size="20">vie ne tombent pas à zéro</tspan></text>
     </g>
   </svg>
-  <%= link_to 'OK', {controller: "avatars", action: "history", history: 1 }, class: " btn btn--black" %>
+  <%= link_to 'OK', {controller: "avatars", action: "history", history: 1 }, class: " btn btn--black", remote: true %>
 </div>
 </div>
+<% end %>
 <div id="bag">
   <div class="open-button js-open-button">
     <div class="button-burger">

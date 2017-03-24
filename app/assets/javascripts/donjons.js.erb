@@ -36,10 +36,6 @@ function init() {
 	if ($('body').hasClass('index')){
 		town();
 	}
-
-	if ($( ".glitch-img" ).length) {
-		glitchImg()
-	}
 }
 
 
@@ -82,6 +78,10 @@ function verfifButton() {
 			$resultFindObjects.removeClass('hidden');
 		})
 	}
+	// lib trop lourde 
+	// if ($room.find( ".glitch-img" ).length) {
+	// 	glitchImg($room.find( ".glitch-img" ))
+	// }
 
 	if($room.find('.js-add-object').length){
 		$room.find('.js-add-object').off();
@@ -214,12 +214,17 @@ function fight(surprise) {
 		if (avatar.agility >= monster.agility) {
 			//si l'avatar est le plus rapide 
 			//attaque le monstre
-			monster.hp = (monster.hp - force);
+			if ( Math.round( monster.hp - (force - (monster.defence / 2))) < monster.hp  ) {
+					monster.hp = Math.round( monster.hp - (force - (monster.defence / 2)));
+				} else {
+					monster.hp = monster.hp - 1
+				}
 			if (monster.hp <= 0) { 
 				//si le montre est KO => avatar WIN
 				monster.hp = 0;
 				renderMonster();
 				win = true;
+				stopGlitch($room.find( ".glitch-img" ));
 				$room.find('.js-indication-fight-room').html("Le monstre a été battu !");
 			} else {
 				renderMonster();
@@ -232,9 +237,6 @@ function fight(surprise) {
 					avatar.hp = avatar.hp - 1
 				}
 				
-
-				
-
 				if (avatar.hp <= 0) { 
 					avatar.hp = 0;
 					renderAvatar();
@@ -249,7 +251,11 @@ function fight(surprise) {
 			//si le monstre est le plus rapide
 			//attaque l'avatar
 			$room.find('.js-indication-fight-room').html("Le monstre vous attaque !");
-			avatar.hp = Math.round((avatar.hp + (avatarDefence / 2)) - monster.force);
+			if ( Math.round( avatar.hp - (monster.force - (avatarDefence / 2))) < avatar.hp  ) {
+					avatar.hp = Math.round( avatar.hp - (monster.force - (avatarDefence / 2)));
+				} else {
+					avatar.hp = avatar.hp - 1
+				}
 			if (avatar.hp <= 0) { 
 				avatar.hp = 0;
 				renderAvatar();
@@ -258,7 +264,11 @@ function fight(surprise) {
 			} else {
 				//l'avatar n'est pas mort, le combat continue
 				renderAvatar();
-				monster.hp = (monster.hp - force);
+				if ( Math.round( monster.hp - (force - (monster.defence / 2))) < monster.hp  ) {
+					monster.hp = Math.round( monster.hp - (force - (monster.defence / 2)));
+				} else {
+					monster.hp = monster.hp - 1
+				}
 
 				if (monster.hp <= 0) { 
 					//si le montre est KO => avatar WIN
@@ -387,9 +397,8 @@ function GameOver() {
 
 
 
-function glitchImg() {
-		console.log('coucou')
-		$( ".glitch-img" ).mgGlitch({
+function glitchImg($glitch) {
+		$glitch.mgGlitch({
           // set 'true' to stop the plugin
 			destroy : false, 
           // set 'false' to stop glitching
@@ -401,13 +410,36 @@ function glitchImg() {
           // select blend mode type
           blendModeType : 'hue',
           // set min time for glitch 1 elem
-          glitch1TimeMin : 1, 
+          glitch1TimeMin : 100, 
           // set max time for glitch 1 elem
-          glitch1TimeMax : 2,
+          glitch1TimeMax : 300,
           // set min time for glitch 2 elem
-          glitch2TimeMin : 1, 
+          glitch2TimeMin : 100, 
           // set max time for glitch 2 elem
-          glitch2TimeMax : 2, 
+          glitch2TimeMax : 200, 
+		});
+}
+
+function stopGlitch($glitch) {
+		$glitch.mgGlitch({
+          // set 'true' to stop the plugin
+			destroy : true, 
+          // set 'false' to stop glitching
+          glitch: false, 
+          // set 'false' to stop scaling
+          scale: false, 
+          // set 'false' to stop glitch blending
+          blend : false, 
+          // select blend mode type
+          blendModeType : 'hue',
+          // set min time for glitch 1 elem
+          glitch1TimeMin : 100, 
+          // set max time for glitch 1 elem
+          glitch1TimeMax : 300,
+          // set min time for glitch 2 elem
+          glitch2TimeMin : 100, 
+          // set max time for glitch 2 elem
+          glitch2TimeMax : 200, 
 		});
 }
 

@@ -28,6 +28,9 @@ class AvatarsController < ApplicationController
   # POST /avatars.json
   def create
     @avatar = Avatar.new(avatar_params)
+    if @avatar.name == ""
+      @avatar.update(name: current_user.username)
+    end
     @user = current_user
     @user.avatar = @avatar
     respond_to do |format|
@@ -149,7 +152,7 @@ class AvatarsController < ApplicationController
   def history
     @avatar = current_user.avatar
     @avatar.update(history: params[:history])
-    @history = params[:history] - 1
+    @history = params[:history].to_i - 1
 
     respond_to do |format|
         format.html { redirect_to :back, notice: 'Avatar was successfully updated.' }
