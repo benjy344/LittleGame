@@ -39,46 +39,76 @@ $color-stack:
 	}
 }
 
-$b-height: 60px; //Height (and width) of the burger menu
-$b-margin-top: 30px; //Burger menu margin (distance from top)
-$b-margin-left: 30px; //Burger menu margin (distance from left)
-$b-border-width: 2px; //Width of the borders and 'buns'
-$b-bun-width: 25px; //Width of the 'buns'
-$b-bun-height: $b-border-width; //Height of the 'buns'
-$b-border-radius: 50%; //Change the border radius of the menu
+$b-height: 60px; /*Height (and width) of the burger menu*/
+$b-margin-top: 30px; /*Burger menu margin (distance from top)*/
+$b-margin-left: 30px; /*Burger menu margin (distance from left)*/
+$b-border-width: 2px; /*Width of the borders and 'buns'*/
+$b-bun-width: 25px; /*Width of the 'buns'*/
+$b-bun-height: $b-border-width; /*Height of the 'buns'*/
+$b-border-radius: 50%; /*Change the border radius of the menu*/
 
-$b-trans-speed: .4s; //Transition speed settings
-$b-transition: all $b-trans-speed ease; //Transitions
+$b-trans-speed: .4s; /*Transition speed settings*/
+$b-transition: all $b-trans-speed ease; /*Transitions*/
 
-$b-font-size: 24px; //Font size of brand and links
-$b-font-family: $principal-font; //Font family of the brand and links
-$b-font-weight: 300; //Font weight of brand and links
-$b-txt-pad: 30px; //Left padding on both brand and links
+$b-font-size: 24px; /*Font size of brand and links*/
+$b-font-family: $principal-font; /*Font family of the brand and links*/
+$b-font-weight: 300; /*Font weight of brand and links*/
+$b-txt-pad: 30px; /*Left padding on both brand and links*/
 
-$b-line-height: ($b-height / 2 - ($b-font-size / 2.8)); //Vertically centers brand to menu
-$b-txt-pad-top: ($b-margin-top + $b-height + $b-txt-pad); //Top margin for first link element
-$b-bun-width-half: ($b-bun-width / 2); //Half bun width used for calculation
-$b-pad-left: ($b-height / 2 - $b-bun-width-half - 2); //Horizontally centers bun in menu
-$b-pad-top: ($b-height / 2 - $b-bun-width-half); //Vertically centers bun in menu
+$b-line-height: ($b-height / 2 - ($b-font-size / 2.8)); /*Vertically centers brand to menu*/
+$b-txt-pad-top: ($b-margin-top + $b-height + $b-txt-pad); /*Top margin for first link element*/
+$b-bun-width-half: ($b-bun-width / 2); /*Half bun width used for calculation*/
+$b-pad-left: ($b-height / 2 - $b-bun-width-half - 2); /*Horizontally centers bun in menu*/
+$b-pad-top: ($b-height / 2 - $b-bun-width-half); /*Vertically centers bun in menu*/
 
-@keyframes slideInLeft {
+@-webkit-keyframes slideInLeft {
 	0% {
-		transform: translate3d(-250px, 0, 0);
+		-webkit-transform: translate3d(-250px, 0, 0);
+		        transform: translate3d(-250px, 0, 0);
 		visibility: visible;
 	}
 
 	100% {
-		transform: translate3d(0, 0, 0);
+		-webkit-transform: translate3d(0, 0, 0);
+		        transform: translate3d(0, 0, 0);
+	}
+}
+
+@keyframes slideInLeft {
+	0% {
+		-webkit-transform: translate3d(-250px, 0, 0);
+		        transform: translate3d(-250px, 0, 0);
+		visibility: visible;
+	}
+
+	100% {
+		-webkit-transform: translate3d(0, 0, 0);
+		        transform: translate3d(0, 0, 0);
+	}
+}
+
+@-webkit-keyframes slideOutLeft {
+	0% {
+		-webkit-transform: translate3d(0, 0, 0);
+		        transform: translate3d(0, 0, 0);
+	}
+
+	100% {
+		-webkit-transform: translate3d(-250px, 0, 0);
+		        transform: translate3d(-250px, 0, 0);
+		visibility: hidden;
 	}
 }
 
 @keyframes slideOutLeft {
 	0% {
-		transform: translate3d(0, 0, 0);
+		-webkit-transform: translate3d(0, 0, 0);
+		        transform: translate3d(0, 0, 0);
 	}
 
 	100% {
-		transform: translate3d(-250px, 0, 0);
+		-webkit-transform: translate3d(-250px, 0, 0);
+		        transform: translate3d(-250px, 0, 0);
 		visibility: hidden;
 	}
 }
@@ -102,6 +132,7 @@ body {
 		padding: 0;
 		position: absolute;
 		top: 0;
+		-webkit-transition : $b-transition;
 		transition: $b-transition;
 		width: 100%;
 		z-index: -1;
@@ -134,13 +165,17 @@ body {
 		list-style-type: none;
 		padding: 10px;
 		text-align: left;
-		transform: translateX(-250px);
+		-webkit-transform: translateX(-250px);
+		        transform: translateX(-250px);
 	}
 
 	li:not(.open) {
-		animation-duration: $b-trans-speed;
-		animation-fill-mode: both;
-		animation-name: slideOutLeft;
+		-webkit-animation-duration: $b-trans-speed;
+		        animation-duration: $b-trans-speed;
+		-webkit-animation-fill-mode: both;
+		        animation-fill-mode: both;
+		-webkit-animation-name: slideOutLeft;
+		        animation-name: slideOutLeft;
 	}
 
 	li:first-child {
@@ -151,9 +186,12 @@ body {
 		visibility: visible;
 
 		li {
-			animation-duration: $b-trans-speed;
-			animation-fill-mode: both;
-			animation-name: slideInLeft;
+			-webkit-animation-duration: $b-trans-speed;
+			        animation-duration: $b-trans-speed;
+			-webkit-animation-fill-mode: both;
+			        animation-fill-mode: both;
+			-webkit-animation-name: slideInLeft;
+			        animation-name: slideInLeft;
 		}
 	}
 }
@@ -167,6 +205,7 @@ body {
 	font-weight: $b-font-weight;
 	margin-left: $b-margin-left;
 	text-decoration: none;
+	-webkit-transition : $b-transition;
 	transition: $b-transition;
 	width: auto;
 
@@ -187,6 +226,7 @@ body {
 	padding-left: $b-pad-left;
 	padding-top: $b-pad-top;
 	position: relative;
+	-webkit-transition : $b-transition;
 	transition: $b-transition;
 	-webkit-user-select: none;
 		-moz-user-select: none;
@@ -244,6 +284,7 @@ body {
 .b-bun {
 	background: color(complement);
 	position: relative;
+	-webkit-transition : $b-transition;
 	transition: $b-transition;
 
 	&--top {
@@ -274,6 +315,7 @@ body {
 	position: relative;
 	text-decoration: none;
 	top: -$b-line-height;
+	-webkit-transition : $b-transition;
 	transition: $b-transition;
 	z-index: 13;
 }
@@ -300,7 +342,8 @@ body {
 		.b-bun--top {
 			background: color(complement);
 			top: 9px;
-			transform: rotate(45deg);
+			-webkit-transform: rotate(45deg);
+			        transform: rotate(45deg);
 		}
 
 		.b-bun--mid {
@@ -310,7 +353,8 @@ body {
 		.b-bun--bottom {
 			background: color(complement);
 			top: 5px;
-			transform: rotate(-45deg);
+			-webkit-transform: rotate(-45deg);
+			        transform: rotate(-45deg);
 		}
 
 		.b-brand {
@@ -338,11 +382,13 @@ p, a, button, ul, li, h2, h3, h4 {
 	border: 1px solid #242322;
 	background: #fff;
 	width: 327px;
+	-webkit-transition : all 1s;
 	transition: all 1s;
 	text-align: left;
 
 	&.open {
 		right: 0;
+		-webkit-transition : all 1s;
 		transition: all 1s;
 	}
 
@@ -362,7 +408,8 @@ p, a, button, ul, li, h2, h3, h4 {
 		position: absolute;
 		left: -45px;
 		top: 50%;
-		transform: translateY(-50%);
+		-webkit-transform: translateY(-50%);
+		        transform: translateY(-50%);
 		cursor: pointer;
 	}
 	.link {
@@ -378,7 +425,10 @@ p, a, button, ul, li, h2, h3, h4 {
 		width: 34px;
 		height: 2px;
 		position: absolute;
-		transition: transform 300ms ease;
+		-webkit-transition : -webkit-transform 300ms ease;
+		transition : -webkit-transform 300ms ease;
+		transition : transform 300ms ease;
+		transition: transform 300ms ease, -webkit-transform 300ms ease;
 		top: 0;
 		left: 0;
 		right: 0;
@@ -391,7 +441,10 @@ p, a, button, ul, li, h2, h3, h4 {
 			background: #FFF;
 			width: 2px;
 			height: 16px;
-			transition: transform 300ms ease, top 300ms ease, left 300ms ease, bottom 300ms ease;
+			-webkit-transition : top 300ms ease, left 300ms ease, bottom 300ms ease, -webkit-transform 300ms ease;
+			transition : top 300ms ease, left 300ms ease, bottom 300ms ease, -webkit-transform 300ms ease;
+			transition : transform 300ms ease, top 300ms ease, left 300ms ease, bottom 300ms ease;
+			transition: transform 300ms ease, top 300ms ease, left 300ms ease, bottom 300ms ease, -webkit-transform 300ms ease;
 		}
 		&:before { bottom: 100%; }
 		&:after { top: 100%; }
@@ -399,16 +452,19 @@ p, a, button, ul, li, h2, h3, h4 {
 
 	.link.open {
 		.link__icon__bar {
-			transform: rotate(180deg);
+			-webkit-transform: rotate(180deg);
+			        transform: rotate(180deg);
 			&:before, &:after {
 				left: 4px;
 			}
 			&:before {
-				transform: rotate(45deg);
+				-webkit-transform: rotate(45deg);
+				        transform: rotate(45deg);
 				bottom: -2px;
 			}
 			&:after {
-				transform: rotate(-45deg);
+				-webkit-transform: rotate(-45deg);
+				        transform: rotate(-45deg);
 				top: -2px;
 			}
 		}

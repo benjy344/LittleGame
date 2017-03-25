@@ -1,8 +1,10 @@
 <% if @avatar.money >= 10 %>
 <ul>
-	<% @objetDroguery.each do |o| %>
+	<% @objetForge.each do |o| %>
 		<% if @avatar.money >= o.price %>
-		<li><%= link_to "Acheter " + o.name.to_s + " (" + o.price.to_s + " Or)", {controller: "avatars", action: "payObjetById", objet_id: o.id} ,remote: true, class: 'btn btn--white'%></li>
+			<% if o.rarity < 5 %>
+				<li><%= link_to "Acheter " + o.name.to_s + " (" + o.price.to_s + " Or)", {controller: "avatars", action: "payObjetById", objet_id: o.id} ,remote: true, class: 'btn btn--white'%></li>
+			<% end %>
 		<% end %>
 	<% end %>
 </ul>

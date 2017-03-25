@@ -1,9 +1,10 @@
 <div class="container">
-	<h1>Donjons</h1>
+	<h1>Carte du monde</h1>
 
 
 
   <div>
+    <p><%= link_to "Le village", town_path, class: 'btn' %></p>
     <% @donjons.each do |a| %>
       <% if a.level <= current_user.avatar.countUnlockDonjon || current_user.role === "admin"%>
         <p><%= link_to a.name, a, class: 'btn' %></p>

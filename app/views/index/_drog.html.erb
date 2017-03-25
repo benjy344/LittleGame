@@ -1,6 +1,6 @@
 <% if @avatar.money >= 60 %>
 <ul>
-	<% @objetForge.each do |o| %>
+	<% @objetDroguery.each do |o| %>
 		<% if @avatar.money >= o.price %>
 			<li><%= link_to "Acheter "+o.name.to_s+" ("+o.price.to_s+" Or)", {controller: "avatars", action: "payObjetById", objet_id: o.id} ,remote: true, class: 'btn btn--white'%></li>
 		<% end %>

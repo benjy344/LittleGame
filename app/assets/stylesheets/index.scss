@@ -1,3 +1,11 @@
+h1 {
+		font-family: 'Cabin Sketch', cursive;
+		text-align: left;
+		margin: 50px 0; 
+		font-size: 50px;
+		color: #242322;
+	}
+
 .index {
 	overflow: hidden;
 	h1 {
@@ -44,7 +52,8 @@
 
 	.shop {
 		margin-top: 40vh; 
-		transform: translateY(-50%);
+		-webkit-transform: translateY(-50%); 
+		        transform: translateY(-50%);
 		h1 {
 			font-size: 40px;
 		}
@@ -83,6 +92,7 @@
 		color: #fff;
 		top: -100%;
 		left: -100%;
+		-webkit-transition: all 1s;
 		transition: all 1s;
 		padding: 3em;
 		
@@ -119,6 +129,7 @@
 		&.open {
 			top: 0;
 			left: 0;
+			-webkit-transition: all 1s;
 			transition: all 1s;
 		}
 	}
@@ -228,6 +239,8 @@
 	0% {
 		color: #242322;
 		background: #fff;
+		opacity: 1
+
 	}
 	60% {
 		color: #242322;

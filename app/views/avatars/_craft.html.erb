@@ -1,41 +1,88 @@
-<% if (@avatar.objets.where(name: "Baton").count)>= 1 && (@avatar.objets.where(name: "Fer").count)>= 2  %>
+<!-- fer raffiné -->
+<% if (@avatar.objets.where(id: 26).count)>= 2 %>
 
-<%= link_to 'Créer une Épée de Fer', {controller: "objets", action: "craftObjetById", objet_id: 12 } ,remote: true, class: 'btn btn--white' %>
-<p>Baton(x1), Fer(x2)</p>
-
-<% end %>
-
-<% if (@avatar.objets.where(name: "Peau de bête").count)>= 4 %>
-
-<%= link_to 'Créer une Armure de peaux', {controller: "objets", action: "craftObjetById", objet_id: @avatar.id } ,remote: true, class: 'btn btn--white' %>
-<p>Peau de bête(x4)</p>
+<%= link_to 'Créer du Fer raffiné', {controller: "objets", action: "craftObjetById", objet_id: 27 } ,remote: true, class: 'btn btn--white' %>
+<p>Fer(x2)</p>
 
 <% end %>
+<!-- Acier raffiné -->
+<% if (@avatar.objets.where(id: 28).count)>= 2 %>
 
-<% if (@avatar.objets.where(name: "Fer").count)>= 10 %>
-
-<%= link_to 'Créer une Armure de Fer', {controller: "objets", action: "craftObjetById", objet_id: @avatar.id } ,remote: true, class: 'btn btn--white' %>
-<p>Fer(x10)</p>
-
-<% end %>
-
-<% if (@avatar.objets.where(name: "Baton").count)>= 8 %>
-
-<%= link_to 'Créer un Bouclier de bois', {controller: "objets", action: "craftObjetById", objet_id: @avatar.id } ,remote: true, class: 'btn btn--white' %>
-<p>Baton(x8)</p>
+<%= link_to 'Créer de l\'Acier raffiné', {controller: "objets", action: "craftObjetById", objet_id: 29 } ,remote: true, class: 'btn btn--white' %>
+<p>Acier(x2)</p>
 
 <% end %>
+<!-- Or raffiné -->
+<% if (@avatar.objets.where(id: 30).count)>= 2 %>
 
-<% if (@avatar.objets.where(name: "Herbe médicinale").count)>= 5 %>
-
-<%= link_to 'Créer une Potion de Soin', {controller: "objets", action: "craftObjetById", objet_id: @avatar.id } ,remote: true, class: 'btn btn--white' %>
-<p>Herbe médicinale(x5)</p>
-
-<% end %>
-
-<% if (@avatar.objets.where(name: "Potion de Soin").count)>= 5 %>
-
-<%= link_to 'Créer une Potion de Vie', {controller: "objets", action: "craftObjetById", objet_id: @avatar.id } ,remote: true, class: 'btn btn--white' %>
-<p>Potion de Soin(x5)</p>
+<%= link_to "Créer del'Or raffiné", {controller: "objets", action: "craftObjetById", objet_id: 31 } ,remote: true, class: 'btn btn--white' %>
+<p>Or(x2)</p>
 
 <% end %>
+<!-- potion soin mineur -->
+<% if (@avatar.objets.where(id: 1).count)>= 2 %>
+
+<%= link_to 'Créer une Potion de soin mineur', {controller: "objets", action: "craftObjetById", objet_id: 2 } ,remote: true, class: 'btn btn--white' %>
+<p>Plante Médicinale(x2)</p>
+
+<% end %>
+<!-- potion soin  -->
+<% if (@avatar.objets.where(id: 1).count)>= 3 %>
+
+<%= link_to 'Créer une Potion de soin', {controller: "objets", action: "craftObjetById", objet_id: 3 } ,remote: true, class: 'btn btn--white' %>
+<p>Plante Médicinale(x3)</p>
+
+<% end %>
+<!-- seve -->
+<% if (@avatar.objets.where(id: 2).count)>= 2 %>
+
+<%= link_to "Créer de la sève d'Yggdrasil", {controller: "objets", action: "craftObjetById", objet_id: 4 } ,remote: true, class: 'btn btn--white' %>
+<p>Potion de soin mineur(x2)</p>
+
+<% end %>
+<!-- baton de moine -->
+<% if (@avatar.objets.where(id: 5).count)>= 2 %>
+
+<%= link_to 'Créer un Bâton de moine', {controller: "objets", action: "craftObjetById", objet_id: 6 } ,remote: true, class: 'btn btn--white' %>
+<p>Bâton(x2)</p>
+
+<% end %>
+<!-- baton de sorcier -->
+<% if (@avatar.objets.where(id: 6).count)>= 1 && (@avatar.objets.where(id: 43).count)>= 2 && (@avatar.objets.where(id: 27).count)>= 1   %>
+
+<%= link_to 'Créer un Bâton de Sorcier', {controller: "objets", action: "craftObjetById", objet_id: 7 } ,remote: true, class: 'btn btn--white' %>
+<p>Bâton de moine(x1), Plasma(x2), Fer raffiné(x1)</p>
+
+<% end %>
+<!-- baton de feu -->
+<!-- baton d'eau -->
+<!-- baton de Terre -->
+<!-- baton d'ombre -->
+<!-- baton de lumiere -->
+<!-- baton d'Yggdrasil -->
+<!-- épée de fer -->
+<!-- épée de acier -->
+<!-- épée de or-->
+<!-- épée de fer raffiné -->
+<!-- épée de acier raffiné -->
+<!-- épée de or raffiné -->
+<!-- katana -->
+<!-- katana Amakuni-->
+<!-- hache de ragnar -->
+<!-- dague de fer -->
+<!-- dague de acier -->
+<!-- dague de voleur -->
+<!-- dague empoisonnée -->
+<!-- Assassine -->
+<!-- bouclier de bois -->
+<!-- bouclier de fer -->
+<!-- bouclier de acier -->
+<!-- bouclier de or -->
+<!-- yata no kagami -->
+<!-- armure peaux -->
+<!-- armure cuire -->
+<!-- armure ecailles -->
+<!-- armure fer -->
+<!-- armure deidra -->
+
+
