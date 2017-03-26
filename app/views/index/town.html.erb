@@ -81,3 +81,17 @@
 <div id="guilde" class="shopin">
 <%= render partial: 'guilde' , locals: {avatar: @avatar, quetes: @quetes}%>
 </div>
+
+
+
+
+
+<% if current_user.avatar.history === 1 %>
+<div class="history history-1">
+  <div class="overlay"></div>
+  <div class="histroy-content">
+    
+  <%= link_to 'OK', {controller: "avatars", action: "history", history: 2 }, class: " btn btn--black", remote: true %>
+</div>
+</div>
+<% end %>

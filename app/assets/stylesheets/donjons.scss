@@ -158,7 +158,16 @@ form {
         vertical-align: top;
         height: 100%;
     }
+    .js-content-craft {
+        max-height: 80%;
+        box-sizing: border-box;
+        padding: 40px 0 40px 40px;
+        overflow: auto;
 
+        p {
+            text-align: left;
+        }
+    }
 
     .description {
         padding: 15px;

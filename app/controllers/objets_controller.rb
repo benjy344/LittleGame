@@ -95,6 +95,7 @@ class ObjetsController < ApplicationController
     if @idcraft == 6
       @bag1 = @avatar.bags.where(objet_id: 5).first(2)
 
+      @avatar.bags.delete(@bag1)
       @craft = Objet.find(@idcraft)
       @avatar.objets << @craft
     end
@@ -322,7 +323,7 @@ class ObjetsController < ApplicationController
     # craft Assassine
     if @idcraft == 23
       @bag1 = @avatar.bags.where(objet_id: 21).first #dague empoisonée
-      @bag2 = @avatar.bags.where(objet_id: 31).first #tissu de la faucheuse
+      @bag2 = @avatar.bags.where(objet_id: 54).first #tissu de la faucheuse
       @bag3 = @avatar.bags.where(objet_id: 43).first(3) #plasma x3
 
       @avatar.bags.delete(@bag1, @bag2, @bag3)
@@ -382,7 +383,7 @@ class ObjetsController < ApplicationController
     end
 
     # craft armure peaux
-    if @idcraft == 36
+    if @idcraft == 37
       @bag1 = @avatar.bags.where(objet_id: 24).first(3) #peau x3 
 
       @avatar.bags.delete(@bag1)
@@ -412,9 +413,10 @@ class ObjetsController < ApplicationController
     # craft armure fer
     if @idcraft == 41
       @bag1 = @avatar.bags.where(objet_id: 26).first(2) #fer x2 
-      @bag2 = @avatar.bags.where(objet_id: 27).first(2) #fer x2 
+      @bag2 = @avatar.bags.where(objet_id: 27).first(2) #fer raffine x2 
+      @bag3 = @avatar.bags.where(objet_id: 38).first #armure de cuire 
 
-      @avatar.bags.delete(@bag1, @bag2)
+      @avatar.bags.delete(@bag1, @bag2, @bag3)
       @craft = Objet.find(@idcraft)
       @avatar.objets << @craft
     end
@@ -424,15 +426,29 @@ class ObjetsController < ApplicationController
     if @idcraft == 42
       @bag1 = @avatar.bags.where(objet_id: 41).first #armure fer  
       @bag2 = @avatar.bags.where(objet_id: 56).first #coeur 
-      @bag2 = @avatar.bags.where(objet_id: 31).first(3) #or raff x3 
+      @bag3 = @avatar.bags.where(objet_id: 31).first(3) #or raff x3 
 
-      @avatar.bags.delete(@bag1, @bag2)
+      @avatar.bags.delete(@bag1, @bag2, @bag3)
       @craft = Objet.find(@idcraft)
       @avatar.objets << @craft
     end
 
     
-
+    if !@avatar.id_defObject.nil?
+      if @avatar.bags.where(objet_id: @avatar.id_defObject).count === 0
+        @avatar.update(id_defObject: nil)
+      end
+    end
+    if !@avatar.id_armure.nil?
+      if @avatar.bags.where(objet_id: @avatar.id_armure).count === 0
+        @avatar.update(id_armure: nil)
+      end
+    end
+    if !@avatar.id_objet_equipe.nil?
+      if @avatar.bags.where(objet_id: @avatar.id_objet_equipe).count === 0
+        @avatar.update(id_objet_equipe: nil)
+      end
+    end
 
     respond_to do |format|
         format.html { redirect_to :back }
