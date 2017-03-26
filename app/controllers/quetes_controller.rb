@@ -84,7 +84,8 @@ class QuetesController < ApplicationController
   		@avatar.objets << @reward 
   	end
   	 
-
+    @objetDroguery = Objet.where('category = "Santé" OR category= "Pierre Magique" OR category = "Matériaux"').order(:price)
+    @objetForge = Objet.where('category = "Armure" OR category= "Arme" OR category = "Défence"').order(:price)
   	@avatar.qtum.where(quete_id: @quete.id).first.update(state: "completed")
 
   	respond_to do |format|

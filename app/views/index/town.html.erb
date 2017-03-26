@@ -87,11 +87,27 @@
 
 
 <% if current_user.avatar.history === 1 %>
-<div class="history history-1">
+<div class="history history-1 history-slide">
   <div class="overlay"></div>
-  <div class="histroy-content">
-    
-  <%= link_to 'OK', {controller: "avatars", action: "history", history: 2 }, class: " btn btn--black", remote: true %>
+  <div class="history-content">
+    <div class="slider-speak">
+      <div class="slide">
+        <p>Hoy étranger ! D'où viens tu comme ça ? </p>
+        <p>Tu ne sais pas? Tu sorts de cette grotte ? Tu as l'air mal en point... Tu t'es fais attaqué par un monstre ? </p>
+        <p>Ça arrive de plus en plus souvant ces derniers temps.. Tu ferais mieux d'aller te reposer à l'Auberge.</p>
+        <p>
+          <a href="#" class="skip js-skip btn">Suivant</a>
+        </p>
+        
+      </div>
+      <div class="slide">
+        <p>Je te conseille aussi d'aller t'équiper à la Forge ou à la Droguerie.. si tu as un peu d'or cela te permettra d'étre mieux préparé. Enfin, depuis que les monstres se repprochent du village nous avons monté une Guilde.. Si tu t'en sent capable tu pourrais nous aider à remplire quelques quetes et qui sais, avec le temps tu découvrira peut-étre d'où tu viens... </p>
+        <p>
+          <%= link_to 'OK', {controller: "avatars", action: "history", history: 2 }, class: " btn btn--black", remote: true %>
+        </p>
+        
+      </div>
+    </div>
+  </div>
 </div>
-</div>
-<% end %>
+<%end %>

@@ -20,10 +20,13 @@
 	<div class="selectbox js-select-quest-type">
     <%= f.input :rewardType, collection: ['Or', 'Objet'], selected: 'Or', label: "Choisir un type de récompense", required: true %>
     </div>
-    <div class="js-money">
-    	<%= f.number_field :reward, placeholder: "Nombre de pièce d'or", class: 'form-control' %>
+    <div class="js-reward">
+    	
     </div>
-    <div class="js-objet" style="display: none;" hidden>
+    <div class="js-money">
+    	<%= f.input :reward, placeholder: "Nombre de pièce d'or", class: 'form-control' %>
+    </div>
+    <div class="js-objet" style="visibility: hidden;" hidden>
     	<div class="selectbox">
 			<div class="input select required quete_reward">
 				<label class="select required" for="quete_reward"><abbr title="required">*</abbr> l'objet en récompense</label>

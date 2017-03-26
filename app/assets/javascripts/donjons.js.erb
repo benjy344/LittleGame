@@ -33,6 +33,10 @@ function init() {
 	extendDescription();
 	articleSlide();
 
+	if ($('.history-slide').length){
+		speakSlider();
+	}
+
 	if ($('body').hasClass('index')){
 		town();
 	}
@@ -56,6 +60,20 @@ function town() {
 	
 }
 
+function speakSlider() {
+	var $slider = $('.slider-speak');
+	var $slide = $('.slide');
+	var width = $('.slide').length*100+'%'
+	$slider.css('width', width);
+	var posSpeak = 0
+
+	$('.js-skip').on('click', function(){
+
+			posSpeak += -100;
+			$slider.css('left', posSpeak + '%');
+	});
+
+}
 
 function extendDescription() {
 	$('.js-object-to-extend').off();

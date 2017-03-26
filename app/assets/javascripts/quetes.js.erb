@@ -1,3 +1,5 @@
+$rewardObj 	= 0;
+$rewardOr 	= 0;
 $(document).ready(function(){
 
 	$selectType = $('.js-select-quest-type');
@@ -5,6 +7,9 @@ $(document).ready(function(){
 
 	if ($selectType.length) {
 		$val = $selectType.find('option:selected').text();
+		$rewardObj 	= $('.js-objet');
+		$rewardOr 	= $('.js-money');
+		console.log($rewardObj,$rewardOr )
 		$selectType.on('change', function(e){
 			$val = $(e.currentTarget).find('option:selected').text();
 			hiddenForm($val);
@@ -14,13 +19,20 @@ $(document).ready(function(){
 })
 
 function hiddenForm(val) {
-	$rewardObj 	= $('.js-objet');
-	$rewardOr 	= $('.js-money');
+	
+	$reward 	= $('.js-reward');
+
+
 	if (val === 'Or') {
-		$rewardObj.css('display', 'none').attr('hidden', true);
-		$rewardOr.css('display', 'block').attr('hidden', false);
+		$rewardObj.remove();
+		$reward.html($rewardOr);
+		//$rewardOr.css('display', 'block').attr('hidden', false);
 	} else {
-		$rewardObj.css('display', 'block').attr('hidden', false);
-		$rewardOr.css('display', 'none').attr('hidden', true);
+		console.log($rewardObj)
+		$rewardOr.remove();
+		$reward.html($rewardObj);
+		$rewardObj.css('visibility', 'visible').attr('hidden', false);
+		//$rewardObj.css('display', 'block').attr('hidden', false);
+		//$rewardOr.css('display', 'none').attr('hidden', true);
 	}
 }

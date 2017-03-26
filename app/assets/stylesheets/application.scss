@@ -319,7 +319,32 @@ body {
 	transition: $b-transition;
 	z-index: 13;
 }
+.history-slide {
+	height: 100%;
+	.history-content {
+		height: 100%;
+	    position: absolute;
+	    top: 0;
+	    left: 0;
+	}
+	.slider-speak {
+		position: relative;
+	    top: 45%;
+	    background: #fff;
+	    border: 1px solid #242322;
+	    overflow: hidden;
+	    width: 200%;
+	    font-size: 0;
+	}
 
+	.slide {
+		width: 50%;
+		display: inline-block;
+		font-size: inherit;
+		padding: 0px 80px;
+		vertical-align: middle;
+	}
+}
 .b-container {
 	height: $b-height;
 	left: $b-margin-left;
