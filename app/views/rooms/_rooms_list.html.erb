@@ -24,11 +24,11 @@
 					}'><div class="glitch-img"></div></div>
 					
 					<div class="js-attack-surprise-buttons">
-						<div class="btn js-attack-surprise">Attaquer par surprise</div>
+						<button class="btn js-attack-surprise">Attaquer par surprise</button>
 						<div class="btn nxt">Tenter d'avancer</div>
 					</div>
 					<div class="js-fight-buttons hidden">
-						<div class="btn js-attack-button">Attaquer</div>
+						<button class="btn js-attack-button" disabled="true">Attaquer</button>
 						<div class="btn js-trigger-menu">Regarder l'inventaire</div>						
 					</div>
 					<% if r.monsters.first.objets.any? %>
@@ -59,17 +59,17 @@
 						<div class="js-monster-current-hp monster-current-hp" data-hp="<%= r.monsters.first.hp%>"></div>
 					</div>
 					<div class="js-monster the_monster" data-monster= '{
-					"hp" : <%= r.monsters.first.hp%>,
-					"hpMax" : <%= r.monsters.first.hp%>,
-					"exp" : <%= r.monsters.first.exp%>,
-					"force" : <%= r.monsters.first.force%>,
+					"hp"      : <%= r.monsters.first.hp%>,
+					"hpMax"   : <%= r.monsters.first.hp%>,
+					"exp"     : <%= r.monsters.first.exp%>,
+					"force"   : <%= r.monsters.first.force%>,
 					"agility" : <%= r.monsters.first.agility%>,
 					"defence" : <%= r.monsters.first.defence%>
 					}'>
 						<div class="glitch-img"></div>
 					</div>
 					<div class="js-fight-buttons hidden">
-						<div class="btn js-attack-button">Attaquer</div>
+						<button class="btn js-attack-button">Attaquer</button>
 						<div class="btn js-trigger-menu">Regarder l'inventaire</div>						
 					</div>
 

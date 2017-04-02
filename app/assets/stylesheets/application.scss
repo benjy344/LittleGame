@@ -239,7 +239,11 @@ body {
 		border: color(complement) solid $b-border-width;
 	}
 }
-
+button {
+	&.btn {
+		background: white;
+	}
+}
 .history {
 	position: fixed;
 	height: 100%;

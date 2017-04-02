@@ -121,6 +121,7 @@ function verfifButton() {
 	if ($room.find('.js-attack-surprise-buttons').length) {
 		$('.js-attack-surprise').off();
 		$room.find('.js-attack-surprise').on('click', function(){
+			$(this).attr('disabled', true);
 			avatar = JSON.parse($('#avatar').attr('data-avatar'));
 			monster = JSON.parse($room.find('.js-monster').attr('data-monster'));
 			$currentMonsterLife = $room.find('.js-monster-current-hp');
@@ -134,6 +135,7 @@ function verfifButton() {
 	if ($room.find('.js-attack-button').length) {
 		$('.js-attack-button').off();
 		$room.find('.js-attack-button').on('click', function(){
+			$(this).attr('disabled', true);
 			avatar = JSON.parse($('#avatar').attr('data-avatar'));
 			monster = JSON.parse($room.find('.js-monster').attr('data-monster'));
 			$currentMonsterLife = $room.find('.js-monster-current-hp');
@@ -405,6 +407,9 @@ function renderAvatar() {
 function renderMonster() {
 	$room.find('.js-monster-current-hp').css('width', calculPercentLife(monster.hp, monster.hpMax) );
 	$room.find('.js-monster').attr('data-monster', JSON.stringify(monster));
+	setTimeout(function(){
+		$room.find('.js-attack-button').attr('disabled', false);
+	},1000)
 }
 
 function GameOver() {
